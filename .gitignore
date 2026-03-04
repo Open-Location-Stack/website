@@ -24,6 +24,7 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+cloudflare.env
 
 # Dependency/cache dirs
 .npm/

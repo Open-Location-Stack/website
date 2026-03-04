@@ -10,7 +10,8 @@
     "build": "npm run build:assets && hugo --gc --minify",
     "build:assets": "vite build",
     "dev:assets": "vite build --watch --mode development",
-    "dev:hugo": "hugo server -D --disableFastRender"
+    "dev:hugo": "hugo server -D --disableFastRender",
+    "deploy:cloudflare": "./scripts/deploy-cloudflare.sh"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
