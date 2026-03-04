@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../../layouts/**/*.html";
+@source "../../content/**/*.{md,html}";
+
+@theme {
+  --color-ink: #0a0a0a;
+  --color-paper: #ffffff;
+  --color-muted: #4b5563;
+  --color-line: #e5e7eb;
+  --color-accent: #111111;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink antialiased;
+}
+
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-links: #111111;
+  --tw-prose-bold: #111111;
+  --tw-prose-counters: #374151;
+  --tw-prose-bullets: #9ca3af;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: #000000;
+}

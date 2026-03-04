@@ -1,0 +1,8 @@
+{
+  "assets/ts/site.ts": {
+    "file": "assets/site.js",
+    "name": "site",
+    "src": "assets/ts/site.ts",
+    "isEntry": true
+  }
+}

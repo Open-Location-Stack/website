@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="Open RTLS provides open source building blocks for RTLS-enabled applications." />
+
+    {{ $styles := resources.Get "css/main.css" | css.PostCSS }}
+    {{ if not hugo.IsServer }}
+      {{ $styles = $styles | minify | fingerprint }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}"{{ if $styles.Data.Integrity }} integrity="{{ $styles.Data.Integrity }}"{{ end }} />
+
+    {{ $manifestPath := "static/build/manifest.json" }}
+    {{ if fileExists $manifestPath }}
+      {{ $manifest := readFile $manifestPath | transform.Unmarshal }}
+      {{ $entry := index $manifest "assets/ts/site.ts" }}
+      {{ if $entry }}
+        {{ if isset $entry "css" }}
+          {{ range $entry.css }}
+            <link rel="stylesheet" href="{{ "build/" | relURL }}{{ . }}" />
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </head>
+  <body>
+    <div class="min-h-screen">
+      <header class="border-b border-line">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+          <a href="{{ "/" | relLangURL }}" class="text-sm font-semibold tracking-wide">Open RTLS</a>
+          <div class="flex items-center gap-6 text-sm">
+            <a href="{{ "/" | relLangURL }}">{{ i18n "nav_home" }}</a>
+            <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        {{ block "main" . }}{{ end }}
+      </main>
+
+      <footer class="border-t border-line">
+        <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
+          <p>© <span id="year"></span> FORMATION GmbH</p>
+          <div class="flex items-center gap-6">
+            <a href="mailto:info+rtls@tryformation.com">info+rtls@tryformation.com</a>
+            <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    {{ if fileExists "static/build/manifest.json" }}
+      {{ $manifest := readFile "static/build/manifest.json" | transform.Unmarshal }}
+      {{ $entry := index $manifest "assets/ts/site.ts" }}
+      {{ if $entry }}
+        <script type="module" src="{{ "build/" | relURL }}{{ $entry.file }}"></script>
+      {{ end }}
+    {{ else if hugo.IsServer }}
+      <script type="module" src="{{ "build/assets/site.js" | relURL }}"></script>
+    {{ end }}
+  </body>
+</html>

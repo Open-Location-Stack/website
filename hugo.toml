@@ -1,0 +1,29 @@
+baseURL = "https://open-rtls.com/"
+title = "Open RTLS"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+timeZone = "Europe/Berlin"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    languageCode = "en"
+    weight = 1
+
+[permalinks.page]
+  "pages" = "/:slugorcontentbasename/"
+
+[build]
+  noJSConfigInAssets = false
+
+[minify]
+  disableCSS = true
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]

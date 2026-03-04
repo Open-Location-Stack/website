@@ -1,0 +1,63 @@
+{{ define "main" }}
+  <section class="mx-auto max-w-6xl px-6 pb-16 pt-14 md:px-8 md:pb-24 md:pt-20">
+    <div class="grid gap-10 md:grid-cols-[1.35fr_1fr] md:items-start">
+      <div>
+        <img src="/images/open-rtls-logo.svg" alt="Open RTLS logo" class="h-14 w-auto" />
+        <h1 class="mt-8 max-w-3xl text-4xl font-semibold leading-tight tracking-tight md:text-6xl">{{ .Params.hero_title }}</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{{ .Params.hero_text }}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="mailto:info+rtls@tryformation.com" class="inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-black">{{ i18n "cta_primary" }}</a>
+          <a href="#components" class="inline-flex items-center rounded-full border border-line px-6 py-3 text-sm font-semibold transition hover:border-ink">{{ i18n "cta_secondary" }}</a>
+        </div>
+      </div>
+
+      <aside class="rounded-2xl border border-line bg-white p-6 md:p-8">
+        <h2 class="text-xl font-semibold">{{ i18n "phase_title" }}</h2>
+        <p class="mt-3 text-muted">{{ i18n "phase_text" }}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="mission" class="border-y border-line bg-neutral-50/50">
+    <div class="mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-20">
+      <div class="prose max-w-none">
+        <h2>{{ .Params.mission_title }}</h2>
+        <p>{{ .Params.mission_text }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="components" class="mx-auto max-w-6xl px-6 py-14 md:px-8 md:py-20">
+    <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ i18n "components_title" }}</h2>
+    <p class="mt-4 max-w-3xl text-muted">{{ i18n "components_intro" }}</p>
+
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      {{ range .Params.components }}
+        <article class="rounded-xl border border-line p-5">
+          <h3 class="text-lg font-semibold">{{ .title }}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{{ .description }}</p>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section id="cta" class="border-t border-line">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-14 md:flex-row md:items-center md:justify-between md:px-8 md:py-16">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-semibold tracking-tight">{{ i18n "contribute_title" }}</h2>
+        <p class="mt-3 text-muted">{{ i18n "contribute_text" }}</p>
+      </div>
+      <a href="mailto:info+rtls@tryformation.com" class="inline-flex h-fit items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-black">info+rtls@tryformation.com</a>
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-neutral-50/50">
+    <div class="mx-auto max-w-6xl px-6 py-10 md:px-8 md:py-12">
+      <p class="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted">{{ i18n "supported_by" }}</p>
+      <div class="flex flex-wrap items-center gap-8 md:gap-12">
+        <img src="/images/formation-logo-with-text.svg" alt="FORMATION" class="h-8 w-auto" />
+        <img src="/images/omlox.webp" alt="OMLOX" class="h-10 w-auto" />
+      </div>
+    </div>
+  </section>
+{{ end }}

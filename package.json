@@ -1,0 +1,27 @@
+{
+  "name": "open-rtls-website",
+  "description": "Open RTLS one pager built with Hugo, Tailwind 4, and Vite",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": "FORMATION GmbH",
+  "scripts": {
+    "dev": "npm run build:assets && concurrently -k -n VITE,HUGO -c yellow,green \"npm:dev:assets\" \"npm:dev:hugo\"",
+    "build": "npm run build:assets && hugo --gc --minify",
+    "build:assets": "vite build",
+    "dev:assets": "vite build --watch --mode development",
+    "dev:hugo": "hugo server -D --disableFastRender"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.23",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.2",
+    "vite": "^5.4.21",
+    "wrangler": "^4.55.0"
+  }
+}

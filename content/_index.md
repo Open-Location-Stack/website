@@ -1,0 +1,20 @@
+---
+title: "Open RTLS"
+hero_title: "Open source components for RTLS-enabled applications"
+hero_text: "Open RTLS provides the shared foundation for hardware and software companies building real-time location systems, so teams can stop recreating the same infrastructure and focus on differentiated value."
+mission_title: "Goal"
+mission_text: "Open RTLS is an open source initiative to provide common components needed for building RTLS-enabled applications. We are creating reusable blocks that work across vendors and ecosystems, so the industry can move faster with less duplicated effort."
+components:
+  - title: "OGC IMDF Editor"
+    description: "An open editor for creating and managing OGC IMDF indoor mapping data with practical workflows for operations teams and integrators."
+  - title: "IMDF Validator"
+    description: "A standards-aligned validator that helps teams detect and fix IMDF issues early in the delivery lifecycle."
+  - title: "Open RTLS Hub (OMLOX API Compatible)"
+    description: "A hub component exposing OMLOX API compatible interfaces for interoperable location data exchange."
+  - title: "MQTT Support"
+    description: "Built-in MQTT connectivity for ingesting and distributing events and telemetry in real time."
+  - title: "OGC Maps"
+    description: "Map capabilities aligned with OGC standards for geospatial and indoor location visualization."
+  - title: "Connector Framework"
+    description: "A modular connector framework for integrating RTLS hardware vendors, software systems, and enterprise workflows."
+---

@@ -1,0 +1,32 @@
+- id: nav_home
+  translation: Home
+
+- id: nav_imprint
+  translation: Imprint
+
+- id: cta_primary
+  translation: Contact us to contribute
+
+- id: cta_secondary
+  translation: Explore components
+
+- id: phase_title
+  translation: Current project phase
+
+- id: phase_text
+  translation: We are currently in the requirements gathering phase and will start announcing open source projects soon.
+
+- id: components_title
+  translation: Planned Open RTLS components
+
+- id: components_intro
+  translation: The stack is designed to be practical, interoperable, and immediately useful for RTLS hardware and software vendors.
+
+- id: contribute_title
+  translation: Learn more, suggest features, or become a contributor
+
+- id: contribute_text
+  translation: Contact us to share requirements, propose integrations, and help shape the first wave of Open RTLS open source modules.
+
+- id: supported_by
+  translation: Supported by
