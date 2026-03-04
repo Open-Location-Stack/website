@@ -8,6 +8,7 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ $metaDescription }}" />
     <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="icon" type="image/svg+xml" href="{{ "/images/logo-rounded.svg" | relURL }}" />
 
     <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
     <meta property="og:description" content="{{ $metaDescription }}" />
