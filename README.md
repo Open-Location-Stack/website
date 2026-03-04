@@ -50,20 +50,24 @@ cp cloudflare.env.example cloudflare.env
 
 Fill in `CLOUDFLARE_API_TOKEN` in `cloudflare.env`.
 
-3. Deploy:
+3. One-time domain setup in Cloudflare Pages:
+- Add custom domains to the Pages project:
+  - `open-rtls.com`
+  - `www.open-rtls.com`
+- In DNS, point both hostnames to `open-rtls-website.pages.dev` as `CNAME` records.
+- Keep DNS records as `DNS only` until domain status is `active`.
+- Add redirect rule:
+  - Source: `https://www.open-rtls.com/*`
+  - Target: `https://open-rtls.com/$1`
+  - Status: `301`
+
+4. Deploy (repeatable):
 
 ```bash
 npm run deploy:cloudflare
 ```
 
-This command builds the site, creates the Pages project if needed, deploys to production, and attaches:
-- `open-rtls.com`
-- `www.open-rtls.com`
-
-4. In Cloudflare dashboard, add a redirect rule:
-- Source: `https://www.open-rtls.com/*`
-- Target: `https://open-rtls.com/$1`
-- Status: `301`
+This command builds the site, ensures the Pages project exists, and deploys to production.
 
 ## Scope
 

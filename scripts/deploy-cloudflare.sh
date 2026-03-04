@@ -5,8 +5,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENV_FILE="${1:-$ROOT_DIR/cloudflare.env}"
 PROJECT_NAME="open-rtls-website"
 PRODUCTION_BRANCH="main"
-APEX_DOMAIN="open-rtls.com"
-WWW_DOMAIN="www.open-rtls.com"
 
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "Missing env file: $ENV_FILE"
@@ -28,20 +26,12 @@ echo "Building site..."
 npm run build
 
 echo "Ensuring Cloudflare Pages project exists: $PROJECT_NAME"
-if ! npx wrangler pages project list --json | rg -q '"name"\s*:\s*"'"$PROJECT_NAME"'"'; then
+if ! npx wrangler pages project list --json | jq -e --arg name "$PROJECT_NAME" '.[] | select(."Project Name" == $name)' >/dev/null; then
   npx wrangler pages project create "$PROJECT_NAME" --production-branch "$PRODUCTION_BRANCH"
 fi
 
 echo "Deploying to Cloudflare Pages..."
 npx wrangler pages deploy public --project-name "$PROJECT_NAME" --branch "$PRODUCTION_BRANCH"
 
-echo "Ensuring custom domains are attached..."
-for domain in "$APEX_DOMAIN" "$WWW_DOMAIN"; do
-  if ! npx wrangler pages project domain list "$PROJECT_NAME" --json | rg -q '"name"\s*:\s*"'"$domain"'"'; then
-    npx wrangler pages project domain add "$PROJECT_NAME" "$domain"
-  fi
-done
-
 echo
 echo "Deploy finished."
-echo "Next in Cloudflare dashboard: create a Redirect Rule from https://www.open-rtls.com/* to https://open-rtls.com/\$1 (301)."
