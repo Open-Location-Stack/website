@@ -37,3 +37,12 @@ body {
 .prose a:hover {
   color: #000000;
 }
+
+.prose {
+  overflow-wrap: anywhere;
+}
+
+.prose pre,
+.prose table {
+  overflow-x: auto;
+}

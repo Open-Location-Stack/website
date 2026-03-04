@@ -140,9 +140,9 @@
   <body>
     <div class="min-h-screen">
       <header class="border-b border-line">
-        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+        <nav class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:px-6 md:flex-row md:items-center md:justify-between md:gap-0 md:px-8">
           <a href="{{ "/" | relLangURL }}" class="text-sm font-semibold tracking-wide">Open RTLS</a>
-          <div class="flex items-center gap-6 text-sm">
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
             <a href="{{ "/" | relLangURL }}">{{ i18n "nav_home" }}</a>
             <a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a>
             <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
@@ -155,9 +155,9 @@
       </main>
 
       <footer class="border-t border-line">
-        <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-6 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
+        <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-6 text-sm text-muted sm:px-6 md:flex-row md:items-center md:justify-between md:px-8">
           <p>© <span id="year"></span> FORMATION GmbH</p>
-          <div class="flex items-center gap-6">
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
             <a href="mailto:info+rtls@tryformation.com">{{ i18n "email_link_text" }}</a>
             <a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a>
             <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
