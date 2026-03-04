@@ -5,6 +5,13 @@ resources/
 
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+Icon?
 
 # Logs
 *.log
@@ -34,3 +41,6 @@ coverage/
 # Build caches
 .cache/
 dist/
+
+# Generated assets
+static/build/
