@@ -43,7 +43,7 @@ If you already use an OMLOX hub (or have your own implementation), you do not ne
 ## I'm an RTLS integrator. How can I help?
 
 Feedback is the most valuable input right now.  
-[Email us](mailto:info@open-rtls.com).
+[Email us](mailto:open-rtls@tryformation.com).
 
 ## When will the first repositories be published?
 
