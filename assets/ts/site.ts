@@ -160,6 +160,7 @@ async function initializeAnalytics(): Promise<void> {
         endpoint: ANALYTICS_ENDPOINT,
         siteId: ANALYTICS_SITE_ID,
         autoPageviews: true,
+        sendBeacon: false,
         onError(error) {
           if (import.meta.env.DEV) {
             console.warn("[analytics] delivery failed", error.kind, error.status);
