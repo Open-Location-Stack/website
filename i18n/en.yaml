@@ -7,6 +7,9 @@
 - id: nav_faq
   translation: FAQ
 
+- id: nav_privacy
+  translation: Privacy
+
 - id: cta_primary
   translation: Contact Us
 
@@ -51,3 +54,24 @@
 
 - id: created_by
   translation: Created by
+
+- id: analytics_settings
+  translation: Cookie settings
+
+- id: analytics_banner_title
+  translation: Privacy choices
+
+- id: analytics_banner_text_before_link
+  translation: We use privacy-focused, self-hosted analytics on open-rtls.com only if you agree. This stores a small first-party preference entry for your choice and, after consent, pseudonymous analytics identifiers in browser storage. Read our
+
+- id: analytics_banner_text_after_link
+  translation: for details about the data we collect and how to withdraw consent later.
+
+- id: analytics_accept
+  translation: Accept analytics
+
+- id: analytics_decline
+  translation: Decline
+
+- id: analytics_disable
+  translation: Disable analytics

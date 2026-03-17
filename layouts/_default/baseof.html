@@ -146,6 +146,7 @@
             <a href="{{ "/" | relLangURL }}">{{ i18n "nav_home" }}</a>
             <a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a>
             <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
+            <a href="{{ "/privacy/" | relLangURL }}">{{ i18n "nav_privacy" }}</a>
           </div>
         </nav>
       </header>
@@ -161,9 +162,31 @@
             <a href="mailto:open-rtls@tryformation.com">{{ i18n "email_link_text" }}</a>
             <a href="{{ "/faq/" | relLangURL }}">{{ i18n "nav_faq" }}</a>
             <a href="{{ "/imprint/" | relLangURL }}">{{ i18n "nav_imprint" }}</a>
+            <a href="{{ "/privacy/" | relLangURL }}">{{ i18n "nav_privacy" }}</a>
+            <button type="button" class="cursor-pointer" data-analytics-settings-trigger hidden>{{ i18n "analytics_settings" }}</button>
           </div>
         </div>
       </footer>
+    </div>
+
+    <div id="analytics-consent-banner" class="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6" hidden>
+      <div class="mx-auto max-w-4xl rounded-2xl border border-line bg-paper shadow-[0_18px_60px_rgba(15,23,42,0.12)]">
+        <div class="flex flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-2xl space-y-2 text-sm text-muted">
+            <p class="font-medium text-ink">{{ i18n "analytics_banner_title" }}</p>
+            <p>
+              {{ i18n "analytics_banner_text_before_link" }}
+              <a href="{{ "/privacy/" | relLangURL }}">{{ i18n "nav_privacy" }}</a>
+              {{ i18n "analytics_banner_text_after_link" }}
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="analytics-consent-revoke" type="button" class="rounded-full border border-line px-4 py-2 text-sm font-medium text-ink hover:border-ink hover:text-ink" hidden>{{ i18n "analytics_disable" }}</button>
+            <button id="analytics-consent-decline" type="button" class="rounded-full border border-line px-4 py-2 text-sm font-medium text-ink hover:border-ink hover:text-ink">{{ i18n "analytics_decline" }}</button>
+            <button id="analytics-consent-accept" type="button" class="rounded-full bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-neutral-800">{{ i18n "analytics_accept" }}</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     {{ if fileExists "static/build/manifest.json" }}

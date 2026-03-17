@@ -20,6 +20,15 @@ body {
   @apply bg-paper text-ink antialiased;
 }
 
+button,
+a {
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    opacity 160ms ease;
+}
+
 .prose {
   --tw-prose-body: var(--color-ink);
   --tw-prose-headings: var(--color-ink);
@@ -45,4 +54,8 @@ body {
 .prose pre,
 .prose table {
   overflow-x: auto;
+}
+
+[hidden] {
+  display: none !important;
 }
