@@ -20,12 +20,48 @@
     </div>
   </section>
 
+  <section id="problem" class="border-y border-line bg-neutral-50/50">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+      <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Params.problem_title }}</h2>
+      <p class="mt-4 max-w-3xl text-muted">{{ .Params.problem_intro }}</p>
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        {{ range .Params.problem_cards }}
+          <article class="rounded-xl border border-line bg-white p-5">
+            <h3 class="text-lg font-semibold">{{ .title }}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted">{{ .description }}</p>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
   <section id="mission" class="border-y border-line bg-neutral-50/50">
     <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
       <div class="prose max-w-none">
         <h2>{{ .Params.mission_title }}</h2>
         <div>{{ .Params.mission_text | markdownify }}</div>
       </div>
+    </div>
+  </section>
+
+  <section id="mapping" class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div>
+        <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Params.mapping_title }}</h2>
+        <p class="mt-4 max-w-3xl text-muted">{{ .Params.mapping_intro }}</p>
+        <div class="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+          {{ range .Params.mapping_points }}
+            <article class="rounded-xl border border-line p-5">
+              <h3 class="text-lg font-semibold">{{ .title }}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{{ .description }}</p>
+            </article>
+          {{ end }}
+        </div>
+      </div>
+
+      <figure class="rounded-2xl border border-line bg-white p-4 md:p-6">
+        <img src="/images/mapping-stack.svg" alt="Indoor mapping stack diagram" class="w-full rounded-xl" />
+      </figure>
     </div>
   </section>
 
@@ -57,19 +93,61 @@
         </article>
       {{ end }}
     </div>
+
+    <div class="mt-8 rounded-2xl border border-line bg-neutral-50/60 p-6">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">{{ i18n "roadmap_focus_title" }}</p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        {{ range .Params.roadmap_focus }}
+          <span class="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium">{{ . }}</span>
+        {{ end }}
+      </div>
+    </div>
   </section>
 
   <section id="components" class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
     <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ i18n "components_title" }}</h2>
     <p class="mt-4 max-w-3xl text-muted">{{ i18n "components_intro" }}</p>
 
-    <div class="mt-10 grid gap-4 md:grid-cols-2">
-      {{ range .Params.components }}
-        <article class="rounded-xl border border-line p-5">
-          <h3 class="text-lg font-semibold">{{ .title }}</h3>
-          <div class="mt-2 text-sm leading-relaxed text-muted">{{ .description | markdownify }}</div>
-        </article>
+    <div class="mt-10 space-y-10">
+      {{ range .Params.component_groups }}
+        <div>
+          <div class="max-w-3xl">
+            <h3 class="text-2xl font-semibold tracking-tight">{{ .title }}</h3>
+            <p class="mt-3 text-muted">{{ .intro }}</p>
+          </div>
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            {{ range .items }}
+              <article class="rounded-xl border border-line p-5">
+                <h4 class="text-lg font-semibold">{{ .title }}</h4>
+                <div class="mt-2 text-sm leading-relaxed text-muted">{{ .description | markdownify }}</div>
+              </article>
+            {{ end }}
+          </div>
+        </div>
       {{ end }}
+    </div>
+  </section>
+
+  <section id="audience" class="border-y border-line bg-neutral-50/50">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+      <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Params.audience_title }}</h2>
+          <p class="mt-4 max-w-3xl text-muted">{{ .Params.audience_intro }}</p>
+          <figure class="mt-8 overflow-hidden rounded-2xl border border-line bg-white">
+            <img src="/images/zone-triggers.webp" alt="Operational RTLS zone trigger workflow" class="h-full w-full object-cover" />
+          </figure>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {{ range .Params.audience_cards }}
+            <article class="rounded-xl border border-line bg-white p-5">
+              <h3 class="text-lg font-semibold">{{ .title }}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{{ .description }}</p>
+            </article>
+          {{ end }}
+        </div>
+      </div>
     </div>
   </section>
 

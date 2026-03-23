@@ -26,31 +26,34 @@
   translation: Current project phase
 
 - id: phase_text
-  translation: We are currently in the requirements gathering phase and will start announcing open source projects soon.
+  translation: We are currently collecting input on indoor mapping workflows, RTLS integration blockers, and operational map maintenance pain points before the first open source releases.
 
 - id: components_title
   translation: Planned Open RTLS components
 
 - id: components_intro
-  translation: The stack is designed to be practical, interoperable, and immediately useful for RTLS hardware and software vendors.
+  translation: Open RTLS is being built as a staged stack, starting with practical indoor mapping workflows and extending outward into interoperable live data exchange.
 
 - id: roadmap_title
   translation: Roadmap
 
 - id: roadmap_intro
-  translation: The 2026 plan focuses on launching practical open source components fast, validating them with the industry, and iterating toward a stable 1.0 foundation.
+  translation: The 2026 plan starts with mapping-first components and practical geospatial workflows, then expands toward broader interoperability and reusable RTLS infrastructure.
+
+- id: roadmap_focus_title
+  translation: Near-term emphasis
 
 - id: standards_title
   translation: Standards alignment
 
 - id: standards_intro
-  translation: Open RTLS is built around widely adopted standards to support interoperability, integration speed, and long-term compatibility.
+  translation: Open RTLS is mapping-first, but standards-aligned across the stack so maps, hubs, and live operational systems can interoperate more cleanly.
 
 - id: contribute_title
-  translation: Learn more, suggest features, or become a contributor
+  translation: Share use cases, blockers, and contributor interest
 
 - id: contribute_text
-  translation: Contact us to share requirements, propose integrations, and help shape the first wave of Open RTLS open source modules.
+  translation: Contact us with concrete indoor mapping use cases, toolchain constraints, map and RTLS integration blockers, or operational pain points that should shape the first Open RTLS modules.
 
 - id: created_by
   translation: Created by
