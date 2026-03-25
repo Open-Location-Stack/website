@@ -1,5 +1,5 @@
-baseURL = "https://open-rtls.com/"
-title = "Open RTLS"
+baseURL = "https://openlocationstack.com/"
+title = "Open Location Stack"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 timeZone = "Europe/Berlin"
@@ -7,7 +7,7 @@ enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
 
 [params]
-  siteDescription = "Open RTLS provides open source building blocks for RTLS-enabled applications."
+  siteDescription = "Open Location Stack provides open source building blocks for location-enabled applications."
   ogImage = "/images/open-rtls-logo.svg"
   formationUrl = "https://tryformation.com/"
 

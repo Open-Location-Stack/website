@@ -1,14 +1,14 @@
 ---
 title: "Privacy"
-description: "Privacy notice for analytics and website data processing on open-rtls.com."
+description: "Privacy notice for analytics and website data processing on openlocationstack.com."
 draft: false
 ---
 
-## Privacy notice for open-rtls.com
+## Privacy notice for openlocationstack.com
 
 This website is operated by **FORMATION GmbH**, Urbanstraße 71, 10967 Berlin, Germany. You can reach us at [open-rtls@tryformation.com](mailto:open-rtls@tryformation.com).
 
-We use a self-hosted analytics service for **open-rtls.com** to understand how the site is used, improve content, and maintain the website. Analytics is only activated after you explicitly consent through the banner shown on the live site.
+We use a self-hosted analytics service for **openlocationstack.com** to understand how the site is used, improve content, and maintain the website. Analytics is only activated after you explicitly consent through the banner shown on the live site.
 
 ## What we collect after consent
 

@@ -3,10 +3,10 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
-const LIVE_HOSTNAME = "open-rtls.com";
+const LIVE_HOSTNAME = "openlocationstack.com";
 const ANALYTICS_ENDPOINT = "https://analytics.tryformation.com/collect";
-const ANALYTICS_SITE_ID = "open-rtls";
-const CONSENT_STORAGE_KEY = "open_rtls_analytics_consent";
+const ANALYTICS_SITE_ID = "openlocationstack";
+const CONSENT_STORAGE_KEY = "open_location_stack_analytics_consent";
 const ANALYTICS_ANON_KEY = "formation_analytics_anonymous_id";
 const ANALYTICS_SESSION_KEY = "formation_analytics_session_id";
 const CONSENT_ACCEPTED = "accepted";

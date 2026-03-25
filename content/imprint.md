@@ -1,6 +1,6 @@
 ---
 title: "Imprint"
-description: "Legal notice and company information for Open RTLS and FORMATION GmbH."
+description: "Legal notice and company information for Open Location Stack and FORMATION GmbH."
 draft: false
 ---
 
