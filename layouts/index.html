@@ -117,14 +117,60 @@
           </div>
           <div class="mt-6 grid gap-4 md:grid-cols-3">
             {{ range .items }}
+              {{ $itemTitle := .title }}
               <article class="rounded-xl border border-line p-5">
                 <h4 class="text-lg font-semibold">{{ .title }}</h4>
                 <div class="mt-2 text-sm leading-relaxed text-muted">{{ .description | markdownify }}</div>
+                {{ if or .product_link .github_link }}
+                  <div class="mt-4 flex items-center gap-4 text-sm">
+                    {{ with .product_link }}
+                      <a href="{{ . }}" class="font-medium underline decoration-accent decoration-2 underline-offset-4">Product page</a>
+                    {{ end }}
+                    {{ with .github_link }}
+                      <a href="{{ . }}" class="inline-flex items-center gap-2 text-muted transition hover:text-ink" aria-label="View {{ $itemTitle }} on GitHub">
+                        {{ partial "github-icon.html" (dict "class" "h-4 w-4") }}
+                        <span>GitHub</span>
+                      </a>
+                    {{ end }}
+                  </div>
+                {{ end }}
               </article>
             {{ end }}
           </div>
         </div>
       {{ end }}
+    </div>
+
+    <div class="mt-10 rounded-2xl border border-line bg-neutral-50/60 p-6">
+      <div class="text-sm leading-relaxed text-muted">{{ .Params.components_note | markdownify }}</div>
+    </div>
+  </section>
+
+  <section id="opensource" class="border-y border-line bg-neutral-50/50">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+      <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Params.opensource_title }}</h2>
+      <p class="mt-4 max-w-3xl text-muted">{{ .Params.opensource_intro }}</p>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        {{ range .Params.opensource_repos }}
+          {{ $repoTitle := .title }}
+          <article class="rounded-xl border border-line bg-white p-5">
+            <h3 class="text-lg font-semibold">
+              <a href="{{ .link }}" class="underline decoration-accent decoration-2 underline-offset-4">{{ .title }}</a>
+            </h3>
+            <div class="mt-3 text-sm leading-relaxed text-muted">{{ .description | markdownify }}</div>
+            <div class="mt-4 flex items-center gap-4 text-sm">
+              <a href="{{ .link }}" class="font-medium underline decoration-accent decoration-2 underline-offset-4">Product page</a>
+              {{ with .github_link }}
+                <a href="{{ . }}" class="inline-flex items-center gap-2 text-muted transition hover:text-ink" aria-label="View {{ $repoTitle }} on GitHub">
+                  {{ partial "github-icon.html" (dict "class" "h-4 w-4") }}
+                  <span>GitHub</span>
+                </a>
+              {{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>
     </div>
   </section>
 
@@ -164,10 +210,11 @@
   <section class="border-t border-line bg-neutral-50/50">
     <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:px-8 md:py-12">
       <p class="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted">{{ i18n "created_by" }}</p>
-      <div class="flex flex-wrap items-center gap-8 md:gap-12">
+      <div class="flex flex-wrap items-center gap-8 md:justify-between md:gap-12">
         <a href="https://tryformation.com" aria-label="FORMATION website">
           <img src="/images/formation-logo-text-black.svg" alt="FORMATION" class="h-12 w-auto" />
         </a>
+        <a href="{{ .Params.github_org_link }}" class="text-sm font-medium text-muted underline decoration-accent decoration-2 underline-offset-4">Open Location Stack on GitHub</a>
       </div>
     </div>
   </section>
