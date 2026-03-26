@@ -30,6 +30,7 @@ roadmap:
     text: "First releases focused on practical IMDF workflows, map quality improvements, and map-adjacent integration components."
   - period: "Summer 2026"
     text: "OMLOX Plugfest demos, roadmap revision, and a clearer path toward a 1.0 foundation for interoperable RTLS building blocks."
+roadmap_note: "The intention is to share an early `0.1` version of Open Location Hub during April 2028 for interested partners that want to start building on top of the hub and shaping its direction."
 roadmap_focus:
   - "IMDF workflows"
   - "Better map quality"
@@ -73,6 +74,7 @@ component_groups:
 components_note: "These components are available as early access versions and are not yet feature complete. Please try them out, share feedback, and help spread the word. Pull requests and issues are very welcome."
 opensource_title: "Open source"
 opensource_intro: "The first public repositories are available now. Explore the code, try the projects, and contribute feedback, issues, and pull requests."
+opensource_license_note: "All Open Location Stack components will be released under the permissive [MIT License](https://opensource.org/license/mit). We are mindful that partners, vendors, and integrators each add their own software and hardware value around the stack. A permissive license makes it easier for all parties to use, adapt, and integrate the platform as they see fit, while still giving the ecosystem a shared foundation. In particular, we hope this lowers the barrier for vendors and integrators to contribute reusable connectors for the [Open Location Hub](/open-location-hub/)."
 opensource_repos:
   - title: "Floor Plan Editor"
     link: "/floor-plan-editor/"

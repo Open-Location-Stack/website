@@ -193,6 +193,21 @@
       </div>
     </div>
 
+    <div id="image-lightbox" class="image-lightbox" hidden aria-hidden="true">
+      <button
+        id="image-lightbox-close"
+        type="button"
+        class="image-lightbox__close"
+        aria-label="Close expanded image"
+      >
+        Close
+      </button>
+      <figure class="image-lightbox__figure">
+        <img id="image-lightbox-image" class="image-lightbox__image" alt="" />
+        <figcaption id="image-lightbox-caption" class="image-lightbox__caption"></figcaption>
+      </figure>
+    </div>
+
     {{ if fileExists "static/build/manifest.json" }}
       {{ $manifest := readFile "static/build/manifest.json" | transform.Unmarshal }}
       {{ $entry := index $manifest "assets/ts/site.ts" }}

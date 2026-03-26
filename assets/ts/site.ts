@@ -3,6 +3,12 @@ if (year) {
   year.textContent = String(new Date().getFullYear());
 }
 
+const lightbox = document.getElementById("image-lightbox");
+const lightboxImage = document.getElementById("image-lightbox-image") as HTMLImageElement | null;
+const lightboxCaption = document.getElementById("image-lightbox-caption");
+const lightboxCloseButton = document.getElementById("image-lightbox-close");
+const expandableImages = Array.from(document.querySelectorAll<HTMLImageElement>(".prose img"));
+
 const LIVE_HOSTNAME = "openlocationstack.com";
 const ANALYTICS_ENDPOINT = "https://analytics.tryformation.com/collect";
 const ANALYTICS_SITE_ID = "openlocationstack";
@@ -25,8 +31,86 @@ const analyticsSettingsTriggers = Array.from(
 let analyticsInitialized = false;
 let analyticsInitialization: Promise<void> | null = null;
 let settingsOpen = false;
+let activeExpandedImage: HTMLImageElement | null = null;
 
+setupImageLightbox();
 setupAnalyticsConsent();
+
+function setupImageLightbox() {
+  if (!lightbox || !lightboxImage || !lightboxCaption || !lightboxCloseButton || expandableImages.length === 0) {
+    return;
+  }
+
+  for (const image of expandableImages) {
+    image.tabIndex = 0;
+    image.setAttribute("role", "button");
+    image.setAttribute("aria-label", "Expand image");
+
+    image.addEventListener("click", () => {
+      openImageLightbox(image);
+    });
+
+    image.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      openImageLightbox(image);
+    });
+  }
+
+  lightbox.addEventListener("click", () => {
+    closeImageLightbox();
+  });
+
+  lightboxImage.addEventListener("click", () => {
+    closeImageLightbox();
+  });
+
+  lightboxCloseButton.addEventListener("click", () => {
+    closeImageLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeImageLightbox();
+    }
+  });
+}
+
+function openImageLightbox(image: HTMLImageElement) {
+  if (!lightbox || !lightboxImage || !lightboxCaption) {
+    return;
+  }
+
+  activeExpandedImage = image;
+  lightboxImage.src = image.currentSrc || image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent = image.alt;
+  lightbox.hidden = false;
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("lightbox-open");
+}
+
+function closeImageLightbox() {
+  if (!lightbox || !lightboxImage || !lightboxCaption) {
+    return;
+  }
+
+  if (lightbox.hidden) {
+    return;
+  }
+
+  lightbox.hidden = true;
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImage.removeAttribute("src");
+  lightboxImage.alt = "";
+  lightboxCaption.textContent = "";
+  document.body.classList.remove("lightbox-open");
+  activeExpandedImage?.focus();
+  activeExpandedImage = null;
+}
 
 function setupAnalyticsConsent() {
   if (!analyticsBanner || !analyticsAcceptButton || !analyticsDeclineButton || !analyticsRevokeButton) {
