@@ -1,0 +1,53 @@
+{{ define "main" }}
+  <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <header class="max-w-3xl">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ .Title }}</h1>
+      {{ with .Description }}
+        <p class="mt-4 text-base leading-relaxed text-muted sm:text-lg">{{ . }}</p>
+      {{ end }}
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        {{ with .Params.github_url }}
+          <a href="{{ . }}" class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-medium text-muted transition hover:border-ink hover:text-ink" aria-label="View {{ $.Title }} source on GitHub">
+            {{ partial "github-icon.html" (dict "class" "h-4 w-4") }}
+            <span>OpenAPI YAML</span>
+          </a>
+        {{ end }}
+      </div>
+    </header>
+
+    <section class="mt-10 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
+      <div id="redoc-container" class="min-h-[80vh]"></div>
+    </section>
+  </article>
+
+  <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+  <script>
+    const redocSpecUrl = {{ .Params.spec_url | jsonify }};
+    Redoc.init(
+      redocSpecUrl,
+      {
+        hideHostname: true,
+        expandResponses: "200,201",
+        pathInMiddlePanel: true,
+        nativeScrollbars: true,
+        theme: {
+          colors: {
+            primary: {
+              main: "#111111"
+            }
+          },
+          typography: {
+            fontFamily: "ui-sans-serif, system-ui, sans-serif",
+            headings: {
+              fontFamily: "ui-sans-serif, system-ui, sans-serif"
+            },
+            code: {
+              fontFamily: "ui-monospace, SFMono-Regular, monospace"
+            }
+          }
+        }
+      },
+      document.getElementById("redoc-container")
+    );
+  </script>
+{{ end }}
