@@ -13,6 +13,8 @@ It is the integration-layer counterpart to Open Location Stack's mapping work: o
 
 The project is moving toward a production-grade, open source hub that teams can run, extend, adapt, and integrate without being locked into vendor-specific middleware.
 
+The software documentation for the current implementation is published at [Open Location Hub Docs](/open-location-hub/docs/). That section is generated from the repository's `docs/` directory and is intended to stay aligned with the code as the project evolves.
+
 ## Business value
 
 Open Location Hub gives vendors, integrators, and enterprise teams an open integration backbone they can actually use in commercial delivery models.
@@ -91,6 +93,8 @@ For integrators and vendors, that means a shared place to build the non-differen
 ## Get involved
 
 If you care about interoperable RTLS infrastructure, now is the right time to get involved. Try the code, review the API direction, open issues, and contribute pull requests to help shape the implementation.
+
+[Browse the generated docs](/open-location-hub/docs/)
 
 [Learn about Floor Plan Editor](/floor-plan-editor/)
 
