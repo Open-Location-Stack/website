@@ -22,7 +22,7 @@
 
   <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
   <script>
-    const redocSpecUrl = {{ .Params.spec_url | jsonify }};
+    const redocSpecUrl = {{ printf "%q" .Params.spec_url | safeJS }};
     Redoc.init(
       redocSpecUrl,
       {
