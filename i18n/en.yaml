@@ -10,6 +10,9 @@
 - id: nav_open_location_hub
   translation: Open Location Hub
 
+- id: nav_open_location_hub_docs
+  translation: Hub Docs
+
 - id: nav_floor_plan_editor
   translation: Floor Plan Editor
 
