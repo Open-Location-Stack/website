@@ -11,13 +11,13 @@ Open Location Hub is an OpenAPI-first hub implementation for interoperable RTLS 
 
 It is the integration-layer counterpart to Open Location Stack's mapping work: once indoor spaces are modeled clearly, for example with the [Floor Plan Editor](/floor-plan-editor/), the hub becomes the place where live location data, events, security, connectors, and system-to-system interoperability come together.
 
-The current repository is still evolving quickly, but the intended direction is already clear: a production-grade, open source hub that teams can run, extend, adapt, and integrate without being locked into vendor-specific middleware.
+The project is moving toward a production-grade, open source hub that teams can run, extend, adapt, and integrate without being locked into vendor-specific middleware.
 
 ## Business value
 
-Open Location Hub is intended to give vendors, integrators, and enterprise teams an open integration backbone they can actually use in commercial delivery models.
+Open Location Hub gives vendors, integrators, and enterprise teams an open integration backbone they can actually use in commercial delivery models.
 
-Because the project is part of Open Location Stack's MIT-licensed foundation, it is meant to be free to use, adapt, extend, embed, and white-label. That matters for companies that need a shared technical base without giving up their own service model, product packaging, deployment approach, or customer-specific integration layer.
+Because the project is part of Open Location Stack's MIT-licensed foundation, it is free to use, adapt, extend, embed, and white-label. That matters for companies that need a shared technical base without giving up their own service model, product packaging, deployment approach, or customer-specific integration layer.
 
 The point is not to replace all commercial offerings with a single open product. The point is to reduce repeated work in the non-differentiating layers so more effort can go into customer value, operational UX, deployment quality, and reusable partner ecosystems.
 
@@ -27,13 +27,13 @@ Many RTLS deployments end up depending on proprietary hub behavior, custom APIs,
 
 Open Location Hub exists to give the ecosystem a transparent, standards-oriented foundation. The goal is not just to expose an API, but to provide a credible base for secure, testable, deployable hub infrastructure that can participate in real deployments.
 
-It is also intended to be cloud-native, horizontally scalable, and lightweight enough to run in very different environments. You should be able to run it on premises close to local devices, in a regional cloud deployment, or as part of a larger multi-region setup that aggregates multiple sites and multiple continents. The federation work in the repository is explicitly aimed at supporting that progression from small local setups to larger distributed deployments.
+It is cloud-native, horizontally scalable, and lightweight enough to run in very different environments. Teams can run it on premises close to local devices, in a regional cloud deployment, or as part of a larger multi-region setup that aggregates multiple sites and multiple continents. The federation work in the repository supports that progression from small local setups to larger distributed deployments.
 
 ## Connectors for existing RTLS estates
 
-Open Location Hub is not intended as a rip-and-replace story. In many cases, the practical requirement is to work with the hubs and deployments that already exist across plants, warehouses, terminals, and production environments.
+Open Location Hub is not a rip-and-replace story. In many cases, the practical requirement is to work with the hubs and deployments that already exist across plants, warehouses, terminals, and production environments.
 
-That is why connectors are an important part of the product direction. The hub is intended to support integration with existing on-premise and cloud-based hubs such as Corriva Hub, Deephub, and other RTLS deployments already used for AGVs, fork lift trucks, and site-specific operational systems.
+That is why connectors are an important part of the product direction. The hub supports integration with existing on-premise and cloud-based hubs such as Corriva Hub, Deephub, and other RTLS deployments already used for AGVs, fork lift trucks, and site-specific operational systems.
 
 The business value is straightforward: instead of asking every customer to standardize on one vendor stack immediately, Open Location Hub can become the open layer that aggregates, normalizes, and routes location flows from multiple sources. That gives integrators and solution providers a practical path to interoperability while preserving existing investments.
 
@@ -53,7 +53,7 @@ For RTLS vendors and location solution providers, this also creates a partner op
 
 ## Technology overview
 
-The hub is written in Go, which is a strong fit for the intended deployment model: low footprint, high performance, simple operations, and a clean path to containerized or cloud-hosted runtime environments. The current architecture separates durable storage, transient state, protocol surfaces, and shared hub logic so the same core behavior can support multiple transports and deployment shapes.
+The hub is written in Go, which is a strong fit for the deployment model: low footprint, high performance, simple operations, and a clean path to containerized or cloud-hosted runtime environments. The current architecture separates durable storage, transient state, protocol surfaces, and shared hub logic so the same core behavior can support multiple transports and deployment shapes.
 
 At the API layer, the repository already shows a broad protocol surface:
 
@@ -66,7 +66,7 @@ That protocol mix matters because real RTLS deployments rarely have just one int
 
 ## Security and control plane
 
-The authentication model is standards-based JWT bearer auth with support for `oidc`, `static`, and `hybrid` verification modes. In OIDC mode, the hub discovers provider metadata and JWKS automatically, caches verifier state, and validates standard JWT claims. The repository includes a Dex setup for development, but the same model is intended to work with production OIDC providers such as Keycloak and other enterprise identity systems.
+The authentication model is standards-based JWT bearer auth with support for `oidc`, `static`, and `hybrid` verification modes. In OIDC mode, the hub discovers provider metadata and JWKS automatically, caches verifier state, and validates standard JWT claims. The repository includes a Dex setup for development, and the same model works with production OIDC providers such as Keycloak and other enterprise identity systems.
 
 Authorization is more than simple bearer validation. The hub already includes role-based and ownership-aware authorization, route-level permissions, RPC-specific method permissions, and separate WebSocket topic permissions. That makes it possible to use the hub as the policy boundary between user-facing applications and lower-level RTLS infrastructure.
 
@@ -84,13 +84,11 @@ In practical terms, the open location hub can sit above local hubs, beside exist
 
 ## Product pitch
 
-Open Location Hub is meant to be the open integration backbone of Open Location Stack: a hub that can sit between RTLS infrastructure, applications, enterprise systems, and federated site deployments while staying aligned with omlox-style interoperability.
+Open Location Hub is the open integration backbone of Open Location Stack: a hub that can sit between RTLS infrastructure, applications, enterprise systems, and federated site deployments while staying aligned with omlox-style interoperability.
 
 For integrators and vendors, that means a shared place to build the non-differentiating but critical parts of the stack: API contracts, auth, event exchange, deployment scaffolding, connectors, federation patterns, and operational discipline. For customers, it creates a better path toward portability, mixed-technology aggregation, and less dependence on closed middleware.
 
-## Early access
-
-This project is still early and not yet feature complete. It should be treated as an active implementation effort rather than a finished hub product.
+## Get involved
 
 If you care about interoperable RTLS infrastructure, now is the right time to get involved. Try the code, review the API direction, open issues, and contribute pull requests to help shape the implementation.
 
