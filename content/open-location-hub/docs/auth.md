@@ -6,8 +6,6 @@ generated: true
 generated_from: "docs/auth.md"
 github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/auth.md"
 ---
-_This page is generated from the Open Location Hub source documentation and should not be edited in the website repository._
-
 This project supports standards-based JWT bearer authentication for the REST API and an authorization model built around JWT claims plus a server-side permissions file.
 
 The same token verifier is also used for the OMLOX WebSocket surface, but WebSocket authentication happens per message through `params.token` instead of the HTTP `Authorization` header.
