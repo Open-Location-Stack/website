@@ -1,13 +1,11 @@
 ---
 title: "Architecture"
-description: "Generated documentation page for Architecture."
+description: "System structure, processing flows, and trust boundaries."
 draft: false
 generated: true
 generated_from: "docs/architecture.md"
 github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/architecture.md"
 ---
-_This page is generated from the Open Location Hub source documentation and should not be edited in the website repository._
-
 ## Layers
 - `cmd/hub`: process bootstrap and wiring
 - `internal/config`: environment-driven configuration

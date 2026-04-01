@@ -6,8 +6,6 @@ generated: true
 generated_from: "docs/configuration.md"
 github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/configuration.md"
 ---
-_This page is generated from the Open Location Hub source documentation and should not be edited in the website repository._
-
 All runtime configuration is environment-driven.
 
 Runtime lifecycle behavior:
