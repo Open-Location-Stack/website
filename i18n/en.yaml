@@ -7,6 +7,12 @@
 - id: nav_faq
   translation: FAQ
 
+- id: nav_open_location_hub
+  translation: Open Location Hub
+
+- id: nav_floor_plan_editor
+  translation: Floor Plan Editor
+
 - id: nav_privacy
   translation: Privacy
 
@@ -29,10 +35,10 @@
   translation: We are currently collecting input on indoor mapping workflows, RTLS integration blockers, and operational map maintenance pain points before the first open source releases.
 
 - id: components_title
-  translation: Planned Open Location Stack components
+  translation: Open Location Stack products and building blocks
 
 - id: components_intro
-  translation: Open Location Stack is being built as a staged stack, starting with practical indoor mapping workflows and extending outward into interoperable live data exchange.
+  translation: Open Location Stack combines open products and reusable building blocks for indoor maps, hub interoperability, and connector-driven operational deployments.
 
 - id: roadmap_title
   translation: Roadmap
@@ -47,13 +53,13 @@
   translation: Standards alignment
 
 - id: standards_intro
-  translation: Open Location Stack is mapping-first, but standards-aligned across the stack so maps, hubs, and live operational systems can interoperate more cleanly.
+  translation: Open Location Stack stays standards-aligned across hubs, maps, and live operational systems so mixed deployments can interoperate more cleanly.
 
 - id: contribute_title
   translation: Share use cases, blockers, and contributor interest
 
 - id: contribute_text
-  translation: Contact us with concrete indoor mapping use cases, toolchain constraints, map and RTLS integration blockers, or operational pain points that should shape the first Open Location Stack modules.
+  translation: Contact us with connector ideas, mixed-hub deployment needs, indoor mapping use cases, or RTLS integration blockers that should shape the next Open Location Stack releases.
 
 - id: created_by
   translation: Created by

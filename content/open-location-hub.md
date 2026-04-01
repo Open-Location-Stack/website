@@ -1,6 +1,6 @@
 ---
 title: "Open Location Hub"
-description: "OpenAPI-first interoperability hub targeting the omlox hub specification for RTLS position and event exchange."
+description: "OpenAPI-first interoperability hub for RTLS position and event exchange, connector-driven integration, and federated mixed-estate deployments."
 draft: false
 github_url: "https://github.com/Open-Location-Stack/open-location-hub"
 aliases:
@@ -9,9 +9,17 @@ aliases:
 
 Open Location Hub is an OpenAPI-first hub implementation for interoperable RTLS position and event exchange, built around the omlox hub specification.
 
-It is the integration-layer counterpart to Open Location Stack's mapping work: once indoor spaces are modeled clearly, for example with the [Floor Plan Editor](/floor-plan-editor/), the hub becomes the place where live location data, events, security, and system-to-system interoperability come together.
+It is the integration-layer counterpart to Open Location Stack's mapping work: once indoor spaces are modeled clearly, for example with the [Floor Plan Editor](/floor-plan-editor/), the hub becomes the place where live location data, events, security, connectors, and system-to-system interoperability come together.
 
-The current repository is still evolving quickly, but the intended direction is already clear: a production-grade, open source hub that teams can run, extend, and integrate without being locked into vendor-specific middleware.
+The current repository is still evolving quickly, but the intended direction is already clear: a production-grade, open source hub that teams can run, extend, adapt, and integrate without being locked into vendor-specific middleware.
+
+## Business value
+
+Open Location Hub is intended to give vendors, integrators, and enterprise teams an open integration backbone they can actually use in commercial delivery models.
+
+Because the project is part of Open Location Stack's MIT-licensed foundation, it is meant to be free to use, adapt, extend, embed, and white-label. That matters for companies that need a shared technical base without giving up their own service model, product packaging, deployment approach, or customer-specific integration layer.
+
+The point is not to replace all commercial offerings with a single open product. The point is to reduce repeated work in the non-differentiating layers so more effort can go into customer value, operational UX, deployment quality, and reusable partner ecosystems.
 
 ## Why it matters
 
@@ -20,6 +28,16 @@ Many RTLS deployments end up depending on proprietary hub behavior, custom APIs,
 Open Location Hub exists to give the ecosystem a transparent, standards-oriented foundation. The goal is not just to expose an API, but to provide a credible base for secure, testable, deployable hub infrastructure that can participate in real deployments.
 
 It is also intended to be cloud-native, horizontally scalable, and lightweight enough to run in very different environments. You should be able to run it on premises close to local devices, in a regional cloud deployment, or as part of a larger multi-region setup that aggregates multiple sites and multiple continents. The federation work in the repository is explicitly aimed at supporting that progression from small local setups to larger distributed deployments.
+
+## Connectors for existing RTLS estates
+
+Open Location Hub is not intended as a rip-and-replace story. In many cases, the practical requirement is to work with the hubs and deployments that already exist across plants, warehouses, terminals, and production environments.
+
+That is why connectors are an important part of the product direction. The hub is intended to support integration with existing on-premise and cloud-based hubs such as Corriva Hub, Deephub, and other RTLS deployments already used for AGVs, fork lift trucks, and site-specific operational systems.
+
+The business value is straightforward: instead of asking every customer to standardize on one vendor stack immediately, Open Location Hub can become the open layer that aggregates, normalizes, and routes location flows from multiple sources. That gives integrators and solution providers a practical path to interoperability while preserving existing investments.
+
+For RTLS vendors and location solution providers, this also creates a partner opportunity. Contributed connectors can help companies demonstrate compatibility, reduce one-off project work, and participate visibly in a broader open ecosystem around the hub.
 
 ## What it includes today
 
@@ -54,17 +72,21 @@ Authorization is more than simple bearer validation. The hub already includes ro
 
 This is especially important for OMLOX RPC. Instead of letting applications talk directly to MQTT-connected devices or vendor adapters, the hub can act as the control-plane front door: authenticate the caller, authorize the method, log the request, route it to the right handler, and aggregate responses if needed.
 
-## Designed for federation and scale
+## Federated hubs for multinational operations
 
 The federation planning in the repository is not an afterthought. It is aimed at topologies such as on-premises plant hubs feeding regional cloud hubs, or regional hubs feeding aggregate hubs for global visibility. The goal is to preserve standard OMLOX-facing interoperability while allowing deployments to grow into federated architectures that remain auditable, replay-aware, and resilient to partial outages.
 
 That means Open Location Hub is not just being positioned as a single-site integration box. It is being designed as a foundation that can federate, aggregate, and partition data across sites, tenants, regions, and jurisdictions while still remaining practical for smaller installations.
 
+For multinational and internationally operating companies, that matters because real deployments are rarely uniform. Different countries, business units, and sites often use mixed RTLS technologies, mixed local integrators, and a combination of on-premise and cloud infrastructure. A federated hub model creates a cleaner path to aggregate those location flows into one map-aware operational layer without forcing every site into the same architecture on day one.
+
+In practical terms, the open location hub can sit above local hubs, beside existing vendor systems, or between regional and global aggregation layers. The objective is to get everything onto one map and one interoperable flow of location data while still respecting local operational constraints.
+
 ## Product pitch
 
-Open Location Hub is meant to be the open integration backbone of Open Location Stack: a hub that can sit between RTLS infrastructure, applications, and enterprise systems while staying aligned with omlox-style interoperability.
+Open Location Hub is meant to be the open integration backbone of Open Location Stack: a hub that can sit between RTLS infrastructure, applications, enterprise systems, and federated site deployments while staying aligned with omlox-style interoperability.
 
-For integrators and vendors, that means a shared place to build the non-differentiating but critical parts of the stack: API contracts, auth, event exchange, deployment scaffolding, federation patterns, and operational discipline. For customers, it creates a better path toward portability and less dependence on closed middleware.
+For integrators and vendors, that means a shared place to build the non-differentiating but critical parts of the stack: API contracts, auth, event exchange, deployment scaffolding, connectors, federation patterns, and operational discipline. For customers, it creates a better path toward portability, mixed-technology aggregation, and less dependence on closed middleware.
 
 ## Early access
 
