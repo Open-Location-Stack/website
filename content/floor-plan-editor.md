@@ -23,7 +23,7 @@ It is part of Open Location Stack's mapping foundation and focuses on the practi
 
 Most RTLS and indoor-location projects still treat map authoring as a side problem, which usually leads to ad hoc tooling, brittle import flows, and inconsistent map quality.
 
-Floor Plan Editor is intended to reduce that friction by providing a reusable foundation for indoor map creation and maintenance. Instead of rebuilding a one-off editor for every deployment, teams can start with a focused tool that already understands the shape of the problem.
+Floor Plan Editor reduces that friction by providing a reusable foundation for indoor map creation and maintenance. Instead of rebuilding a one-off editor for every deployment, teams can start with a focused tool that already understands the shape of the problem.
 
 Just as importantly, it shifts teams away from bitmap-first indoor mapping. Static image floor plans may be workable for small demos, but they do not scale well to industrial campuses, terminals, hospitals, and factories that span tens or hundreds of thousands of square meters. Vector map data stays crisp at every zoom level, is easier to validate and edit, and provides the structure needed for downstream applications instead of just a picture of a building.
 
@@ -62,11 +62,9 @@ Floor Plan Editor gives Open Location Stack a practical authoring front end for 
 
 For integrators, that means less time spent stitching together fragile map tooling. For product teams, it means a cleaner starting point for map-aware workflows such as wayfinding, zoning, asset visualization, and operational UX.
 
-## Early access
+## Get involved
 
-The project is still evolving quickly, and compatibility-breaking changes may still happen while the data model and workflows are being refined.
-
-That said, this is exactly the stage where outside feedback is useful. Try it, stress it, file issues, and send pull requests if you want to help shape the editor into a stronger shared foundation.
+Try it, stress it, file issues, and send pull requests if you want to help shape the editor into a stronger shared foundation.
 
 [Learn about Open Location Hub](/open-location-hub/)
 
