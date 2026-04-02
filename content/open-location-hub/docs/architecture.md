@@ -1,11 +1,13 @@
 ---
 title: "Architecture"
-description: "System structure, processing flows, and trust boundaries."
+description: "Generated documentation page for Architecture."
 draft: false
 generated: true
 generated_from: "docs/architecture.md"
 github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/architecture.md"
 ---
+_This page is generated from the Open Location Hub source documentation and should not be edited in the website repository._
+
 ## Layers
 - `cmd/hub`: process bootstrap and wiring
 - `internal/config`: environment-driven configuration
@@ -33,16 +35,31 @@ github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/
 
 ## Event Fan-Out
 1. REST, MQTT, or WebSocket ingest enters the shared hub service.
-2. The hub validates, normalizes, deduplicates, updates in-memory transient state, and derives follow-on events.
-3. The hub emits normalized internal events for locations, proximities, trackable motions, fence events, optional collision events, and metadata changes.
-4. MQTT and WebSocket consume that same event stream and publish transport-specific payloads.
+2. The hub validates, normalizes, deduplicates, and updates in-memory transient state on the ingest path.
+3. A buffered native-publication stage emits native location and motion events without blocking ingest on downstream fan-out.
+4. A second buffered decision stage is the insertion point for future filtered or smoothed track processing and currently drives alternate-CRS publication, geofence evaluation, and optional collision evaluation.
+5. MQTT and WebSocket consume the resulting internal event stream and publish transport-specific payloads in batches.
+6. When any non-critical queue fills, the hub drops newer work on that path rather than backpressuring raw ingest.
 
 Implications:
 - ingest logic is shared across REST, MQTT, and WebSocket
 - MQTT is no longer the only downstream publication path
 - the internal event seam decouples downstream publication from MQTT-specific topics
+- location ingest latency is protected from slower transport fan-out, geofence work, or collision work
+- the decision-stage queue is the intended insertion point for future filtered or smoothed track processing before fence/collision decisions
+- WebSocket fan-out coalesces multiple internal events into fewer wrapper messages and drops outbound payloads for slow subscribers instead of tearing the connection down immediately
 - hub-issued UUIDs for REST-managed resources, derived fence/collision events, and RPC caller IDs now use UUIDv7 so emitted identifiers are time-sortable
 - internal hub events carry the persisted `origin_hub_id` so downstream transports preserve source provenance
+
+## Observability Boundaries
+- `internal/observability` owns OpenTelemetry resource setup, OTLP exporters, lifecycle management, and the small internal instrumentation API used by the rest of the runtime.
+- OTLP export is collector-first: metrics, traces, and logs go to an OpenTelemetry collector such as SigNoz rather than to a hub-owned scrape endpoint.
+- Transport handlers attach ingest transport context at entry so REST, MQTT, and WebSocket traffic create one shared root ingest span shape before entering `internal/hub`.
+- The hot path records low-cardinality metrics for accepted, deduplicated, rejected, and failed ingest, queue depth and wait time, stage latency, event-bus fan-out, MQTT publish, WebSocket dispatch, RPC execution, and end-to-end processing time.
+- Child spans isolate proximity resolution, native publication, decision processing, fence evaluation, collision evaluation, metadata reconcile, auth, and runtime dependency work so slow stages can be inspected directly.
+- Asset-, provider-, zone-, and fence-centric identifiers belong on traces and structured logs only. They are intentionally excluded from normal metric labels so dashboards remain queryable under sustained ingest volume.
+- Zap remains the application logging API. When OTLP logs are enabled, the logger tees into the OpenTelemetry bridge so the same structured events still appear locally while also being exported to the collector.
+- Runtime gauges for queue occupancy, event-bus subscribers, and WebSocket connections are exposed from `internal/hub` through observable instruments so the e2e stack can dashboard degraded states without adding lock-heavy bookkeeping to the ingest path.
 
 ## RPC Control Plane
 1. A client calls `GET /v2/rpc/available` or `PUT /v2/rpc` over HTTP.
