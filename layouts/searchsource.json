@@ -1,0 +1,30 @@
+{{- $documents := slice -}}
+{{- range site.RegularPages -}}
+  {{- if and (not .Draft) (ne .Params.searchable false) (ne .Params.noindex true) -}}
+    {{- $summary := .Description | default (.Summary | plainify) -}}
+    {{- $headings := findRE `(?m)^#{2,6}\s+.+$` .RawContent -}}
+    {{- $headingTexts := slice -}}
+    {{- range $headings -}}
+      {{- $headingTexts = $headingTexts | append (replaceRE `(?m)^#{2,6}\s+` "" . | plainify) -}}
+    {{- end -}}
+    {{- $image := "" -}}
+    {{- with .Params.image -}}
+      {{- $image = . -}}
+    {{- end -}}
+    {{- $documents = $documents | append (dict
+      "lang" .Lang
+      "url" .RelPermalink
+      "title" .Title
+      "summary" ($summary | plainify)
+      "headings" (delimit $headingTexts "\n")
+      "content" .Plain
+      "keywords" (.Params.keywords | default (slice))
+      "tags" (.Params.tags | default (slice))
+      "date" (cond .Date.IsZero "" (.Date.Format "2006-01-02"))
+      "section" (.CurrentSection.Title | default .Section | default "pages")
+      "type" (.Type | default "")
+      "image" $image
+    ) -}}
+  {{- end -}}
+{{- end -}}
+{{- $documents | jsonify -}}

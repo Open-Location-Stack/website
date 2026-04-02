@@ -31,4 +31,10 @@ disableKinds = ["taxonomy", "term"]
     unsafe = true
 
 [outputs]
-  home = ["HTML", "RSS"]
+  home = ["HTML", "RSS", "SearchSource"]
+
+[outputFormats.SearchSource]
+  mediaType = "application/json"
+  baseName = "searchsource"
+  isPlainText = true
+  notAlternative = true

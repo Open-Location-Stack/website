@@ -45,3 +45,4 @@ dist/
 
 # Generated assets
 static/build/
+static/data/

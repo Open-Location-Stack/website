@@ -1,0 +1,2 @@
+{{- $lang := .Site.Language.Lang | default "en" -}}
+{{- printf "/data/site-search-%s.json.gz?v=%d" $lang now.Unix -}}

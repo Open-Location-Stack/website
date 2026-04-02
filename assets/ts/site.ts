@@ -1,3 +1,5 @@
+import { initSearchWidgets } from "./site-search";
+
 const year = document.getElementById("year");
 if (year) {
   year.textContent = String(new Date().getFullYear());
@@ -35,6 +37,7 @@ let activeExpandedImage: HTMLImageElement | null = null;
 
 setupImageLightbox();
 setupAnalyticsConsent();
+initSearchWidgets();
 
 function setupImageLightbox() {
   if (!lightbox || !lightboxImage || !lightboxCaption || !lightboxCloseButton || expandableImages.length === 0) {

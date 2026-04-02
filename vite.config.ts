@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
     base: "/build/",
     publicDir: false,
     build: {
-      target: "es2018",
+      target: "es2020",
       outDir: "static/build",
       emptyOutDir: true,
       manifest: "manifest.json",

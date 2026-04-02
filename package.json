@@ -7,13 +7,15 @@
   "author": "FORMATION GmbH",
   "scripts": {
     "dev": "npm run build:assets && concurrently -k -n VITE,HUGO -c yellow,green \"npm:dev:assets\" \"npm:dev:hugo\"",
-    "build": "npm run build:assets && hugo --gc --minify",
+    "build": "npm run build:assets && hugo --gc --minify && npm run generate:search",
     "build:assets": "vite build",
     "dev:assets": "vite build --watch --mode development",
     "dev:hugo": "hugo server -D --disableFastRender",
+    "generate:search": "node --import tsx ./scripts/generate-search.ts",
     "deploy:cloudflare": "./scripts/deploy-cloudflare.sh"
   },
   "devDependencies": {
+    "@huggingface/transformers": "3.8.1",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.27",
@@ -21,11 +23,13 @@
     "postcss": "^8.5.8",
     "postcss-cli": "^11.0.1",
     "tailwindcss": "^4.2.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^8.0.0",
     "wrangler": "^4.75.0"
   },
   "dependencies": {
-    "@tryformation/formation-web-analytics-client": "^0.1.1"
+    "@tryformation/formation-web-analytics-client": "^0.1.1",
+    "@tryformation/querylight-ts": "0.9.2"
   }
 }
