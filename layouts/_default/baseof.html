@@ -17,6 +17,9 @@
     <meta property="og:site_name" content="{{ .Site.Title }}" />
     <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
     <link rel="icon" type="image/svg+xml" href="{{ "images/open-rtls-logo.svg" | relURL }}" />
+    {{ range .AlternativeOutputFormats }}
+      <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" title="{{ $.Site.Title }}" href="{{ .Permalink }}" />
+    {{ end }}
 
     {{ $styles := resources.Get "css/main.css" | css.PostCSS }}
     {{ if not hugo.IsServer }}
@@ -145,6 +148,7 @@
             <a href="{{ "/" | relLangURL }}" class="text-sm font-semibold tracking-wide">Open Location Stack</a>
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
               <a href="{{ "/" | relLangURL }}">{{ i18n "nav_home" }}</a>
+              <a href="{{ "/news/" | relLangURL }}">{{ i18n "nav_news" }}</a>
               <a href="{{ "/open-location-hub/" | relLangURL }}">{{ i18n "nav_open_location_hub" }}</a>
               <a href="{{ "/open-location-hub/docs/" | relLangURL }}">{{ i18n "nav_open_location_hub_docs" }}</a>
               <a href="{{ "/floor-plan-editor/" | relLangURL }}">{{ i18n "nav_floor_plan_editor" }}</a>
@@ -230,6 +234,7 @@
               <span>GitHub</span>
             </a>
             <a href="mailto:open-rtls@tryformation.com">{{ i18n "email_link_text" }}</a>
+            <a href="{{ "/news/" | relLangURL }}">{{ i18n "nav_news" }}</a>
             <a href="{{ "/open-location-hub/" | relLangURL }}">{{ i18n "nav_open_location_hub" }}</a>
             <a href="{{ "/open-location-hub/docs/" | relLangURL }}">{{ i18n "nav_open_location_hub_docs" }}</a>
             <a href="{{ "/floor-plan-editor/" | relLangURL }}">{{ i18n "nav_floor_plan_editor" }}</a>

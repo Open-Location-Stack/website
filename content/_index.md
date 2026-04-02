@@ -92,6 +92,8 @@ roadmap_focus:
   - "IMDF workflows"
   - "Better map quality"
   - "Faster geospatial integration"
+news_title: "Latest news"
+news_intro: "Follow product and engineering updates as Open Location Stack moves from soft launch into public releases."
 standards:
   - acronym: "OMLOX"
     name: "open locating standard"

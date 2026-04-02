@@ -32,6 +32,7 @@ disableKinds = ["taxonomy", "term"]
 
 [outputs]
   home = ["HTML", "RSS", "SearchSource"]
+  section = ["HTML", "RSS"]
 
 [outputFormats.SearchSource]
   mediaType = "application/json"

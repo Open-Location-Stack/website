@@ -19,6 +19,9 @@
 - id: nav_privacy
   translation: Privacy
 
+- id: nav_news
+  translation: News
+
 - id: cta_primary
   translation: Contact Us
 
