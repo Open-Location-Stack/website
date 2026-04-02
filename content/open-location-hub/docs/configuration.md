@@ -6,6 +6,8 @@ generated: true
 generated_from: "docs/configuration.md"
 github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/configuration.md"
 ---
+_This page is generated from the Open Location Hub source documentation and should not be edited in the website repository._
+
 All runtime configuration is environment-driven.
 
 Runtime lifecycle behavior:
@@ -23,7 +25,12 @@ Runtime lifecycle behavior:
 - `POSTGRES_URL` (default `postgres://postgres:postgres@localhost:5432/openrtls?sslmode=disable`)
 - `MQTT_BROKER_URL` (default `tcp://localhost:1883`)
 - `WEBSOCKET_WRITE_TIMEOUT` (duration, default `5s`)
-- `WEBSOCKET_OUTBOUND_BUFFER` (default `32`)
+- `WEBSOCKET_READ_TIMEOUT` (duration, default `1m`)
+- `WEBSOCKET_PING_INTERVAL` (duration, default `30s`)
+- `WEBSOCKET_OUTBOUND_BUFFER` (default `256`)
+- `EVENT_BUS_SUBSCRIBER_BUFFER` (default `1024`)
+- `NATIVE_LOCATION_BUFFER` (default `2048`)
+- `DERIVED_LOCATION_BUFFER` (default `1024`)
 
 Hub metadata bootstrap behavior:
 - the hub persists one durable metadata row in Postgres containing the stable `hub_id` and operator-facing label
@@ -55,9 +62,14 @@ Stateful ingest behavior:
 - latest provider-source location state, trackable latest-location state, proximity hysteresis state, fence membership state, and collision pair state are all kept in process memory with the configured expiry semantics
 - metadata is loaded from Postgres at startup, updated immediately after successful CRUD writes, and reconciled in the background every `METADATA_RECONCILE_INTERVAL`
 - durable hub metadata is also loaded from Postgres at startup before the service begins accepting traffic
-- WebSocket delivery uses a per-connection outbound queue capped by `WEBSOCKET_OUTBOUND_BUFFER`; slow subscribers are disconnected instead of backpressuring the ingest path
+- WebSocket delivery uses a per-connection outbound queue capped by `WEBSOCKET_OUTBOUND_BUFFER`; when that queue fills, outbound payloads are dropped instead of backpressuring ingest or disconnecting the subscriber
+- WebSocket liveness uses server ping frames every `WEBSOCKET_PING_INTERVAL` and considers the connection stale when no inbound message or pong arrives before `WEBSOCKET_READ_TIMEOUT`
+- internal event-bus subscribers such as MQTT and WebSocket consume behind `EVENT_BUS_SUBSCRIBER_BUFFER`
+- native location publication is queued behind `NATIVE_LOCATION_BUFFER` so ingest can decouple from transport fan-out
+- post-native decision work such as future filtering, alternate-CRS publication, geofence evaluation, and collision evaluation is queued behind `DERIVED_LOCATION_BUFFER`
+- when the native, decision, event-bus, or outbound socket queues are full, the hub drops newer work on those non-critical paths instead of slowing raw location ingest
 - the `metadata_changes` WebSocket topic emits lightweight `{id,type,operation,timestamp}` notifications for zone, fence, trackable, and location-provider CRUD or reconcile drift
-- when `COLLISIONS_ENABLED=true`, the hub evaluates trackable-versus-trackable collisions from the latest WGS84 motion state and keeps short-lived collision pair state in memory for `COLLISION_STATE_TTL`
+- when `COLLISIONS_ENABLED=true`, the hub evaluates trackable-versus-trackable collisions from the latest active WGS84 motion state and keeps short-lived collision pair state in memory for `COLLISION_STATE_TTL`
 - `COLLISION_COLLIDING_DEBOUNCE` limits repeated `colliding` emissions for already-active pairs
 
 RPC behavior:
@@ -97,6 +109,35 @@ Proximity resolution behavior:
 - `AUTH_OWNED_RESOURCES_CLAIM` (JWT object claim for owned resource IDs; see `docs/auth.md` for format and usage)
 
 See [docs/auth.md](/open-location-hub/docs/auth/) for the full auth model, Dex setup, and permission file format.
+
+## Telemetry
+- `OTEL_ENABLED` (`true`/`false`, default `false`)
+- `OTEL_METRICS_ENABLED` (`true`/`false`, default `true` when telemetry is enabled)
+- `OTEL_TRACES_ENABLED` (`true`/`false`, default `true` when telemetry is enabled)
+- `OTEL_LOGS_ENABLED` (`true`/`false`, default `true` when telemetry is enabled)
+- `OTEL_EXPORTER_OTLP_ENDPOINT` (base OTLP HTTP endpoint such as `http://localhost:4318`)
+- `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` (optional full traces endpoint override)
+- `OTEL_EXPORTER_OTLP_METRICS_ENDPOINT` (optional full metrics endpoint override)
+- `OTEL_EXPORTER_OTLP_LOGS_ENDPOINT` (optional full logs endpoint override)
+- `OTEL_EXPORTER_OTLP_HEADERS` (comma-separated `key=value` headers for collector auth or routing)
+- `OTEL_EXPORTER_OTLP_INSECURE` (`true`/`false`, default `false`)
+- `OTEL_EXPORTER_OTLP_TIMEOUT` (duration, default `10s`)
+- `OTEL_METRIC_EXPORT_INTERVAL` (duration, default `30s`)
+- `OTEL_METRIC_EXPORT_TIMEOUT` (duration, default `10s`)
+- `OTEL_TRACE_SAMPLE_RATIO` (number between `0` and `1`, default `1`)
+- `OTEL_SERVICE_NAME` (default `open-rtls-hub`)
+- `OTEL_SERVICE_VERSION` (optional override for release tagging)
+- `OTEL_DEPLOYMENT_ENVIRONMENT` (optional deployment environment label such as `local-demo` or `production`)
+- `OTEL_DEBUG_IDENTIFIERS` (`true`/`false`, default `false`)
+
+Telemetry behavior:
+- the hub exports OTLP metrics, traces, and logs directly to a collector and does not expose a separate Prometheus scrape endpoint in this slice
+- `service.name`, `service.version`, `deployment.environment`, and the persisted `hub.id` are attached to the OTel resource when available
+- invalid telemetry configuration fails startup only when telemetry is enabled
+- metrics are intentionally low-cardinality and are labeled only with bounded dimensions such as transport, signal type, stage, feature, and outcome
+- entity identifiers such as `trackable_id`, `provider_id`, `zone_id`, `fence_id`, and collision pair identifiers are emitted on spans and structured logs for drill-down, not on normal metric series
+- runtime metrics cover ingest acceptance and deduplication, end-to-end processing latency, queue occupancy and wait time, fence evaluation, collision evaluation, MQTT/WebSocket publication, metadata reconcile, auth, and RPC outcomes
+- the local demo stack under [`local-hub/`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/local-hub) enables all three OTLP signals by default and routes them to SigNoz
 
 ## RPC Security Defaults
 
