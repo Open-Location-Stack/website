@@ -16,6 +16,15 @@ npm ci
 npm run dev
 ```
 
+The Hugo dev server uses polling for file watching so changes in data/config-style
+files such as `data/**/*.yaml` are picked up reliably during local development.
+
+Stop the local dev server stack:
+
+```bash
+npm run stop
+```
+
 ## Production build
 
 ```bash

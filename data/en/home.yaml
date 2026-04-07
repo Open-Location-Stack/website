@@ -35,8 +35,8 @@ sections:
 
   - type: opensource
     id: "opensource"
-    title: "Why open source works here"
-    intro: "The point is not open source for its own sake. The point is giving RTLS vendors, integrators, and enterprise teams a shared base they can actually use in commercial delivery."
+    title: "Open Source enables Ecosystems"
+    intro: "Building effective location solutions means integrating many hardware and software components across a fragmented market of vendors, platforms, and partners. Rebuilding that stack in narrow, closed silos creates duplication, complexity, and avoidable risk. Open source gives the industry a shared foundation to build on, so companies can focus on integration, delivery, and differentiated value instead of reinventing core infrastructure. "
     license_note: "Open Location Stack is released under the permissive [MIT License](https://opensource.org/license/mit), making it practical to embed, adapt, extend, and white-label while still building on a shared ecosystem."
     points:
       - title: "Commercial flexibility"
@@ -70,21 +70,21 @@ sections:
 
   - type: feature-aside
     id: "connectors"
-    title: "Connectors turn existing RTLS deployments into an open ecosystem"
+    title: "Plug in what you need."
     intro: "Open Location Hub supports a wide range of connectors so existing RTLS deployments and location technologies can participate without a rip-and-replace project."
     items:
-      - title: "Connect existing hubs"
+      - title: "Existing hubs"
         description: "Plug in on-premise or cloud hubs such as Corriva Hub, Deephub, or other existing deployments where location data is already flowing."
-      - title: "Support the full technology mix"
+      - title: "The full spectrum of technology solutions"
         description: "Bring together bar code and QR-code based flows, GPS fleet tracking, camera-based systems, RFID, BLE, UWB, and other location technologies in one operational layer."
-      - title: "Bring operational systems together"
-        description: "Support AGVs, fork lift truck systems, field deployments, logistics hubs, and supplier-to-customer flows through reusable connector patterns rather than bespoke one-off integrations."
-      - title: "Grow the partner ecosystem"
-        description: "Location solution providers and RTLS companies can contribute connectors, show compatibility, and add their logo to the Open Location Stack website."
+      - title: "Integrate ERP, MMS, SAP, and more"
+        description: "Send and receive location data and operational events between the hub and ERP, MMS, SAP, and related enterprise systems using reusable connectors instead of bespoke integrations."
+      - title: "Grow the connector ecosystem"
+        description: "Location solution providers and RTLS companies can contribute connectors, show compatibility, and add your logo to the Open Location Stack website."
     aside:
       eyebrow: "Partner CTA"
-      title: "Are you a location solution provider or RTLS company?"
-      text: "Share your connector roadmap, discuss partner needs, and talk to us about adding your logo to the website as the ecosystem grows."
+      title: "Do you provide solutions in this space?"
+      text: "Unlock your solution via a connector. Share your connector roadmap, discuss partner needs, and talk to us about adding your logo to the website as the ecosystem grows."
       actions:
         - label_i18n: "cta_primary"
           href: "mailto:open-rtls@tryformation.com"
