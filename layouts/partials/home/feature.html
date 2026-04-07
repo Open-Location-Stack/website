@@ -12,6 +12,17 @@
     <div>
       <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ $section.title }}</h2>
       <p class="mt-4 max-w-3xl text-muted">{{ $section.intro }}</p>
+      {{ with $section.actions }}
+        <div class="mt-6 flex flex-wrap gap-3 text-sm">
+          {{ range . }}
+            {{ $href := .href }}
+            {{ if hasPrefix $href "/" }}
+              {{ $href = $href | relLangURL }}
+            {{ end }}
+            <a href="{{ $href }}" class="inline-flex items-center justify-center rounded-full border border-line px-5 py-2.5 font-semibold transition hover:border-ink">{{ .label }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
       <div class="{{ $itemsGridClass }}">
         {{ range $section.items }}
           <article class="rounded-xl border border-line p-5">

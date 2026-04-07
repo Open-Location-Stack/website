@@ -14,7 +14,7 @@ sections:
         href: "mailto:open-rtls@tryformation.com"
         style: "primary"
       - label_i18n: "cta_secondary"
-        href: "#components"
+        href: "#hub"
         style: "secondary"
       - label_i18n: "cta_faq"
         href: "/faq/"
@@ -45,21 +45,17 @@ sections:
         description: "Start from open hub, connector, and mapping building blocks instead of rebuilding the same infrastructure for every deployment."
       - title: "Credible shared foundation"
         description: "An open codebase makes it easier to evaluate, adapt, extend, and integrate the platform across mixed RTLS estates."
-    repos:
-      - title: "Floor Plan Editor"
-        link: "/floor-plan-editor/"
-        github_link: "https://github.com/Open-Location-Stack/floorplan-editor"
-        description: "Open editor for creating and maintaining indoor floor plans and IMDF-based venue data. [Product page](/floor-plan-editor/) · [GitHub](https://github.com/Open-Location-Stack/floorplan-editor)"
-      - title: "Open Location Hub"
-        link: "/open-location-hub/"
-        github_link: "https://github.com/Open-Location-Stack/open-location-hub"
-        description: "Open interoperability hub for OMLOX-compatible position and event exchange. [Product page](/open-location-hub/) · [GitHub](https://github.com/Open-Location-Stack/open-location-hub)"
 
   - type: card-grid
     id: "hub"
     section_class: "border-y border-line bg-neutral-50/50"
     title: "Open Location Hub"
     intro: "Open Location Hub is the core integration product in the stack. It gives teams one place to connect RTLS feeds, expose interoperable APIs, handle auth, and build toward mixed-vendor deployments."
+    actions:
+      - label: "Product page"
+        href: "/open-location-hub/"
+      - label: "GitHub"
+        href: "https://github.com/Open-Location-Stack/open-location-hub"
     cards:
       - title: "Reduce lock-in"
         description: "Work across vendor-specific systems and custom APIs without tying your application layer to one closed hub."
@@ -67,6 +63,28 @@ sections:
         description: "Aggregate data from different sites, providers, and tracking technologies instead of forcing a single-vendor architecture."
       - title: "Support product and integration teams"
         description: "Reuse the base layer for auth, event exchange, interoperability, and downstream map-aware applications."
+
+  - type: feature
+    id: "mapping"
+    media_position: "right"
+    title: "Indoor mapping that is usable in products"
+    intro: "The mapping side of Open Location Stack focuses on structured indoor map data, not static floor-plan images. That creates a better base for rendering, routing, zoning, validation, and map-aware operational workflows."
+    actions:
+      - label: "Floor Plan Editor"
+        href: "/floor-plan-editor/"
+      - label: "GitHub"
+        href: "https://github.com/Open-Location-Stack/floorplan-editor"
+    items:
+      - title: "Shared spatial context"
+        description: "Places, levels, routes, and zones need a shared indoor model before live positions from multiple systems can be interpreted correctly."
+      - title: "One operational view"
+        description: "A strong map layer helps teams visualize mixed hubs, mixed technologies, and site activity in one coherent operational view."
+      - title: "Reusable map capabilities"
+        description: "Structured map data makes authoring, validation, rendering, and maintenance more reusable across projects."
+    media:
+      type: "image"
+      src: "/images/mapping-stack.svg"
+      alt: "Indoor mapping stack diagram"
 
   - type: feature-aside
     id: "connectors"
@@ -93,23 +111,6 @@ sections:
           href: "/open-location-hub/"
           style: "secondary"
 
-  - type: feature
-    id: "mapping"
-    media_position: "right"
-    title: "Indoor mapping that is usable in products"
-    intro: "The mapping side of Open Location Stack focuses on structured indoor map data, not static floor-plan images. That creates a better base for rendering, routing, zoning, validation, and map-aware operational workflows."
-    items:
-      - title: "Shared spatial context"
-        description: "Places, levels, routes, and zones need a shared indoor model before live positions from multiple systems can be interpreted correctly."
-      - title: "One operational view"
-        description: "A strong map layer helps teams visualize mixed hubs, mixed technologies, and site activity in one coherent operational view."
-      - title: "Reusable map capabilities"
-        description: "Structured map data makes authoring, validation, rendering, and maintenance more reusable across projects."
-    media:
-      type: "image"
-      src: "/images/mapping-stack.svg"
-      alt: "Indoor mapping stack diagram"
-
   - type: card-grid
     id: "ai-readiness"
     section_class: "border-y border-line bg-neutral-50/50"
@@ -125,35 +126,6 @@ sections:
         description: "Open Location Hub connects workplace systems, indoor maps, and mixed tracking technologies so automation has one unified operational view to act on."
       - title: "Foundation for agentic workflows"
         description: "A shared hub, semantic map structure, and connector ecosystem create a better base for orchestration, monitoring, and AI-assisted decision making."
-
-  - type: components
-    id: "components"
-    title_i18n: "components_title"
-    intro_i18n: "components_intro"
-    groups:
-      - title: "Mapping foundation"
-        intro: "The first public components focus on structured indoor maps and the workflows needed to make them usable in products."
-        items:
-          - title: "IMDF Editor / Floor Plan Editor"
-            product_link: "/floor-plan-editor/"
-            github_link: "https://github.com/Open-Location-Stack/floorplan-editor"
-            description: "An open editor for creating and maintaining [OGC IMDF](https://www.ogc.org/standards/indoor-mapping-data-format/) indoor maps with workflows suited to integrators and operations teams. Learn more on the [Floor Plan Editor product page](/floor-plan-editor/) or try the early [GitHub repository](https://github.com/Open-Location-Stack/floorplan-editor)."
-          - title: "IMDF Validator"
-            description: "A standards-aligned validator that catches IMDF issues early and helps teams keep venue data correct as maps evolve."
-          - title: "MapLibre IMDF Renderer"
-            description: "A product-ready rendering layer for stylable indoor maps, floor switching, navigation context, and map-aware application experiences."
-      - title: "Interoperability and integration layer"
-        intro: "Open Location Hub and the connector layer make it possible to bring existing RTLS deployments, live data exchange, and reusable integrations into one open architecture."
-        items:
-          - title: "Open Location Hub"
-            product_link: "/open-location-hub/"
-            github_link: "https://github.com/Open-Location-Stack/open-location-hub"
-            description: "A hub component exposing [OMLOX](https://omlox.com/) compatible APIs for interoperable position and event exchange across systems, with connectors and federation positioned as key business capabilities. Learn more on the [Open Location Hub product page](/open-location-hub/) or explore the early [GitHub repository](https://github.com/Open-Location-Stack/open-location-hub)."
-          - title: "Connector Framework"
-            description: "Reusable integrations for RTLS hubs, hardware vendors, software systems, AGV environments, and enterprise workflows so each deployment does less bespoke integration work."
-          - title: "MQTT Support"
-            description: "Built-in [MQTT](https://mqtt.org/mqtt-specification/) connectivity for ingesting and distributing real-time updates around the operational map."
-    note: "These components are being built in the open. Explore them, share feedback, and help spread the word. Pull requests and issues are very welcome."
 
   - type: audience
     id: "audience"
