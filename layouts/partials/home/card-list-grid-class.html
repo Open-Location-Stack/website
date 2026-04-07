@@ -1,0 +1,7 @@
+{{- $base := .base | default "grid gap-4" -}}
+{{- $count := .count | default 0 -}}
+{{- if or (eq $count 2) (eq $count 4) -}}
+  {{- printf "%s sm:grid-cols-2" $base -}}
+{{- else -}}
+  {{- $base -}}
+{{- end -}}

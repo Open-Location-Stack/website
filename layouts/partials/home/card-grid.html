@@ -3,7 +3,8 @@
 {{ $wrapperClass := $section.wrapper_class | default "" }}
 {{ $introBlockClass := $section.intro_block_class | default "" }}
 {{ $cardsWrapperClass := $section.cards_wrapper_class | default "" }}
-{{ $gridClass := $section.grid_class | default "mt-10 grid gap-4 md:grid-cols-3" }}
+{{ $defaultGridClass := partial "home/card-list-grid-class.html" (dict "count" (len $section.cards) "base" "mt-10 grid gap-4") }}
+{{ $gridClass := $section.grid_class | default $defaultGridClass }}
 {{ $cardClass := $section.card_class | default "rounded-xl border border-line bg-white p-5" }}
 {{ $title := $section.title }}
 {{ with $section.title_i18n }}
