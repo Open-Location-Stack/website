@@ -47,7 +47,9 @@ Feedback is the most valuable input right now.
 
 ## When will the first repositories be published?
 
-The first releases are planned during Spring 2026, following current prototyping and requirements work in March 2026.
+The first two repositories, Open Location Hub and Floor Plan Editor, were published in early April 2026.
+
+Additional releases during Spring 2026 are focused on making those projects easier to evaluate and adopt, including documentation, packaging, and follow-on components around mapping and interoperability.
 
 ## Which components are likely to be released first?
 

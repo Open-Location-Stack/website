@@ -41,10 +41,10 @@
   translation: We are currently collecting input on indoor mapping workflows, RTLS integration blockers, and operational map maintenance pain points before the first open source releases.
 
 - id: components_title
-  translation: Open Location Stack products and building blocks
+  translation: What you can evaluate today
 
 - id: components_intro
-  translation: Open Location Stack combines open products and reusable building blocks for indoor maps, hub interoperability, and connector-driven operational deployments.
+  translation: "The first public components focus on the two core parts of the stack: interoperable hub infrastructure and structured indoor mapping workflows."
 
 - id: roadmap_title
   translation: Roadmap
@@ -62,10 +62,10 @@
   translation: Open Location Stack stays standards-aligned across hubs, maps, and live operational systems so mixed deployments can interoperate more cleanly.
 
 - id: contribute_title
-  translation: Share use cases, blockers, and contributor interest
+  translation: Help shape the next releases
 
 - id: contribute_text
-  translation: Contact us with connector ideas, mixed-hub deployment needs, indoor mapping use cases, or RTLS integration blockers that should shape the next Open Location Stack releases.
+  translation: Contact us with RTLS integration blockers, indoor mapping use cases, connector ideas, or partnership interest that should influence the next Open Location Stack releases.
 
 - id: created_by
   translation: Created by
