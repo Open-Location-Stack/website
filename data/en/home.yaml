@@ -129,20 +129,20 @@ sections:
 
   - type: audience
     id: "audience"
-    title: "Open Source enables Ecosystems"
-    intro: "The Open Location Stack enables everybody in the ecosystem to do better. By providing a robust base that everybody can rally around all the players in the ecosystem can focus on adding value."
+    title: "Built for every player in the location stack"
+    intro: "Open Location Stack creates a shared foundation that different stakeholders can build on in different ways. Integrators deliver faster, vendors become easier to adopt, enterprise teams reduce integration risk, and developers get practical tools instead of starting from scratch."
     image:
       src: "/images/zone-triggers.webp"
       alt: "Operational RTLS zone trigger workflow"
     cards:
       - title: "Solution Integrators"
-        description: "Deliver multi-vendor asset tracking and location based solutions faster. Build on a robust, open source platform and focus on the value add."
+        description: "Deliver mixed-vendor location solutions faster by reusing shared hub, connector, and mapping building blocks instead of rebuilding the same integration layer for every project."
       - title: "Location technology vendors"
-        description: "Unlock the value of your solution. Make it easy to use your products. Deliver a best in class developer experience to your customers."
+        description: "Make your products easier to integrate into real customer environments and improve adoption with interoperable APIs, connectors, and a better developer experience."
       - title: "Enterprise users"
-        description: "De-risk integration projects. Build on a modern scalable platform that seamlessly builds on and integrates with your enterprise software stack."
+        description: "De-risk deployment and integration programs with a modern, scalable base that fits more naturally into existing enterprise systems, data flows, and operating models."
       - title: "Developers"
-        description: "Hit the ground running with the toolkits, middleware, SDKs, and connector frameworks needed to do the job."
+        description: "Start with practical SDKs, middleware, and connector frameworks so teams can focus on application logic and delivery instead of foundational plumbing."
 
   - type: news
     id: "news"
