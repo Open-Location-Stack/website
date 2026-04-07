@@ -144,6 +144,132 @@ a {
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.problem-spotlight {
+  position: relative;
+  overflow: clip;
+  border-top: 1px solid color-mix(in srgb, var(--color-line) 80%, white);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-line) 80%, white);
+  background:
+    radial-gradient(circle at top left, rgba(17, 17, 17, 0.08), transparent 28rem),
+    linear-gradient(180deg, #f7f7f5 0%, #ffffff 100%);
+}
+
+.problem-spotlight::before,
+.problem-spotlight::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(24px);
+}
+
+.problem-spotlight::before {
+  top: 4rem;
+  right: -3rem;
+  width: 14rem;
+  height: 14rem;
+  background: rgba(10, 10, 10, 0.08);
+}
+
+.problem-spotlight::after {
+  bottom: 2rem;
+  left: -4rem;
+  width: 12rem;
+  height: 12rem;
+  background: rgba(75, 85, 99, 0.08);
+}
+
+.problem-spotlight h2::before {
+  content: "Why an open stack matters";
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-muted) 88%, white);
+}
+
+.problem-spotlight__layout {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+.problem-spotlight__intro {
+  position: relative;
+  z-index: 1;
+}
+
+.problem-spotlight__intro p {
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.problem-spotlight__cards {
+  position: relative;
+  z-index: 1;
+}
+
+.problem-spotlight__cards > div {
+  display: grid;
+  gap: 1rem;
+}
+
+.problem-spotlight__card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(10, 10, 10, 0.09);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.problem-spotlight__card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.45rem;
+  background: linear-gradient(180deg, #111111 0%, #6b7280 100%);
+}
+
+.problem-spotlight__card h3 {
+  max-width: 24ch;
+  padding-left: 0.9rem;
+  line-height: 1.2;
+}
+
+.problem-spotlight__card p {
+  padding-left: 0.9rem;
+  font-size: 0.97rem;
+}
+
+@media (min-width: 1024px) {
+  .problem-spotlight__layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 3rem;
+  }
+
+  .problem-spotlight__cards > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .problem-spotlight__cards > div article:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .problem-spotlight__cards > div article:nth-child(2) {
+    transform: translateY(0.75rem);
+  }
+
+  .problem-spotlight__cards > div article:nth-child(3) {
+    transform: translateY(-0.75rem);
+  }
+}
+
 @media (max-width: 640px) {
   .search-popup {
     width: 100%;

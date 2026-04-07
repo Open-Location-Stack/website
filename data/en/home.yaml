@@ -33,6 +33,20 @@ sections:
     title: "Mission"
     body: "Open Location Stack is an open source initiative focused on the missing shared layer between RTLS hardware, hubs, indoor maps, and downstream applications. Real-world deployments still rebuild the same venue models, connectors, hub adapters, and operational map capabilities vendor by vendor. We are building shared components so vendors and integrators can spend more effort on customer-facing products and less on proprietary plumbing. The project is initiated by [FORMATION](https://tryformation.com), where we build production RTLS solutions and encounter these integration gaps directly."
 
+  - type: card-grid
+    id: "problem"
+    section_class: "border-y border-line bg-neutral-50/50"
+    grid_class: "mt-10 grid gap-4 md:grid-cols-3"
+    title: "Stop reinventing wheels"
+    intro: "Most asset-tracking vendors end up rebuilding the same hub, SDK, and mapping layers just to get coordinates on a screen. That wastes engineering time, creates brittle integrations, and leaves customers with closed, low-quality tooling where a shared open stack should exist."
+    cards:
+      - title: "Bitmap venue maps are not good enough anymore."
+        description: "Modern outdoor maps are crisp, fast, and scalable because they use structured vector data and hardware-accelerated rendering. Indoor location products should not still depend on blurry bitmap exports of CAD drawings that fall apart as soon as users zoom in."
+      - title: "Vendor-specific APIs and SDKs slow every integration down."
+        description: "Location platforms only create value when they connect cleanly into operational software and customer workflows. Rewriting middleware and adapters for every RTLS vendor is exactly the kind of duplicated effort an open interoperability layer should remove."
+      - title: "Proprietary middleware adds friction instead of leverage."
+        description: "When the essential hub, SDK, and integration layers are gated behind closed products and licensing terms, integrators and solution providers inherit more cost, more complexity, and less freedom to build differentiated products."
+
   - type: opensource
     id: "opensource"
     title: "Open Source enables Ecosystems"
@@ -153,19 +167,6 @@ sections:
         href: "/news/"
       - label: "RSS feed"
         href: "/news/index.xml"
-
-  - type: card-grid
-    id: "problem"
-    section_class: "border-y border-line bg-neutral-50/50"
-    title: "Stop reinventing wheels"
-    intro: "Many asset tracking solution providers provide the exact same software solutions. SDKs unlock the coordinates. Hubs aggregate this information. And to demonstrate value, it is necessary to provide maps as well. However, these in house developer solutions provide poor cross vendor interoperability and can be limiting in terms of features, quality, or flexibility."
-    cards:
-      - title: "It's time to move on from bitmap based venue maps."
-        description: "Outdoor maps from the big map providers are crisp and beautiful. The state of the art is using vector graphics to render 2D and 3D maps using hardware accelerated rendering engines. It's inexcusable to be showing bitmap exports of ugly CAD drawings. And yet, many asset tracking solutions default to this. They don't scale. They are blurry when you zoom in."
-      - title: "Vendor specific APIs and SDKs make integration needlessly hard."
-        description: "Asset tracking solutions are only valuable if they can be deeply integrated with work processes and the accompanying software. This requires a standards based middleware that solution providers can build upon that does not have to be adapted for every RTLS vendor out there."
-      - title: "Proprietary middleware is an obstacle, not an enabler."
-        description: "Licensing for and gatekeeping of the necessary middleware and SDKs needed to make use of asset tracking and location systems make it needlessly hard for integrators and solution providers to build and provide value. This adds complexity and cost to projects."
 
   - type: standards
     id: "standards"
