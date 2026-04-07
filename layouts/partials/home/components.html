@@ -31,7 +31,7 @@
                     <a href="{{ . }}" class="font-medium underline decoration-accent decoration-2 underline-offset-4">Product page</a>
                   {{ end }}
                   {{ with .github_link }}
-                    <a href="{{ . }}" class="inline-flex items-center gap-2 text-muted transition hover:text-ink" aria-label="View {{ $itemTitle }} on GitHub">
+                    <a href="{{ . }}" class="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-medium text-muted transition hover:border-ink hover:text-ink" aria-label="View {{ $itemTitle }} on GitHub">
                       {{ partial "github-icon.html" (dict "class" "h-4 w-4") }}
                       <span>GitHub</span>
                     </a>
