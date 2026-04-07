@@ -1,0 +1,30 @@
+{{ $section := .section }}
+{{ $mediaFirst := eq ($section.media_position | default "right") "left" }}
+<section id="{{ $section.id }}" class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+  <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+    {{ if $mediaFirst }}
+      <figure class="rounded-2xl border border-line bg-white p-4 md:p-6">
+        <img src="{{ $section.media.src }}" alt="{{ $section.media.alt }}" class="w-full rounded-xl" />
+      </figure>
+    {{ end }}
+
+    <div>
+      <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ $section.title }}</h2>
+      <p class="mt-4 max-w-3xl text-muted">{{ $section.intro }}</p>
+      <div class="mt-8 grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+        {{ range $section.items }}
+          <article class="rounded-xl border border-line p-5">
+            <h3 class="text-lg font-semibold">{{ .title }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{{ .description }}</p>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ if not $mediaFirst }}
+      <figure class="rounded-2xl border border-line bg-white p-4 md:p-6">
+        <img src="{{ $section.media.src }}" alt="{{ $section.media.alt }}" class="w-full rounded-xl" />
+      </figure>
+    {{ end }}
+  </div>
+</section>

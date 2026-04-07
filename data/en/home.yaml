@@ -1,0 +1,102 @@
+github_org_link: "https://github.com/Open-Location-Stack"
+
+sections:
+  hero:
+    type: hero
+    logo:
+      src: "/images/open-rtls-logo.svg"
+      alt: "Open Location Stack logo"
+    tagline: "The OSS base platform for your location based applications"
+    title: "Open Location Stack"
+    text: "Open Location Stack helps asset tracking solution providers, integrators, and product teams work across mixed deployments without rebuilding the same hub, mapping, and integration layers for every project."
+    created_by:
+      name: "FORMATION"
+      link: "https://tryformation.com"
+    actions:
+      - label_i18n: "cta_primary"
+        href: "mailto:open-rtls@tryformation.com"
+        style: "primary"
+      - label_i18n: "cta_secondary"
+        href: "#mapping"
+        style: "secondary"
+      - label_i18n: "cta_faq"
+        href: "/faq/"
+        style: "secondary"
+    aside:
+      title: "Platform overview"
+      text: "The platform provides a hub for aggregating and federating location information from on premise installations, other hubs, and outdoor asset or fleet tracking systems. Via connectors, any kind of system providing coordinates can be integrated. IMDF based vector maps provide the semantic layer to give meaning and context to the location data."
+      highlights:
+        - "Open Location Hub - federate and aggregate location data"
+        - "Connectors for any RTLS or GNSS system"
+        - "Vector Graphics based venue maps"
+
+  problem:
+    type: card-grid
+    id: "problem"
+    variant: "muted"
+    title: "Stop reinventing wheels"
+    intro: "Many asset tracking solution providers provide the exact same software solutions. SDKs unlock the coordinates. Hubs aggregate this information. And to demonstrate value, it is necessary to provide maps as well. However, these in house developer solutions provide poor cross vendor interoperability and can be limiting in terms of features, quality, or flexibility."
+    cards:
+      - title: "It's time to move on from bitmap based venue maps."
+        description: "Outdoor maps from the big map providers are crisp and beautiful. The state of the art is using vector graphics to render 2D and 3D maps using hardware accelerated rendering engines. It's inexcusable to be showing bitmap exports of ugly CAD drawings. And yet, many asset tracking solutions default to this. They don't scale. They are blurry when you zoom in."
+      - title: "Vendor specific APIs and SDKs make integration needlessly hard."
+        description: "Asset tracking solutions are only valuable if they can be deeply integrated with work processes and the accompanying software. This requires a standards based middleware that solution providers can build upon that does not have to be adapted for every RTLS vendor out there."
+      - title: "Proprietary middleware is an obstacle, not an enabler."
+        description: "Licensing for and gatekeeping of the necessary middleware and SDKs needed to make use of asset tracking and location systems make it needlessly hard for integrators and solution providers to build and provide value. This adds complexity and cost to projects."
+
+  mapping:
+    type: feature
+    id: "mapping"
+    media_position: "right"
+    title: "Indoor mapping that is usable in products"
+    intro: "The mapping side of Open Location Stack focuses on structured indoor map data, not static floor-plan images. That creates a better base for rendering, routing, zoning, validation, and map-aware operational workflows."
+    items:
+      - title: "Shared spatial context"
+        description: "Places, levels, routes, and zones need a shared indoor model before live positions from multiple systems can be interpreted correctly."
+      - title: "One operational view"
+        description: "A strong map layer helps teams visualize mixed hubs, mixed technologies, and site activity in one coherent operational view."
+      - title: "Reusable map capabilities"
+        description: "Structured map data makes authoring, validation, rendering, and maintenance more reusable across projects."
+    media:
+      type: "image"
+      src: "/images/mapping-stack.svg"
+      alt: "Indoor mapping stack diagram"
+
+  audience:
+    type: audience
+    id: "audience"
+    variant: "muted"
+    title: "Open Source enables Ecosystems"
+    intro: "The Open Location Stack enables everybody in the ecosystem to do better. By providing a robust base that everybody can rally around all the players in the ecosystem can focus on adding value."
+    image:
+      src: "/images/zone-triggers.webp"
+      alt: "Operational RTLS zone trigger workflow"
+    cards:
+      - title: "Solution Integrators"
+        description: "Deliver multi-vendor asset tracking and location based solutions faster. Build on a robust, open source platform and focus on the value add."
+      - title: "Location technology vendors"
+        description: "Unlock the value of your solution. Make it easy to use your products. Deliver a best in class developer experience to your customers."
+      - title: "Enterprise users"
+        description: "De-risk integration projects. Build on a modern scalable platform that seamlessly builds on and integrates with your enterprise software stack."
+      - title: "Developers"
+        description: "Hit the ground running with the toolkits, middleware, SDKs, and connector frameworks needed to do the job."
+
+  news:
+    type: news
+    id: "news"
+    title: "Latest news"
+    intro: "Follow product and engineering updates as the public repositories, docs, and early product releases evolve."
+    actions:
+      - label: "Browse all news"
+        href: "/news/"
+      - label: "RSS feed"
+        href: "/news/index.xml"
+
+  cta:
+    type: cta
+    id: "cta"
+    title: "Help shape the next releases"
+    text: "Contact us with RTLS integration blockers, indoor mapping use cases, connector ideas, or partnership interest that should influence the next Open Location Stack releases."
+    action:
+      label_i18n: "cta_primary"
+      href: "mailto:open-rtls@tryformation.com"
