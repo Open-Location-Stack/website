@@ -36,10 +36,10 @@ problem_intro: "Many asset tracking solution providers provide the exact same so
 problem_cards:
   - title: "It's time to move on from bitmap based venue maps."
     description: "Outdoor maps from the big map providers are crisp and beautiful. The state of the art is using vector graphics to render 2D and 3D maps using hardware accelerated rendering engines. It's inexcusable to be showing bitmap exports of ugly CAD drawings. And yet, many asset tracking solutions default to this. They don't scale. They are blurry when you zoom in."
-  - title: "Vendor specific APIs & SDKs make integration needlessly hard."
+  - title: "Vendor specific APIs and SDKs make integration needlessly hard."
     description: "Asset tracking solutions are only valuable if they can be deeply integrated with work processes and the accompanying software. This requires a standards based middleware that solution providers can build upon that does not have to be adapted for every RTLS vendor out there."
   - title: "Proprietary middleware is an obstacle, not an enabler."
-    description: "Licensing for and gatekeeping of the necessart middleware, SDKs, etc. needed to make use of asset tracking and location systems make it needlessly hard for integrators and solution providers to build and provide value. This adds complexity and cost to projects."
+    description: "Licensing for and gatekeeping of the necessary middleware and SDKs needed to make use of asset tracking and location systems make it needlessly hard for integrators and solution providers to build and provide value. This adds complexity and cost to projects."
 hub_title: "Open Location Hub"
 hub_intro: "Open Location Hub is the core integration product in the stack. It gives teams one place to connect RTLS feeds, expose interoperable APIs, handle auth, and build toward mixed-vendor deployments."
 hub_points:
