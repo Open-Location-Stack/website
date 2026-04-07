@@ -1,0 +1,9 @@
+{{ $section := .section }}
+<section id="{{ $section.id }}"{{ with $section.section_class }} class="{{ . }}"{{ end }}>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <div class="prose max-w-none">
+      <h2>{{ $section.title }}</h2>
+      <div>{{ $section.body | markdownify }}</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+{{ $section := .section }}
+{{ $title := $section.title }}
+{{ with $section.title_i18n }}
+  {{ $title = i18n . }}
+{{ end }}
+{{ $intro := $section.intro }}
+{{ with $section.intro_i18n }}
+  {{ $intro = i18n . }}
+{{ end }}
+<section id="{{ $section.id }}" class="border-y border-line bg-neutral-50/50">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ $title }}</h2>
+    <p class="mt-4 max-w-3xl text-muted">{{ $intro }}</p>
+    <div class="mt-10 grid gap-4 md:grid-cols-3">
+      {{ range $section.items }}
+        <article class="rounded-xl border border-line bg-white p-5">
+          <h3 class="text-lg font-semibold"><a href="{{ .link }}" class="underline decoration-accent decoration-2 underline-offset-4">{{ .acronym }}</a></h3>
+          <p class="mt-1 text-sm font-medium text-muted">{{ .name }}</p>
+          <p class="mt-3 text-sm leading-relaxed text-muted">{{ .text }}</p>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

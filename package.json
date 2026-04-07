@@ -7,8 +7,9 @@
   "author": "FORMATION GmbH",
   "scripts": {
     "dev": "npm run build:assets && concurrently -k -n VITE,HUGO -c yellow,green \"npm:dev:assets\" \"npm:dev:hugo\"",
-    "build": "npm run build:assets && hugo --gc --minify && npm run generate:search",
+    "build": "npm run check:homepage && npm run build:assets && hugo --gc --minify && npm run generate:search",
     "build:assets": "vite build",
+    "check:homepage": "node ./scripts/check-homepage-componentization.mjs",
     "dev:assets": "vite build --watch --mode development",
     "dev:hugo": "hugo server -D --disableFastRender",
     "generate:search": "node --import tsx ./scripts/generate-search.ts",

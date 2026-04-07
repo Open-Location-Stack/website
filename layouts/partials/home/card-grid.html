@@ -1,15 +1,35 @@
 {{ $section := .section }}
-<section id="{{ $section.id }}" class="border-y border-line bg-neutral-50/50">
+{{ $sectionClass := $section.section_class | default "" }}
+{{ $wrapperClass := $section.wrapper_class | default "" }}
+{{ $introBlockClass := $section.intro_block_class | default "" }}
+{{ $cardsWrapperClass := $section.cards_wrapper_class | default "" }}
+{{ $gridClass := $section.grid_class | default "mt-10 grid gap-4 md:grid-cols-3" }}
+{{ $cardClass := $section.card_class | default "rounded-xl border border-line bg-white p-5" }}
+{{ $title := $section.title }}
+{{ with $section.title_i18n }}
+  {{ $title = i18n . }}
+{{ end }}
+{{ $intro := $section.intro }}
+{{ with $section.intro_i18n }}
+  {{ $intro = i18n . }}
+{{ end }}
+<section id="{{ $section.id }}"{{ with $sectionClass }} class="{{ . }}"{{ end }}>
   <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
-    <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ $section.title }}</h2>
-    <p class="mt-4 max-w-3xl text-muted">{{ $section.intro }}</p>
-    <div class="mt-10 grid gap-4 md:grid-cols-3">
-      {{ range $section.cards }}
-        <article class="rounded-xl border border-line bg-white p-5">
-          <h3 class="text-lg font-semibold">{{ .title }}</h3>
-          <p class="mt-3 text-sm leading-relaxed text-muted">{{ .description }}</p>
-        </article>
-      {{ end }}
+    <div{{ with $wrapperClass }} class="{{ . }}"{{ end }}>
+      <div{{ with $introBlockClass }} class="{{ . }}"{{ end }}>
+        <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ $title }}</h2>
+        <p class="mt-4 max-w-3xl text-muted">{{ $intro }}</p>
+      </div>
+      <div{{ with $cardsWrapperClass }} class="{{ . }}"{{ end }}>
+        <div class="{{ $gridClass }}">
+          {{ range $section.cards }}
+            <article class="{{ $cardClass }}">
+              <h3 class="text-lg font-semibold">{{ .title }}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{{ .description }}</p>
+            </article>
+          {{ end }}
+        </div>
+      </div>
     </div>
   </div>
 </section>
