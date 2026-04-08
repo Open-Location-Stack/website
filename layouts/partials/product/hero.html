@@ -1,0 +1,38 @@
+{{ $section := .section }}
+<section class="mx-auto max-w-6xl px-4 pb-14 pt-12 sm:px-6 md:px-8 md:pb-24 md:pt-20">
+  <div class="grid gap-8 md:grid-cols-[1.35fr_1fr] md:items-start">
+    <div>
+      {{ with $section.eyebrow }}
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">{{ . }}</p>
+      {{ end }}
+      <h1 class="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:mt-6 md:text-6xl">{{ $section.title }}</h1>
+      <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg md:mt-6">{{ $section.text }}</p>
+      {{ with $section.actions }}
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+          {{ range . }}
+            {{ $style := .style | default "secondary" }}
+            {{ $href := .href }}
+            {{ if hasPrefix $href "/" }}
+              {{ $href = $href | relLangURL }}
+            {{ end }}
+            <a href="{{ $href }}" class="{{ if eq $style "primary" }}inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-black sm:w-auto{{ else }}inline-flex w-full items-center justify-center rounded-full border border-line px-6 py-3 text-sm font-semibold transition hover:border-ink sm:w-auto{{ end }}">{{ .label }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+
+    {{ with $section.aside }}
+      <aside class="rounded-2xl border border-line bg-white p-6 md:p-8">
+        <h2 class="text-xl font-semibold">{{ .title }}</h2>
+        <p class="mt-3 text-sm leading-relaxed text-muted">{{ .text }}</p>
+        {{ with .highlights }}
+          <div class="mt-5 flex flex-wrap gap-3">
+            {{ range . }}
+              <span class="rounded-full border border-line bg-neutral-50/60 px-4 py-2 text-sm font-medium">{{ . }}</span>
+            {{ end }}
+          </div>
+        {{ end }}
+      </aside>
+    {{ end }}
+  </div>
+</section>

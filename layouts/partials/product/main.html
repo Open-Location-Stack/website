@@ -1,0 +1,21 @@
+{{ $lang := .Site.Language.Lang | default "en" }}
+{{ $productKey := .Params.product_key }}
+{{ $product := index hugo.Data $lang "products" $productKey }}
+{{ if not $product }}
+  {{ $product = index hugo.Data "en" "products" $productKey }}
+{{ end }}
+
+{{ if $product }}
+  {{ range $product.sections }}
+    {{ partial "product/section.html" (dict "section" . "page" $) }}
+  {{ end }}
+{{ else }}
+  <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <header>
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ .Title }}</h1>
+    </header>
+    <section class="prose mt-8 max-w-none">
+      {{ .Content }}
+    </section>
+  </article>
+{{ end }}

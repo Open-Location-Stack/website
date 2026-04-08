@@ -1,0 +1,18 @@
+{{ $section := .section }}
+{{ $sectionClass := $section.section_class | default "" }}
+<section id="{{ $section.id }}"{{ with $sectionClass }} class="{{ . }}"{{ end }}>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:px-8 md:py-20">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ $section.title }}</h2>
+      <p class="mt-4 text-muted">{{ $section.intro }}</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-2">
+      {{ range $section.items }}
+        <figure class="rounded-2xl border border-line bg-white p-4 md:p-6">
+          <img src="{{ .src }}" alt="{{ .alt }}" class="w-full rounded-xl border border-line bg-neutral-50/40" />
+          <figcaption class="mt-4 text-sm leading-relaxed text-muted">{{ .caption }}</figcaption>
+        </figure>
+      {{ end }}
+    </div>
+  </div>
+</section>

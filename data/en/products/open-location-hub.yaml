@@ -1,0 +1,138 @@
+sections:
+  - type: hero
+    eyebrow: "Integration product"
+    title: "Open Location Hub"
+    text: "Open Location Hub is an OpenAPI-first hub for location position and event exchange. It gives vendors, integrators, and enterprise teams a deployable base for auth, connectors, federated site topologies, and interoperable APIs."
+    actions:
+      - label: "Docs"
+        href: "/open-location-hub/docs/"
+        style: "primary"
+      - label: "API Reference"
+        href: "/open-location-hub/docs/api-reference/"
+        style: "secondary"
+      - label: "GitHub"
+        href: "https://github.com/Open-Location-Stack/open-location-hub"
+        style: "secondary"
+    aside:
+      title: "Built for production integration work"
+      text: "The hub sits between location systems, enterprise software, and downstream applications. It can run locally near devices, in regional cloud deployments, or in federated multi-site topologies."
+      highlights:
+        - "OpenAPI-first omlox-aligned contract"
+        - "Connector-driven integration"
+        - "Federated multi-site deployment model"
+
+  - type: card-grid
+    id: "why-teams-use-it"
+    section_class: "border-y border-line bg-neutral-50/50"
+    title: "What it solves"
+    intro: "Location deployments often end up with vendor-specific hub logic, custom APIs, and one-off middleware between devices, business systems, and applications. Open Location Hub gives teams a standard integration point they can deploy and control themselves."
+    cards:
+      - title: "Vendor-specific hub APIs"
+        description: "Keep applications off proprietary hub contracts by putting a stable API and policy layer in front of them."
+      - title: "Repeated integration plumbing"
+        description: "Reuse auth, routing, connector, and event-exchange infrastructure instead of rebuilding it for each customer or site."
+      - title: "Mixed deployments"
+        description: "Connect existing hubs and multiple tracking technologies without forcing every site onto one stack."
+
+  - type: feature
+    id: "hub-in-the-stack"
+    media_position: "right"
+    title: "The integration layer between maps, devices, and applications"
+    intro: "Open Location Hub sits in the middle of the stack. It connects live location feeds, applies auth and policy, exposes interoperable APIs, and gives downstream applications one place to integrate."
+    actions:
+      - label: "Floor Plan Editor"
+        href: "/floor-plan-editor/"
+      - label: "Docs"
+        href: "/open-location-hub/docs/"
+    items:
+      - title: "Map-aware applications"
+        description: "Use one hub boundary for location-aware products, enterprise software, and operational workflows instead of wiring each system directly to vendor infrastructure."
+      - title: "Shared policy boundary"
+        description: "Keep auth, permissions, RPC control, and event routing in one deployable component."
+      - title: "Cross-site aggregation"
+        description: "Move from local installations to regional and global aggregation without replacing the integration model."
+    media:
+      type: "image"
+      src: "/images/mapping-stack.svg"
+      alt: "Open Location Stack mapping and integration layers"
+
+  - type: feature-aside
+    id: "existing-deployments"
+    title: "Connectors for existing deployments"
+    intro: "Open Location Hub is not a rip-and-replace story. In real plants, terminals, warehouses, and production sites, teams usually need to connect what already exists and add a cleaner interoperability layer around it."
+    items:
+      - title: "Existing hubs"
+        description: "Connect on-premise or cloud hubs such as Corriva Hub, Deephub, and similar systems that already handle local device or site-level location traffic."
+      - title: "Mixed technologies"
+        description: "Bring together RTLS, GNSS, barcode, QR, and related tracking flows so downstream systems do not depend on one narrow vendor contract."
+      - title: "Incremental migration"
+        description: "Normalize and route location data across vendors while preserving existing site investments and operational constraints."
+      - title: "Partner-friendly extensibility"
+        description: "Contributed connectors make compatibility visible and cut one-off integration work for solution providers."
+    aside:
+      eyebrow: "Start here"
+      title: "Inspect the current implementation"
+      text: "The published docs cover architecture, authentication, connectors, and the API contract. That makes the current scope concrete before you decide how to evaluate or extend the hub."
+      actions:
+        - label: "Browse docs"
+          href: "/open-location-hub/docs/"
+          style: "primary"
+        - label: "Open API Reference"
+          href: "/open-location-hub/docs/api-reference/"
+          style: "secondary"
+
+  - type: card-grid
+    id: "what-it-includes"
+    section_class: "border-y border-line bg-neutral-50/50"
+    grid_class: "mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+    title: "What it includes today"
+    intro: "The current repository already covers the hub contract, core runtime, protocol surfaces, and operational building blocks needed for serious implementation work."
+    cards:
+      - title: "Normative hub contract"
+        description: "A normative OpenAPI contract for resource management, ingest, and standard hub behavior."
+      - title: "Go server runtime"
+        description: "A Go server with strict handler interfaces and a low operational footprint."
+      - title: "Operational dependencies"
+        description: "Local runtime support for Postgres, Valkey, Mosquitto, and the application itself."
+      - title: "Authentication modes"
+        description: "JWT bearer auth with `oidc`, `static`, and `hybrid` verification modes."
+      - title: "Authorization building blocks"
+        description: "RBAC, ownership-aware authorization, route-level permissions, and WebSocket topic permissions."
+      - title: "Shared ingest and fan-out"
+        description: "Shared paths across REST, WebSocket, and MQTT plus an OMLOX RPC control plane."
+
+  - type: card-grid
+    id: "protocol-and-control-plane"
+    section_class: "border-y border-line bg-neutral-50/50"
+    title: "Protocol and control plane"
+    intro: "Real deployments rarely have one integration style. Open Location Hub is designed so CRUD APIs, streaming updates, local MQTT integration, and controlled command execution can live behind one hub boundary."
+    cards:
+      - title: "REST"
+        description: "Use standard APIs for ingest, resource management, and hub-facing application integration."
+      - title: "WebSocket"
+        description: "Support subscriptions, event fan-out, and the OMLOX wrapper protocol for live flows."
+      - title: "MQTT"
+        description: "Handle local device, adapter, and site-level telemetry patterns without pushing every consumer down to device-facing protocols."
+      - title: "OMLOX RPC"
+        description: "Use the hub as the control-plane front door for diagnostics and command routing such as `com.omlox.ping`, `com.omlox.identify`, and `com.omlox.core.xcmd`."
+
+  - type: card-grid
+    id: "federation"
+    section_class: "border-y border-line bg-neutral-50/50"
+    title: "Federated by design"
+    intro: "The federation work in the repository is aimed at deployment topologies such as plant hubs feeding regional cloud hubs, or regional hubs feeding a global aggregation layer."
+    cards:
+      - title: "Fit different site realities"
+        description: "Support countries, business units, and sites that use different location technologies, local integrators, and on-premise or cloud infrastructure."
+      - title: "Scale without flattening everything"
+        description: "Aggregate across sites, tenants, regions, and jurisdictions while still respecting local operational constraints."
+      - title: "Stay practical for smaller installs"
+        description: "The same model can start at one local deployment and grow into a wider federated architecture over time."
+
+  - type: cta
+    id: "evaluate-hub"
+    title: "Evaluate Open Location Hub"
+    text: "Start with the docs and API reference, then inspect the repository if you need to validate the architecture, auth model, or connector direction."
+    action:
+      label: "Browse docs"
+      href: "/open-location-hub/docs/"
