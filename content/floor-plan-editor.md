@@ -7,7 +7,7 @@ github_url: "https://github.com/Open-Location-Stack/floorplan-editor"
 
 Floor Plan Editor is a browser-based map authoring tool for teams that need to create, adjust, and maintain indoor floor plans without building a custom editor from scratch.
 
-It is part of Open Location Stack's mapping foundation and focuses on the practical work required to turn a venue into usable operational map data: place the building correctly, define floors, draw geometry, align floor plan images, and keep the project editable over time.
+It is part of Open Location Stack's mapping work and focuses on the practical steps required to turn a venue into usable map data: place the building correctly, define floors, draw geometry, align floor plan images, and keep the project editable over time.
 
 ## See it in action
 
@@ -23,7 +23,7 @@ It is part of Open Location Stack's mapping foundation and focuses on the practi
 
 Most RTLS and indoor-location projects still treat map authoring as a side problem, which usually leads to ad hoc tooling, brittle import flows, and inconsistent map quality.
 
-Floor Plan Editor reduces that friction by providing a reusable foundation for indoor map creation and maintenance. Instead of rebuilding a one-off editor for every deployment, teams can start with a focused tool that already understands the shape of the problem.
+Floor Plan Editor reduces that friction by giving teams a reusable tool for indoor map creation and maintenance. Instead of rebuilding a one-off editor for every deployment, teams can start with a tool that already covers the core editing workflow.
 
 Just as importantly, it shifts teams away from bitmap-first indoor mapping. Static image floor plans may be workable for small demos, but they do not scale well to industrial campuses, terminals, hospitals, and factories that span tens or hundreds of thousands of square meters. Vector map data stays crisp at every zoom level, is easier to validate and edit, and provides the structure needed for downstream applications instead of just a picture of a building.
 
@@ -43,11 +43,11 @@ Just as importantly, it shifts teams away from bitmap-first indoor mapping. Stat
 
 The current implementation is a React, Vite, and TypeScript application with a local-first browser architecture. Projects are stored in IndexedDB, map rendering is handled through MapLibre, and the editor includes IMDF-oriented import, export, and validation utilities so teams can move from raw floor plans toward cleaner interoperable venue data.
 
-IMDF matters here because it is not just a drawing format. It is a GeoJSON-based information model with a venue hierarchy for sites, buildings, levels, units, openings, amenities, and related features. That structure gives indoor maps both geometry and meaning, which is what downstream systems need for search, display, zoning, routing, and operational workflows.
+IMDF matters here because it is more than a drawing format. It is a GeoJSON-based information model with a venue hierarchy for sites, buildings, levels, units, openings, amenities, and related features. That structure gives indoor maps both geometry and meaning, which downstream systems need for search, display, zoning, routing, and operations.
 
-The editor is also designed around navigable indoor space rather than static artwork. By supporting path creation as part of the authoring workflow, it helps teams build the navigation graph needed for wayfinding and point-to-point routing. Combined with vector geometry, that creates a stronger foundation for crisp rendering at any zoom level and for applications that need to answer questions like how to get from one room, entrance, or work area to another.
+The editor is also designed around navigable indoor space rather than static artwork. By supporting path creation as part of the authoring workflow, it helps teams build the navigation graph needed for wayfinding and point-to-point routing. Combined with vector geometry, that supports crisp rendering at any zoom level and applications that need to answer questions like how to get from one room, entrance, or work area to another.
 
-## Built for the broader indoor-mapping ecosystem
+## Built for indoor mapping standards and tools
 
 If you are evaluating indoor mapping standards and downstream compatibility, these are useful starting points:
 
@@ -56,15 +56,15 @@ If you are evaluating indoor mapping standards and downstream compatibility, the
 - [Apple IMDF specification resources](https://register.apple.com/resources/imdf/) because Apple introduced IMDF and still publishes the core format material.
 - [Apple MapKit indoor map documentation](https://developer.apple.com/documentation/mapkit/displaying-an-indoor-map) for a concrete product-facing integration angle.
 
-## Product pitch
+## Product fit
 
-Floor Plan Editor gives Open Location Stack a practical authoring front end for indoor spatial data. It is the place where floor plans become structured map assets that downstream renderers, validators, hubs, and applications can actually use, including the [Open Location Hub](/open-location-hub/).
+Floor Plan Editor gives Open Location Stack a practical authoring front end for indoor spatial data. It is where floor plans become structured map assets that downstream renderers, validators, hubs, and applications can use, including the [Open Location Hub](/open-location-hub/).
 
-For integrators, that means less time spent stitching together fragile map tooling. For product teams, it means a cleaner starting point for map-aware workflows such as wayfinding, zoning, asset visualization, and operational UX.
+For integrators, that means less time spent stitching together fragile map tooling. For product teams, it provides usable map data for workflows such as wayfinding, zoning, asset visualization, and operations.
 
 ## Get involved
 
-Try it, stress it, file issues, and send pull requests if you want to help shape the editor into a stronger shared foundation.
+Try it, stress it, file issues, and send pull requests if you want to help improve the editor.
 
 [Learn about Open Location Hub](/open-location-hub/)
 
