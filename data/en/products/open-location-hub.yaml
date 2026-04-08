@@ -24,7 +24,7 @@ sections:
   - type: card-grid
     id: "why-teams-use-it"
     section_class: "border-y border-line bg-neutral-50/50"
-    title: "What it solves"
+    title: "Integration problems"
     intro: "Location deployments often end up with vendor-specific hub logic, custom APIs, and one-off middleware between devices, business systems, and applications. Open Location Hub gives teams a standard integration point they can deploy and control themselves."
     cards:
       - title: "Vendor-specific hub APIs"

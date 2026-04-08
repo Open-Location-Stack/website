@@ -33,7 +33,7 @@ sections:
 
   - type: card-grid
     id: "why-it-matters"
-    title: "What it fixes"
+    title: "Indoor map authoring"
     intro: "Indoor map authoring is still too often handled with ad hoc tools, bitmap exports, and brittle import steps. That leaves teams with maps that are hard to edit, hard to validate, and hard to reuse in real products."
     cards:
       - title: "One-off internal editors"
