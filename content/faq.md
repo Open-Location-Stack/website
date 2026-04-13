@@ -36,6 +36,26 @@ Yes. It is a large scope.
 
 Modern AI-assisted tooling helps us move faster, but the main reason we are doing this is straightforward: FORMATION also benefits from having better location infrastructure. Our own products and customer work depend on it.
 
+## What is the business model?
+
+FORMATION is not building Open Location Stack to charge license fees for the software itself.
+
+The main upside for us is as an integrator. If more companies rally around open standards and open source, it becomes easier to deliver mixed-vendor location systems without rebuilding the same hub and integration layers for every project.
+
+We may still offer paid support, managed hosting, and related services around the software. We also expect Open Location Hub to become a standard part of FORMATION deployments where it fits the customer need.
+
+The MIT license allows our competitors to do the same thing. That is intentional. We do not consider the hub itself to be a differentiator. We consider it an enabler that should be easy for the market to adopt, extend, and integrate.
+
+That gives customers more freedom. They can add new location technologies through connectors and attach their own application logic without being locked into one closed stack.
+
+## What if a big tech company such as Amazon offers the hub?
+
+We would see that as success.
+
+If a large company decides to offer or build on the hub, it means the industry is rallying around open standards and open source instead of pushing every customer back into another proprietary integration layer.
+
+That fits the mission of Open Location Stack directly. The point is to make the shared infrastructure around location systems easier to adopt, reuse, and extend across the market.
+
 ## I'm an RTLS integrator and we like OMLOX. What should we do?
 
 Tell us what you need and where current solutions fall short. Try the published components. Share requirements, use cases, and integration pain points.
