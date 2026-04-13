@@ -2,7 +2,7 @@ sections:
   - type: hero
     eyebrow: "Mapping product"
     title: "Floor Plan Editor"
-    text: "Floor Plan Editor is a browser-based indoor mapping tool for teams that need to create, adjust, and maintain floor plans as structured venue data. It covers the practical editing workflow from map setup and floor geometry to overlays, validation, and export."
+    text: "Floor Plan Editor is a browser-based indoor mapping tool for teams that need to create, adjust, and maintain structured venue data. It covers the editing workflow from map setup and floor geometry to overlays, validation, and export."
     actions:
       - label: "GitHub"
         href: "https://github.com/Open-Location-Stack/floorplan-editor"
@@ -12,7 +12,7 @@ sections:
         style: "secondary"
     aside:
       title: "Map authoring for real products"
-      text: "The editor helps teams move away from bitmap-first indoor mapping. Instead of shipping floor plan pictures, you can maintain crisp vector geometry and venue structure that downstream applications can actually use."
+      text: "The editor helps teams move away from bitmap-first indoor mapping. Instead of shipping floor plan pictures, you can maintain vector geometry and venue structure that downstream applications can use."
       highlights:
         - "Browser-based authoring workflow"
         - "Vector geometry instead of bitmap-only maps"
@@ -29,12 +29,12 @@ sections:
         caption: "Draw rooms directly on the map canvas and build floor geometry as structured vector data."
       - src: "/images/floor-plan-editor-show-hide-bitmap.gif"
         alt: "Animated demo of hiding a bitmap floor plan overlay while keeping vector geometry editable"
-        caption: "Use floor plan images for alignment, then hide them and inspect the actual editable map data underneath."
+        caption: "Use floor plan images for alignment, then hide them and inspect the editable map data underneath."
 
   - type: card-grid
     id: "why-it-matters"
     title: "Indoor map authoring"
-    intro: "Indoor map authoring is still too often handled with ad hoc tools, bitmap exports, and brittle import steps. That leaves teams with maps that are hard to edit, hard to validate, and hard to reuse in real products."
+    intro: "Indoor map authoring is still too often handled with ad hoc tools, bitmap exports, and brittle import steps. That leaves teams with maps that are hard to edit, validate, and reuse in real products."
     cards:
       - title: "One-off internal editors"
         description: "Use a reusable map authoring tool instead of building a custom editor for each deployment."
@@ -66,7 +66,7 @@ sections:
   - type: feature-aside
     id: "structured-map-data"
     title: "Built around structured indoor map data"
-    intro: "The editor is more than a drawing tool. It helps teams build venue data that downstream systems can search, render, route through, validate, and connect to live operational data."
+    intro: "The editor helps teams build venue data that downstream systems can search, render, route through, validate, and connect to live operational data."
     items:
       - title: "Local-first architecture"
         description: "The current implementation uses React, Vite, TypeScript, IndexedDB, and MapLibre so projects stay editable in the browser without heavy infrastructure."
@@ -79,7 +79,7 @@ sections:
     aside:
       eyebrow: "Standards and fit"
       title: "Designed to work with the rest of the stack"
-      text: "Floor Plan Editor turns indoor spaces into structured map assets that products such as Open Location Hub and downstream location applications can use."
+      text: "Floor Plan Editor turns indoor spaces into structured map assets that Open Location Hub and downstream location applications can use."
       actions:
         - label: "Explore Open Location Hub"
           href: "/open-location-hub/"

@@ -1,6 +1,6 @@
 ---
 title: "Open Location Hub"
-description: "OpenAPI-first hub for location position and event exchange, connector-driven integration, and federated multi-site deployments."
+description: "OpenAPI-first hub for location updates, event exchange, connectors, and federated multi-site deployments."
 draft: false
 layout: "product"
 product_key: "open-location-hub"

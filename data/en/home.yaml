@@ -3,9 +3,9 @@ sections:
     logo:
       src: "/images/open-rtls-logo.svg"
       alt: "Open Location Stack logo"
-    tagline: "The OSS base platform for your location based applications"
+    tagline: "Open source building blocks for location software"
     title: "Open Location Stack"
-    text: "Open Location Stack helps asset tracking solution providers, integrators, and product teams work across hybrid, cross-vendor deployments without rebuilding the same hub, mapping, and integration layers for every project."
+    text: "Open Location Stack gives vendors, integrators, and product teams reusable software for location hubs, connectors, and indoor maps across mixed-vendor deployments."
     created_by:
       name: "FORMATION"
       link: "https://tryformation.com"
@@ -21,7 +21,7 @@ sections:
         style: "secondary"
     aside:
       title: "Platform overview"
-      text: "The platform provides a hub for aggregating and federating location information from on premise installations, other hubs, and outdoor asset or fleet tracking systems. Via connectors, any kind of system providing coordinates can be integrated. IMDF based vector maps provide the semantic layer to give meaning and context to the location data."
+      text: "The stack includes a hub for aggregating and federating location data from on-premise systems, other hubs, and outdoor tracking systems. Connectors bring in RTLS, GNSS, barcode, QR, and related location feeds. IMDF-based vector maps add the spatial structure needed to interpret that data."
       highlights:
         - "Open Location Hub - federate and aggregate location data"
         - "Connectors for any RTLS or GNSS system"
@@ -31,40 +31,40 @@ sections:
     id: "mission"
     section_class: "border-y border-line bg-neutral-50/50"
     title: "Mission"
-    body: "Open Location Stack is an open source initiative focused on the missing shared layer between location hardware, hubs, indoor maps, and downstream applications. Real deployments still rebuild the same venue models, connectors, hub adapters, and map capabilities vendor by vendor. We are building shared components so vendors and integrators can spend more effort on products and delivery instead of rebuilding plumbing. The project is initiated by [FORMATION](https://tryformation.com), where we run production location projects and run into these integration gaps directly."
+    body: "Open Location Stack focuses on the software teams keep rebuilding between location hardware, hubs, maps, and applications. Real deployments still need the same venue models, connectors, hub adapters, and map tooling project after project. We are building those pieces as open source so vendors and integrators can spend more time on product and delivery work. The project was initiated by [FORMATION](https://tryformation.com), where we run production location projects and hit these gaps directly."
 
   - type: card-grid
     id: "problem"
     section_class: "border-y border-line bg-neutral-50/50"
     grid_class: "mt-10 grid gap-4 md:grid-cols-3"
-    title: "Stop reinventing wheels"
-    intro: "Most asset-tracking vendors end up rebuilding the same hub, SDK, and mapping layers just to get coordinates on a screen. That wastes engineering time, creates brittle integrations, and leaves customers with closed, low-quality tooling where a shared open stack should exist."
+    title: "Stop rebuilding the same stack"
+    intro: "Many location products still rebuild the same hub logic, SDK glue, and map tooling just to get positions on a screen. That wastes engineering time and leaves customers with brittle integrations."
     cards:
-      - title: "Bitmap venue maps are not good enough anymore."
-        description: "Modern outdoor maps are crisp, fast, and scalable because they use structured vector data and hardware-accelerated rendering. Indoor location products should not still depend on blurry bitmap exports of CAD drawings that fall apart as soon as users zoom in."
-      - title: "Vendor-specific APIs and SDKs slow every integration down."
-        description: "Location platforms only create value when they connect cleanly into operational software and customer workflows. Rewriting middleware and adapters for every RTLS vendor is exactly the kind of duplicated effort an open interoperability layer should remove."
-      - title: "Proprietary middleware adds friction instead of leverage."
-        description: "When the essential hub, SDK, and integration layers are gated behind closed products and licensing terms, integrators and solution providers inherit more cost, more complexity, and less freedom to build differentiated products."
+      - title: "Bitmap venue maps do not scale"
+        description: "Indoor products still rely on bitmap exports of CAD drawings far too often. Structured vector maps are easier to render, edit, validate, and reuse."
+      - title: "Vendor-specific APIs slow integration work"
+        description: "Location systems only become useful when they connect cleanly to business software and customer workflows. Rewriting adapters for every RTLS vendor is wasted effort."
+      - title: "Closed middleware limits reuse"
+        description: "When hub and integration layers stay proprietary, integrators and product teams inherit more cost, more coupling, and fewer options."
 
   - type: opensource
     id: "opensource"
     title: "Open source fits this market"
-    intro: "Location solutions depend on many hardware and software components across vendors, platforms, and partners. Rebuilding the same core stack in closed silos adds cost, complexity, and risk. Open source gives teams reusable infrastructure for integration, delivery, and product work."
-    license_note: "Open Location Stack is released under the permissive [MIT License](https://opensource.org/license/mit), making it practical to embed, adapt, extend, and white-label while still building on a shared ecosystem."
+    intro: "Location solutions depend on many hardware and software components across vendors and sites. Rebuilding the same hub, connector, and mapping layers in private silos adds cost and complexity. Open source gives teams something reusable to start from."
+    license_note: "Open Location Stack uses the permissive [MIT License](https://opensource.org/license/mit), so teams can embed, adapt, extend, and white-label the software."
     points:
       - title: "Commercial flexibility"
-        description: "Use the stack in customer projects, packaged offerings, internal platforms, or partner-delivered solutions without licensing friction getting in the way."
+        description: "Use the stack in customer projects, packaged offerings, internal tools, or partner-delivered solutions without license friction."
       - title: "Faster productization"
-        description: "Start from open hub, connector, and mapping building blocks instead of rebuilding the same infrastructure for every deployment."
+        description: "Start from open hub, connector, and mapping components instead of rebuilding the same infrastructure for every deployment."
       - title: "Shared codebase"
-        description: "An open codebase is easier to evaluate, adapt, extend, and integrate across hybrid, cross-vendor deployments."
+        description: "An open codebase is easier to inspect, adapt, extend, and integrate across mixed-vendor deployments."
 
   - type: card-grid
     id: "hub"
     section_class: "border-y border-line bg-neutral-50/50"
     title: "Open Location Hub"
-    intro: "Open Location Hub is the core integration product in the stack. It connects location feeds, exposes interoperable APIs, handles auth, and supports hybrid, cross-vendor deployments."
+    intro: "Open Location Hub connects location feeds, exposes interoperable APIs, handles auth, and supports mixed-vendor deployments."
     actions:
       - label: "Product page"
         href: "/open-location-hub/"
@@ -74,15 +74,15 @@ sections:
       - title: "Reduce lock-in"
         description: "Work across vendor-specific systems and custom APIs without tying your application layer to one closed hub."
       - title: "Hybrid tracking"
-        description: "Bring together cross-vendor location systems, from barcode, QR, and GPS to RTLS and sensors, with hierarchical tracking across sites, zones, and assets."
+        description: "Bring together RTLS, barcode, QR, GPS, and related location systems across sites, zones, and assets."
       - title: "Support product and integration teams"
-        description: "Reuse the base layer for auth, event exchange, interoperability, and downstream map-aware applications."
+        description: "Reuse the base layer for auth, event exchange, interoperability, and downstream applications."
 
   - type: feature
     id: "mapping"
     media_position: "right"
-    title: "Indoor mapping that is usable in products"
-    intro: "The mapping side of Open Location Stack focuses on structured indoor map data, not static floor-plan images. That creates a better base for rendering, routing, zoning, validation, and map-aware operational workflows."
+    title: "Indoor mapping that products can use"
+    intro: "The mapping side of Open Location Stack focuses on structured indoor map data instead of static floor-plan images. That gives teams a better base for rendering, routing, zoning, and validation."
     actions:
       - label: "Floor Plan Editor"
         href: "/floor-plan-editor/"
@@ -91,8 +91,8 @@ sections:
     items:
       - title: "Shared spatial context"
         description: "Places, levels, routes, and zones need a shared indoor model before live positions from multiple systems can be interpreted correctly."
-      - title: "One operational view"
-        description: "A strong map layer helps teams visualize hybrid tracking, site hierarchies, and operational activity in one coherent view."
+      - title: "Shared site context"
+        description: "A strong map layer helps teams work with mixed tracking systems, site hierarchies, and operational activity in the same model."
       - title: "Reusable map capabilities"
         description: "Structured map data makes authoring, validation, rendering, and maintenance more reusable across projects."
     media:
@@ -102,21 +102,21 @@ sections:
 
   - type: feature-aside
     id: "connectors"
-    title: "Plug in what you need."
-    intro: "Open Location Hub supports a wide range of connectors so existing location deployments and technologies can participate without a rip-and-replace project."
+    title: "Plug in what you need"
+    intro: "Open Location Hub supports a wide range of connectors, so existing deployments can participate without a rip-and-replace project."
     items:
       - title: "Existing hubs"
         description: "Plug in on-premise or cloud hubs such as Corriva Hub, Deephub, or other existing deployments where location data is already flowing."
       - title: "Location technologies"
         description: "Bring together barcode and QR-based flows, GNSS, camera-based systems, RFID, BLE, UWB, and other location technologies."
       - title: "Integrate ERP, MMS, SAP, and more"
-        description: "Send and receive location data and operational events between the hub and ERP, MMS, SAP, and related enterprise systems using reusable connectors instead of bespoke integrations."
+        description: "Send and receive location data and operational events between the hub and ERP, MMS, SAP, and related enterprise systems using reusable connectors."
       - title: "Grow the connector ecosystem"
-        description: "Location solution providers can contribute connectors, show compatibility, and add your logo to the Open Location Stack website."
+        description: "Location solution providers can contribute connectors, show compatibility, and list support on the Open Location Stack website."
     aside:
       eyebrow: "Partner CTA"
-      title: "Do you provide solutions in this space?"
-      text: "Connect your solution through a connector. Share your roadmap, discuss partner needs, and talk to us about adding your logo to the website."
+      title: "Do you build in this space?"
+      text: "Connect your solution through a connector. Share your roadmap, discuss partner needs, and talk to us about listing support on the website."
       actions:
         - label_i18n: "cta_primary"
           href: "mailto:open-rtls@tryformation.com"
@@ -142,7 +142,7 @@ sections:
         description: "GNSS, telematics, and fleet tracking."
       - title: "Indoor positioning"
         description: "UWB, BLE, Wi-Fi RTT, and related indoor positioning systems."
-      - title: "Cradle to Grave tracking"
+      - title: "Cradle-to-grave tracking"
         description: "Most systems only track assets for part of their lifecycle and in limited areas. Cradle-to-grave tracking needs location data from production and logistics through customer use to recycling or decommissioning."
 
   - type: card-grid
@@ -151,37 +151,37 @@ sections:
     wrapper_class: "grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start"
     intro_block_class: ""
     cards_wrapper_class: "grid gap-4"
-    title: "AI readiness for agentic logistics and manufacturing"
-    intro: "Agentic logistics and manufacturing need an integrated view of the workplace. Open Location Hub brings together map context, live location flows, and system events in one place."
+    title: "AI for logistics and manufacturing needs context"
+    intro: "AI systems in logistics and manufacturing need map context, live location flows, and system events in the same place. Open Location Hub is built to connect those inputs."
     cards:
       - title: "Accessible operational context"
-        description: "AI systems need a usable picture of facilities, fleets, flows, and constraints rather than disconnected location feeds."
+        description: "AI systems need a usable picture of facilities, fleets, flows, and constraints instead of disconnected location feeds."
       - title: "Integrated workplace visibility"
-        description: "Open Location Hub connects workplace systems, indoor maps, and hybrid tracking technologies so automation can work from one operational view."
+        description: "Open Location Hub connects workplace systems, indoor maps, and mixed tracking technologies so automation can work from one shared model."
       - title: "Foundation for agentic workflows"
-        description: "A shared hub, semantic map structure, and connector ecosystem create a better base for orchestration, monitoring, and AI-assisted decision making."
+        description: "A shared hub, semantic map structure, and reusable connectors create a better base for orchestration, monitoring, and AI-assisted decisions."
 
   - type: audience
     id: "audience"
-    title: "Built for every player in the location stack"
-    intro: "Open Location Stack gives different stakeholders a common base to build on. Integrators can deliver faster, vendors are easier to adopt, enterprise teams reduce integration risk, and developers get practical tools instead of starting from scratch."
+    title: "Built for teams across the location stack"
+    intro: "Open Location Stack gives integrators, vendors, enterprise teams, and developers reusable software to start from instead of forcing each group to rebuild the same core pieces."
     image:
       src: "/images/zone-triggers.webp"
       alt: "Operational RTLS zone trigger workflow"
     cards:
       - title: "Solution Integrators"
-        description: "Deliver cross-vendor location solutions faster by reusing shared hub, connector, and mapping building blocks instead of rebuilding the same integration layer for every project."
+        description: "Deliver mixed-vendor location solutions faster by reusing shared hub, connector, and mapping components instead of rebuilding the same integration layer for every project."
       - title: "Location technology vendors"
-        description: "Make your products easier to integrate into real customer environments and improve adoption with interoperable APIs, connectors, and a better developer experience."
+        description: "Make your products easier to integrate into real customer environments with interoperable APIs, connectors, and better tooling."
       - title: "Enterprise users"
-        description: "De-risk deployment and integration programs with a modern, scalable base that fits more naturally into existing enterprise systems, data flows, and operating models."
+        description: "Reduce deployment and integration risk with a base that fits more naturally into existing enterprise systems and data flows."
       - title: "Developers"
-        description: "Start with practical SDKs, middleware, and connector frameworks so teams can focus on application logic and delivery instead of foundational plumbing."
+        description: "Start with practical middleware and connector frameworks so teams can focus on application logic and delivery."
 
   - type: news
     id: "news"
     title: "Latest news"
-    intro: "Follow product and engineering updates as the public repositories, docs, and early product releases evolve."
+    intro: "Follow product and engineering updates as the repositories, docs, and releases evolve."
     actions:
       - label: "Browse all news"
         href: "/news/"
@@ -200,11 +200,11 @@ sections:
       - acronym: "OGC IMDF"
         name: "Open Geospatial Consortium Indoor Mapping Data Format"
         link: "https://www.ogc.org/standards/indoor-mapping-data-format/"
-        text: "IMDF is the structured indoor mapping model Open Location Stack treats as the foundation for portable venue maps and spatial context."
+        text: "IMDF is the structured indoor mapping model Open Location Stack uses for portable venue maps and spatial context."
       - acronym: "MQTT"
         name: "Message Queuing Telemetry Transport"
         link: "https://mqtt.org/mqtt-specification/"
-        text: "MQTT is lightweight glue for ingesting and distributing live telemetry, events, and updates around the map."
+        text: "MQTT is a lightweight transport for ingesting and distributing live telemetry, events, and updates around the map."
 
   - type: cta
     id: "cta"

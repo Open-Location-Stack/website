@@ -2,7 +2,7 @@ sections:
   - type: hero
     eyebrow: "Integration product"
     title: "Open Location Hub"
-    text: "Open Location Hub is an OpenAPI-first hub for location position and event exchange. It gives vendors, integrators, and enterprise teams a deployable base for auth, connectors, federated site topologies, and interoperable APIs."
+    text: "Open Location Hub is an OpenAPI-first hub for location updates and event exchange. It gives vendors, integrators, and enterprise teams a deployable base for auth, connectors, federated topologies, and interoperable APIs."
     actions:
       - label: "Docs"
         href: "/open-location-hub/docs/"
@@ -24,8 +24,8 @@ sections:
   - type: card-grid
     id: "why-teams-use-it"
     section_class: "border-y border-line bg-neutral-50/50"
-    title: "Integration problems"
-    intro: "Location deployments often end up with vendor-specific hub logic, custom APIs, and one-off middleware between devices, business systems, and applications. Open Location Hub gives teams a standard integration point they can deploy and control themselves."
+    title: "Common integration problems"
+    intro: "Location deployments often end up with vendor-specific hub logic, custom APIs, and one-off middleware between devices, business systems, and applications. Open Location Hub gives teams one integration point they can deploy and control themselves."
     cards:
       - title: "Vendor-specific hub APIs"
         description: "Keep applications off proprietary hub contracts by putting a stable API and policy layer in front of them."
@@ -38,7 +38,7 @@ sections:
     id: "hub-in-the-stack"
     media_position: "right"
     title: "The integration layer between maps, devices, and applications"
-    intro: "Open Location Hub sits in the middle of the stack. It connects live location feeds, applies auth and policy, exposes interoperable APIs, and gives downstream applications one place to integrate."
+    intro: "Open Location Hub connects live location feeds, applies auth and policy, exposes interoperable APIs, and gives downstream applications one place to integrate."
     actions:
       - label: "Floor Plan Editor"
         href: "/floor-plan-editor/"
@@ -82,6 +82,36 @@ sections:
           style: "secondary"
 
   - type: card-grid
+    id: "semantic-layer"
+    section_class: "border-y border-line bg-neutral-50/50"
+    title: "The semantic layer turns map data into addresses"
+    intro: "Many workplaces already organize locations as hierarchies such as site, hall, aisle, area, line, or station. Outdoor operations do the same with countries, regions, cities, campuses, yards, and administrative zones. IMDF can capture those relationships in the map itself, so existing location structures become geocodable addresses."
+    cards:
+      - title: "Manufacturing and warehouse layouts"
+        description: "A position can be understood as Plant 3, Hall B, Aisle 12, Zone 4 instead of just a coordinate. That matches how operators, supervisors, and ERP or MMS users already talk about the site."
+      - title: "ERP and MMS master data"
+        description: "Many enterprise systems already store workspace hierarchies for assets, work centers, storage areas, and production zones. Putting the same hierarchy into the map creates a direct bridge between business data and location-aware applications."
+      - title: "Outdoor sites and public spaces"
+        description: "The same pattern works outside. Administrative hierarchies such as country, city, district, campus, yard, and gate help people find places and understand where events happened."
+      - title: "Geocoding for operational maps"
+        description: "When IMDF stores these parent-child relationships, applications can geocode them. That means people can search, route, and report against familiar addresses instead of raw coordinates or custom lookup tables."
+
+  - type: card-grid
+    id: "navigation"
+    section_class: "border-y border-line bg-neutral-50/50"
+    title: "Navigation across indoor and outdoor space"
+    intro: "IMDF can define navigable paths inside buildings and across sites. Combined with outdoor routing engines, that creates one route from deep inside a factory, through yards and roads, and into a destination inside another facility."
+    cards:
+      - title: "Indoor routing from mapped paths"
+        description: "Maps can describe corridors, doors, stairs, lifts, and other walkable connections so applications know how people or assets can actually move through a building."
+      - title: "Outdoor routing between sites"
+        description: "The same trip can continue over roads, yards, and campus routes by handing the outdoor part to a standard routing engine."
+      - title: "One route across the full journey"
+        description: "That makes it possible to route from a workstation, storage area, or dock door in one facility to a specific room, hall, or gate in another."
+      - title: "Useful for operations and visitors"
+        description: "That is useful for staff, drivers, contractors, and service teams who need clear directions through complex industrial sites."
+
+  - type: card-grid
     id: "what-it-includes"
     section_class: "border-y border-line bg-neutral-50/50"
     grid_class: "mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
@@ -89,7 +119,7 @@ sections:
     intro: "The current repository already covers the hub contract, core runtime, protocol surfaces, and operational building blocks needed for serious implementation work."
     cards:
       - title: "Normative hub contract"
-        description: "A normative OpenAPI contract for resource management, ingest, and standard hub behavior."
+        description: "An OpenAPI contract for resource management, ingest, and standard hub behavior."
       - title: "Go server runtime"
         description: "A Go server with strict handler interfaces and a low operational footprint."
       - title: "Operational dependencies"

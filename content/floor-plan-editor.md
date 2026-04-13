@@ -1,6 +1,6 @@
 ---
 title: "Floor Plan Editor"
-description: "Browser-based indoor mapping editor for creating and maintaining floor plans and IMDF-ready venue data."
+description: "Browser-based indoor mapping editor for creating and maintaining IMDF-ready venue data."
 draft: false
 layout: "product"
 product_key: "floor-plan-editor"
