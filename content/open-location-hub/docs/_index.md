@@ -11,7 +11,7 @@ _This page is generated from the Open Location Hub source documentation and shou
 Reference documentation for local setup, hub architecture, configuration,
 authentication, RPC behavior, and connector development.
 
-Start here if you want the laptop-friendly local runtime:
+Start here if you want the local runtime:
 
 - [`docs/getting-started.md`](/open-location-hub/docs/getting-started/)
 
