@@ -7,7 +7,7 @@ draft: false
 
 Most companies that use indoor maps still treat them as an afterthought. They'll buy an expensive location system, for example based on ultra-wideband, and spend a lot of money installing the necessary infrastructure and dialing that in. But the maps that go with this system do not get much attention from a practical or aesthetic point of view. Most people base their maps on architectural drawings. The dominant aesthetic is that of a technical drawing. Quite often these come in bitmap form. You can see this clearly when zooming in. The edges get all pixelated and the text labels become blurry.
 
-![Example of a typical map](hhttps://assets.openlocationstack.com/images/geomob-2026-04-23/afcea-zoomed-in.webp)
+![Example of a typical map](https://assets.openlocationstack.com/images/geomob-2026-04-23/afcea-zoomed-in.webp)
 
 At FORMATION, we build asset tracking solutions. Maps show up everywhere in our product. Users look for equipment, materials, vehicles, pallets, and people. They need context. They need to know where something is, what floor it is on, and what is nearby. We use the map to help users orient themselves. People have something called spatial memory: we remember where things are around us. By tapping into that, we can make it easier to find things back and make sense of the environment.
 
