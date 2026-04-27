@@ -10,12 +10,15 @@ sections:
       - label: "API Reference"
         href: "/open-location-hub/docs/api-reference/"
         style: "secondary"
+      - label: "Docker Hub"
+        href: "https://hub.docker.com/r/tryformation/openlocationhub"
+        style: "secondary"
       - label: "GitHub"
         href: "https://github.com/Open-Location-Stack/open-location-hub"
         style: "secondary"
     aside:
       title: "Built for production integration work"
-      text: "The hub sits between location systems, enterprise software, and downstream applications. It can run locally near devices, in regional cloud deployments, or in federated multi-site topologies."
+      text: "The hub sits between location systems, enterprise software, and downstream applications. It can run locally near devices, in regional cloud deployments, or in federated multi-site topologies. The current Docker Hub release is `0.1.0` under `tryformation/openlocationhub`, and `latest` points to the same image."
       highlights:
         - "OpenAPI-first omlox-aligned contract"
         - "Connector-driven integration"
