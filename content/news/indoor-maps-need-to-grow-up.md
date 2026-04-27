@@ -1,7 +1,7 @@
 ---
 title: "Indoor maps need to grow up"
 description: "Why bitmap floor plans are technical debt for asset tracking, and why georeferenced vector maps and IMDF are a better path."
-date: 2026-04-27T15:00:00Z
+date: 2026-04-27T13:00:00Z
 draft: false
 ---
 
