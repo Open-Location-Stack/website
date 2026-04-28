@@ -105,7 +105,7 @@ For this baseline run, the SigNoz dashboard window is pinned to the live
 capture interval (`07:39:00Z` to `07:45:30Z`) rather than a generic "last N
 minutes" view:
 
-![SigNoz throughput dashboard for the live OpenSky capture](/images/news/benchmarking-open-location-hub-with-opensky/signoz-throughput-live-capture.png)
+![SigNoz throughput dashboard for the live OpenSky capture](https://assets.openlocationstack.com/images/openlocationstack/news/benchmarking-open-location-hub-with-opensky/signoz-throughput-live-capture.webp)
 
 - the live capture stays close to the raw source rate
 - the `10 Hz` replay drives ingest into the low thousands per second and pushes
@@ -132,7 +132,7 @@ At `1 Hz`, the hub completed the replay without increasing the drop counters. Th
 The SigNoz view for this run uses the exact replay window (`08:34:37Z` to
 `08:49:38Z`):
 
-![SigNoz throughput dashboard for the 1 Hz replay benchmark](/images/news/benchmarking-open-location-hub-with-opensky/signoz-throughput-replay-1hz.png)
+![SigNoz throughput dashboard for the 1 Hz replay benchmark](https://assets.openlocationstack.com/images/openlocationstack/news/benchmarking-open-location-hub-with-opensky/signoz-throughput-replay-1hz.webp)
 
 This is the shape we want from a healthy regression run: sustained elevated
 throughput without the queue pressure and drop behavior that shows up in the
@@ -166,7 +166,7 @@ That is the main result of the benchmark. The `10 Hz` run exposes a decision-pat
 The SigNoz view for the stress run uses the exact replay window (`07:49:00Z`
 to `08:01:00Z`):
 
-![SigNoz throughput dashboard for the 10 Hz replay benchmark](/images/news/benchmarking-open-location-hub-with-opensky/signoz-throughput-replay-10hz.png)
+![SigNoz throughput dashboard for the 10 Hz replay benchmark](https://assets.openlocationstack.com/images/openlocationstack/news/benchmarking-open-location-hub-with-opensky/signoz-throughput-replay-10hz.webp)
 
 That screenshot makes the operational difference visible quickly: ingest rises
 far above the live baseline, queue depth ramps hard, and the runtime enters a

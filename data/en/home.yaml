@@ -1,7 +1,7 @@
 sections:
   - type: hero
     logo:
-      src: "/images/open-rtls-logo.svg"
+      src: "https://assets.openlocationstack.com/images/openlocationstack/branding/open-rtls-logo.svg"
       alt: "Open Location Stack logo"
     tagline: "Open source building blocks for location software"
     title: "Open Location Stack"
@@ -97,7 +97,7 @@ sections:
         description: "Structured map data makes authoring, validation, rendering, and maintenance more reusable across projects."
     media:
       type: "image"
-      src: "/images/mapping-stack.svg"
+      src: "https://assets.openlocationstack.com/images/openlocationstack/diagrams/mapping-stack.svg"
       alt: "Indoor mapping stack diagram"
 
   - type: feature-aside
@@ -166,7 +166,7 @@ sections:
     title: "Built for teams across the location stack"
     intro: "Open Location Stack gives integrators, vendors, enterprise teams, and developers reusable software to start from instead of forcing each group to rebuild the same core pieces."
     image:
-      src: "/images/zone-triggers.webp"
+      src: "https://assets.openlocationstack.com/images/openlocationstack/diagrams/zone-triggers.webp"
       alt: "Operational RTLS zone trigger workflow"
     cards:
       - title: "Solution Integrators"
@@ -221,7 +221,7 @@ sections:
       - type: image
         href: "https://tryformation.com"
         aria_label: "FORMATION website"
-        src: "/images/formation-logo-text-black.svg"
+        src: "https://assets.openlocationstack.com/images/openlocationstack/branding/formation-logo-text-black.svg"
         alt: "FORMATION"
         class: "h-12 w-auto"
       - type: text

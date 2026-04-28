@@ -56,7 +56,7 @@ sections:
         description: "Move from local installations to regional and global aggregation without replacing the integration model."
     media:
       type: "image"
-      src: "/images/mapping-stack.svg"
+      src: "https://assets.openlocationstack.com/images/openlocationstack/diagrams/mapping-stack.svg"
       alt: "Open Location Stack mapping and integration layers"
 
   - type: feature-aside

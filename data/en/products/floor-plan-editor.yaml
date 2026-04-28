@@ -24,10 +24,10 @@ sections:
     title: "See it in action"
     intro: "The current editor already covers the core interaction loop for building indoor map data on top of a live map canvas."
     items:
-      - src: "/images/floor-plan-editor-add-room.gif"
+      - src: "https://assets.openlocationstack.com/images/openlocationstack/products/floor-plan-editor/add-room.webp"
         alt: "Animated demo of creating a room polygon in the Floor Plan Editor"
         caption: "Draw rooms directly on the map canvas and build floor geometry as structured vector data."
-      - src: "/images/floor-plan-editor-show-hide-bitmap.gif"
+      - src: "https://assets.openlocationstack.com/images/openlocationstack/products/floor-plan-editor/show-hide-bitmap.webp"
         alt: "Animated demo of hiding a bitmap floor plan overlay while keeping vector geometry editable"
         caption: "Use floor plan images for alignment, then hide them and inspect the editable map data underneath."
 
