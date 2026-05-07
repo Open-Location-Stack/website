@@ -216,15 +216,23 @@ sections:
 
   - type: brand-strip
     section_class: "border-t border-line bg-neutral-50/50"
-    label_i18n: "created_by"
+    label_i18n: "supported_by"
     links:
       - type: image
         href: "https://tryformation.com"
         aria_label: "FORMATION website"
         src: "https://assets.openlocationstack.com/images/openlocationstack/branding/formation-logo-text-black.svg"
         alt: "FORMATION"
-        class: "h-12 w-auto"
-      - type: text
-        href: "https://github.com/Open-Location-Stack"
-        label: "Open Location Stack on GitHub"
-        class: "text-sm font-medium text-muted underline decoration-accent decoration-2 underline-offset-4"
+        class: "h-7 w-auto"
+      - type: image
+        href: "https://www.sinfosy.com/"
+        aria_label: "Sinfosy website"
+        src: "https://assets.openlocationstack.com/images/openlocationstack/Sinfosy_digital_UG ohne Rahmen_1.webp"
+        alt: "Sinfosy"
+        class: "h-8 w-auto"
+      - type: image
+        href: "https://www.synchronicit.nl/"
+        aria_label: "SynchronicIT website"
+        src: "https://assets.openlocationstack.com/images/openlocationstack/SynchronicIT Logo only_blue_on_white_v1.4.svg"
+        alt: "SynchronicIT"
+        class: "h-8 w-auto"
