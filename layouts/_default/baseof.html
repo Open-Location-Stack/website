@@ -21,12 +21,6 @@
       <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" title="{{ $.Site.Title }}" href="{{ .Permalink }}" />
     {{ end }}
 
-    {{ $styles := resources.Get "css/main.css" | css.PostCSS }}
-    {{ if not hugo.IsServer }}
-      {{ $styles = $styles | minify | fingerprint }}
-    {{ end }}
-    <link rel="stylesheet" href="{{ $styles.RelPermalink }}"{{ if $styles.Data.Integrity }} integrity="{{ $styles.Data.Integrity }}"{{ end }} />
-
     {{ $manifestPath := "static/build/manifest.json" }}
     {{ if fileExists $manifestPath }}
       {{ $manifest := readFile $manifestPath | transform.Unmarshal }}

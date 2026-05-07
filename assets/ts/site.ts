@@ -1,3 +1,4 @@
+import "../css/main.css";
 import { initSearchWidgets } from "./site-search";
 
 const year = document.getElementById("year");

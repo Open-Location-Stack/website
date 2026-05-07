@@ -30,9 +30,6 @@
     "vite": "^8.0.0",
     "wrangler": "^4.75.0"
   },
-  "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "^1.31.1"
-  },
   "dependencies": {
     "@tryformation/formation-web-analytics-client": "^0.1.1",
     "@tryformation/querylight-ts": "0.9.2"
