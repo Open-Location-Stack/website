@@ -10,14 +10,14 @@
     {{ $textLinks := where $section.links "type" "text" }}
     <div class="flex flex-col items-center gap-6 md:gap-8">
       {{ with index $imageLinks 0 }}
-        <a href="{{ .href }}" aria-label="{{ .aria_label }}">
+        <a href="{{ .href }}" aria-label="{{ .aria_label }}" class="transition-transform duration-200 ease-out hover:scale-105">
           <img src="{{ .src }}" alt="{{ .alt }}" class="{{ .class }}" />
         </a>
       {{ end }}
       {{ if gt (len $imageLinks) 1 }}
         <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
           {{ range after 1 $imageLinks }}
-            <a href="{{ .href }}" aria-label="{{ .aria_label }}">
+            <a href="{{ .href }}" aria-label="{{ .aria_label }}" class="transition-transform duration-200 ease-out hover:scale-105">
               <img src="{{ .src }}" alt="{{ .alt }}" class="{{ .class }}" />
             </a>
           {{ end }}

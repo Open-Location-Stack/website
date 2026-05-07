@@ -221,18 +221,18 @@ sections:
       - type: image
         href: "https://tryformation.com"
         aria_label: "FORMATION website"
-        src: "https://assets.openlocationstack.com/images/openlocationstack/branding/formation-logo-text-black.svg"
+        src: "https://assets.openlocationstack.com/images/tryformation/formation-f-mark.svg"
         alt: "FORMATION"
-        class: "h-7 w-auto"
+        class: "h-20 w-auto"
       - type: image
         href: "https://www.sinfosy.com/"
         aria_label: "Sinfosy website"
         src: "https://assets.openlocationstack.com/images/openlocationstack/Sinfosy_digital_UG ohne Rahmen_1.webp"
         alt: "Sinfosy"
-        class: "h-8 w-auto"
+        class: "h-20 w-auto"
       - type: image
         href: "https://www.synchronicit.nl/"
         aria_label: "SynchronicIT website"
         src: "https://assets.openlocationstack.com/images/openlocationstack/SynchronicIT Logo only_blue_on_white_v1.4.svg"
         alt: "SynchronicIT"
-        class: "h-8 w-auto"
+        class: "h-20 w-auto"
