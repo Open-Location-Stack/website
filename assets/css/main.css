@@ -82,6 +82,29 @@ a {
   cursor: zoom-in;
 }
 
+.prose .company-blurb {
+  display: flow-root;
+  margin: 1.75rem 0;
+}
+
+.prose .company-blurb__logo {
+  margin: 0 0 1rem 0;
+  width: auto;
+  max-width: 14rem;
+  max-height: 5rem;
+  border-radius: 0.75rem;
+  background: white;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-line);
+}
+
+@media (min-width: 768px) {
+  .prose .company-blurb__logo {
+    float: right;
+    margin: 0 0 1rem 1.5rem;
+  }
+}
+
 .image-lightbox {
   position: fixed;
   inset: 0;
