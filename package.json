@@ -12,7 +12,7 @@
     "build:assets": "vite build",
     "check:homepage": "node ./scripts/check-homepage-componentization.mjs",
     "dev:assets": "vite build --watch --mode development",
-    "dev:hugo": "hugo server -D --disableFastRender --poll 700ms",
+    "dev:hugo": "hugo server -D -F --disableFastRender --poll 700ms",
     "generate:search": "node --import tsx ./scripts/generate-search.ts",
     "deploy:cloudflare": "./scripts/deploy-cloudflare.sh"
   },
