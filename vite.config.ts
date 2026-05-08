@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => {
       outDir: "static/build",
       emptyOutDir: true,
       manifest: "manifest.json",
+      watch: isDev
+        ? {
+            exclude: ["static/build/**"]
+          }
+        : null,
       minify: !isDev,
       rollupOptions: {
         input: {

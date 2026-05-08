@@ -236,3 +236,9 @@ sections:
         src: "https://assets.openlocationstack.com/images/openlocationstack/SynchronicIT Logo only_blue_on_white_v1.4.svg"
         alt: "SynchronicIT"
         class: "h-20 w-auto"
+      - type: image
+        href: "https://www.indutrax.com/en"
+        aria_label: "INDUTRAX website"
+        src: "https://assets.openlocationstack.com/images/openlocationstack/Logo_INDUTRAX_aBrandofSMF_RGB_2025.webp"
+        alt: "INDUTRAX"
+        class: "h-20 w-auto"
