@@ -20,7 +20,7 @@
       "content" .Plain
       "keywords" (.Params.keywords | default (slice))
       "tags" (.Params.tags | default (slice))
-      "date" (cond .Date.IsZero "" (.Date.Format "2006-01-02"))
+      "date" (cond .Date.IsZero "" (.Date.Format "2006-01-02T15:04:05Z07:00"))
       "section" (.CurrentSection.Title | default .Section | default "pages")
       "type" (.Type | default "")
       "image" $image

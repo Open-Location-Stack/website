@@ -38,6 +38,7 @@ let activeExpandedImage: HTMLImageElement | null = null;
 
 setupImageLightbox();
 setupAnalyticsConsent();
+initScheduledPublishing();
 initSearchWidgets();
 
 function setupImageLightbox() {
@@ -160,6 +161,60 @@ function setupAnalyticsConsent() {
   }
 
   updateBannerVisibility();
+}
+
+function parsePublishTimestamp(value: string | undefined): number | null {
+  if (!value) return null;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : null;
+}
+
+function initScheduledPublishing() {
+  const collections = Array.from(document.querySelectorAll<HTMLElement>("[data-publish-collection]"));
+  if (!collections.length) {
+    document.documentElement.dataset.publishClock = "ready";
+    return;
+  }
+
+  const now = Date.now();
+
+  collections.forEach((collection) => {
+    const items = Array.from(collection.querySelectorAll<HTMLElement>("[data-publish-item]"));
+    if (!items.length) return;
+
+    const liveItems = items.filter((item) => {
+      const publishAt = parsePublishTimestamp(item.dataset.publishAt);
+      const isLive = publishAt === null || publishAt <= now;
+      item.hidden = !isLive;
+      item.dataset.publishState = isLive ? "live" : "pending";
+      return isLive;
+    });
+
+    liveItems
+      .sort((left, right) => {
+        const leftTimestamp = parsePublishTimestamp(left.dataset.publishAt) ?? 0;
+        const rightTimestamp = parsePublishTimestamp(right.dataset.publishAt) ?? 0;
+        return rightTimestamp - leftTimestamp;
+      })
+      .forEach((item) => {
+        collection.appendChild(item);
+      });
+
+    const limit = Number(collection.dataset.publishLimit || "0");
+    if (Number.isFinite(limit) && limit > 0) {
+      liveItems.forEach((item, index) => {
+        item.hidden = index >= limit;
+      });
+    }
+
+    const visibleItems = liveItems.filter((item) => !item.hidden);
+    const section = collection.closest<HTMLElement>("[data-publish-section]");
+    if (section) {
+      section.hidden = visibleItems.length === 0;
+    }
+  });
+
+  document.documentElement.dataset.publishClock = "ready";
 }
 
 function updateBannerVisibility() {

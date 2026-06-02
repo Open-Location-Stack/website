@@ -107,6 +107,26 @@ function excerpt(value: unknown, maxLength = 180): string {
   return `${normalized.slice(0, maxLength - 3).trimEnd()}...`;
 }
 
+function isRecordLive(record: Pick<SearchRecord, "date">, now = Date.now()): boolean {
+  const date = normalizeWhitespace(record.date);
+  if (!date) return true;
+  const timestamp = Date.parse(date.includes("T") ? date : `${date}T00:00:00Z`);
+  return !Number.isFinite(timestamp) || timestamp <= now;
+}
+
+function formatRecordDate(value: string): string {
+  const normalized = normalizeWhitespace(value);
+  if (!normalized) return "";
+  const timestamp = Date.parse(normalized.includes("T") ? normalized : `${normalized}T00:00:00Z`);
+  if (!Number.isFinite(timestamp)) return normalized;
+
+  return new Intl.DateTimeFormat(undefined, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(timestamp));
+}
+
 function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -333,7 +353,7 @@ async function searchRuntime(runtime: SearchRuntime, query: string): Promise<Sea
     fuzzyHits,
     vectorHits,
     finalHits,
-    records: Array.from(collapsedRecords.values()),
+    records: Array.from(collapsedRecords.values()).filter((record) => isRecordLive(record)),
   };
 }
 
@@ -341,7 +361,7 @@ function buildMeta(record: SearchRecord): string {
   const parts = [
     record.section,
     record.kind === "chunk" ? "Paragraph match" : record.kind === "section" ? "Section match" : "Page match",
-    record.date,
+    formatRecordDate(record.date),
   ]
     .map((part) => normalizeWhitespace(part))
     .filter(Boolean);

@@ -21,9 +21,13 @@
 
     {{ $pages := .RegularPages.ByDate.Reverse }}
     {{ if gt (len $pages) 0 }}
-      <section class="mt-12 grid gap-5">
+      <section class="mt-12 grid gap-5" data-publish-section data-publish-collection>
         {{ range $pages }}
-          <article class="rounded-2xl border border-line bg-white p-6">
+          <article
+            class="rounded-2xl border border-line bg-white p-6"
+            data-publish-item
+            data-publish-at="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}"
+          >
             <p class="text-sm text-muted">
               <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2 January 2006" }}</time>
             </p>

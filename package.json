@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "npm run build:assets && concurrently -k -n VITE,HUGO -c yellow,green \"npm:dev:assets\" \"npm:dev:hugo\"",
     "stop": "node ./scripts/stop-dev.mjs",
-    "build": "npm run check:homepage && npm run build:assets && hugo --gc --minify && npm run generate:search",
+    "build": "npm run check:homepage && npm run build:assets && hugo --gc --minify -F && npm run generate:search",
     "build:assets": "vite build",
     "check:homepage": "node ./scripts/check-homepage-componentization.mjs",
     "dev:assets": "vite build --watch --mode development",
