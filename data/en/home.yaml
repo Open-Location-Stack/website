@@ -229,6 +229,26 @@ sections:
       - label: "RSS feed"
         href: "/news/index.xml"
 
+  - type: subscribe
+    id: "subscribe"
+    eyebrow: "Mailing list"
+    title: "Subscribe for release and project updates"
+    intro: "Get release notes, new connectors, integration updates, and major project news for Open Location Stack."
+    note: "This list is for Open Location Stack updates only."
+    list_uuid: "ab52eaf8-56ba-4428-8db4-c91bd711be63"
+    fields:
+      name:
+        label: "Name"
+        placeholder: "Your name"
+      email:
+        label: "Email"
+        placeholder: "you@company.com"
+    action:
+      label: "Subscribe"
+    status:
+      idle: "Use your work email if you want project and release updates."
+    privacy: "Submitting this form adds you to the Open Location Stack mailing list."
+
   - type: standards
     id: "standards"
     title_i18n: "standards_title"

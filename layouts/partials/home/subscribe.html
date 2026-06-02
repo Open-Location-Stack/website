@@ -1,0 +1,60 @@
+{{ $section := .section }}
+<section id="{{ $section.id }}" class="border-y border-line bg-neutral-50/50">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:px-8 md:py-16 lg:grid-cols-[minmax(0,1.2fr)_minmax(22rem,28rem)] lg:items-center">
+    <div class="max-w-3xl">
+      {{ with $section.eyebrow }}
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">{{ . }}</p>
+      {{ end }}
+      <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{{ $section.title }}</h2>
+      <p class="mt-4 text-muted">{{ $section.intro }}</p>
+      {{ with $section.note }}
+        <p class="mt-4 text-sm leading-relaxed text-muted">{{ . }}</p>
+      {{ end }}
+    </div>
+    <form
+      class="rounded-3xl border border-line bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.06)]"
+      data-listmonk-subscribe
+      action="https://listmonk.formationxyz.com/api/public/subscription"
+      method="post"
+      novalidate
+    >
+      <input type="hidden" name="l" value="{{ $section.list_uuid }}" />
+      <div class="grid gap-4">
+        <label class="grid gap-2">
+          <span class="text-sm font-medium">{{ $section.fields.name.label }}</span>
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            placeholder="{{ $section.fields.name.placeholder }}"
+            class="w-full rounded-2xl border border-line bg-white px-4 py-3 text-sm text-ink outline-none placeholder:text-muted focus:border-ink"
+          />
+        </label>
+        <label class="grid gap-2">
+          <span class="text-sm font-medium">{{ $section.fields.email.label }}</span>
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="{{ $section.fields.email.placeholder }}"
+            required
+            class="w-full rounded-2xl border border-line bg-white px-4 py-3 text-sm text-ink outline-none placeholder:text-muted focus:border-ink"
+          />
+        </label>
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {{ $section.action.label }}
+        </button>
+      </div>
+      <p class="mt-4 text-sm text-muted" data-listmonk-status aria-live="polite">{{ $section.status.idle }}</p>
+      <p class="mt-3 text-xs leading-relaxed text-muted">{{ $section.privacy }}</p>
+    </form>
+    <div class="hidden rounded-3xl border border-line bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.06)]" data-listmonk-success role="status" aria-live="polite">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Subscription confirmed</p>
+      <h3 class="mt-3 text-2xl font-semibold tracking-tight">Thank you for subscribing</h3>
+      <p class="mt-4 text-muted">You are now on the Open Location Stack mailing list.</p>
+    </div>
+  </div>
+</section>

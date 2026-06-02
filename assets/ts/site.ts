@@ -40,6 +40,7 @@ setupImageLightbox();
 setupAnalyticsConsent();
 initScheduledPublishing();
 initSearchWidgets();
+setupListmonkSubscribeForms();
 
 function setupImageLightbox() {
   if (!lightbox || !lightboxImage || !lightboxCaption || !lightboxCloseButton || expandableImages.length === 0) {
@@ -215,6 +216,70 @@ function initScheduledPublishing() {
   });
 
   document.documentElement.dataset.publishClock = "ready";
+}
+
+function setupListmonkSubscribeForms() {
+  const forms = Array.from(document.querySelectorAll<HTMLFormElement>("[data-listmonk-subscribe]"));
+  if (!forms.length) {
+    return;
+  }
+
+  forms.forEach((form) => {
+    const status = form.querySelector<HTMLElement>("[data-listmonk-status]");
+    const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]');
+    const successPanel = form.parentElement?.querySelector<HTMLElement>("[data-listmonk-success]") ?? null;
+
+    form.addEventListener("submit", async (event) => {
+      const email = emailInput?.value.trim() ?? "";
+
+      if (!email) {
+        event.preventDefault();
+        if (status) {
+          status.textContent = "Enter an email address before subscribing.";
+        }
+        return;
+      }
+
+      event.preventDefault();
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      if (status) {
+        status.textContent = "Submitting subscription...";
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+        });
+
+        const payload = (await response.json().catch(() => null)) as { message?: string; data?: { has_optin?: boolean } } | null;
+
+        if (!response.ok) {
+          throw new Error(payload?.message || "Subscription failed. Please try again.");
+        }
+
+        form.reset();
+        form.classList.add("hidden");
+        successPanel?.classList.remove("hidden");
+
+        if (status) {
+          status.textContent = payload?.data?.has_optin ? "Check your inbox to confirm the subscription." : "Thank you for subscribing.";
+        }
+      } catch (error) {
+        if (status) {
+          status.textContent = error instanceof Error ? error.message : "Subscription failed. Please try again.";
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      }
+    });
+  });
 }
 
 function updateBannerVisibility() {
