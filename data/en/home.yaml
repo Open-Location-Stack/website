@@ -64,7 +64,7 @@ sections:
       - type: image
         href: "https://www.tsingoal.com/en/"
         aria_label: "Tsingoal website"
-        src: "https://en.tsingoal.com/wp-content/upload/tsingoal-normal.svg"
+        src: "https://www.tsingoal.com/wp-content/upload/tsingoal-select.svg"
         alt: "Tsingoal"
         class: "h-20 w-auto"
       - type: image
