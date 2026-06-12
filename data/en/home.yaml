@@ -5,7 +5,7 @@ sections:
       alt: "Open Location Stack logo"
     tagline: "Open source building blocks for location software"
     title: "Open Location Stack"
-    text: "Open Location Stack gives vendors, integrators, and product teams reusable software for location hubs, connectors, and indoor maps across mixed-vendor deployments."
+    text: "Open Location Stack gives vendors, integrators, and product teams reusable software for hub federation, omlox-compatible integration, command-line operations, and indoor maps across mixed-vendor deployments."
     created_by:
       name: "FORMATION"
       link: "https://tryformation.com"
@@ -21,10 +21,10 @@ sections:
         style: "secondary"
     aside:
       title: "Platform overview"
-      text: "The stack includes a hub for aggregating and federating location data from on-premise systems, other hubs, and outdoor tracking systems. Connectors bring in RTLS, GNSS, barcode, QR, and related location feeds. IMDF-based vector maps add the spatial structure needed to interpret that data."
+      text: "The stack includes a cloud-capable hub of hubs for filtering, aggregating, and federating location data from on-premise omlox hubs and other location systems. The companion CLI supports operations against omlox 2.0-compatible hub APIs. IMDF-based vector maps add the spatial structure needed to interpret that data."
       highlights:
-        - "Open Location Hub - federate and aggregate location data"
-        - "Connectors for any RTLS or GNSS system"
+        - "Open Location Hub - filter, federate, and aggregate location data"
+        - "Open Location Hub CLI - operate omlox-compatible hubs"
         - "Vector Graphics based venue maps"
 
   - type: prose
@@ -101,11 +101,35 @@ sections:
       - title: "Shared codebase"
         description: "An open codebase is easier to inspect, adapt, extend, and integrate across mixed-vendor deployments."
 
+  - type: components
+    id: "components"
+    title: "Open Location Stack components"
+    intro: "The stack is split into focused projects that can be used together or adopted separately."
+    groups:
+      - title: "Hub and operations"
+        intro: "Use the hub for location aggregation and the CLI for repeatable setup, ingest, streaming, and diagnostics."
+        items:
+          - title: "Open Location Hub"
+            description: "A cloud-capable hub of hubs for filtering and aggregating locations from on-premise omlox hubs, then exposing interoperable APIs to business-facing applications."
+            product_link: "/open-location-hub/"
+            github_link: "https://github.com/Open-Location-Stack/open-location-hub"
+          - title: "Open Location Hub CLI"
+            description: "`olh` is a command-line client for omlox 2.0-compatible hub implementations. It covers login, resource CRUD, ingest helpers, WebSocket streams, JSON output, and RPC calls."
+            github_link: "https://github.com/Open-Location-Stack/open-location-hub-cli"
+      - title: "Mapping"
+        intro: "Use structured venue data to make location updates usable in products, dashboards, and operational workflows."
+        items:
+          - title: "Floor Plan Editor"
+            description: "A browser-based editor for structured indoor map data, vector geometry, routing paths, and IMDF-oriented exchange."
+            product_link: "/floor-plan-editor/"
+            github_link: "https://github.com/Open-Location-Stack/floorplan-editor"
+    note: "Open Location Hub can run on premise, in the cloud, or as part of a horizontally scalable federated deployment. The CLI is designed to work with any omlox 2.0-compatible hub implementation, not only the Open Location Hub runtime."
+
   - type: card-grid
     id: "hub"
     section_class: "border-y border-line bg-neutral-50/50"
     title: "Open Location Hub"
-    intro: "Open Location Hub connects location feeds, exposes interoperable APIs, handles auth, and supports mixed-vendor deployments."
+    intro: "Open Location Hub is a cloud-capable hub of hubs for filtering and aggregating location data from on-premise omlox hubs, then exposing that data to business-facing cloud applications."
     actions:
       - label: "Product page"
         href: "/open-location-hub/"
@@ -113,11 +137,11 @@ sections:
         href: "https://github.com/Open-Location-Stack/open-location-hub"
     cards:
       - title: "Reduce lock-in"
-        description: "Work across vendor-specific systems and custom APIs without tying your application layer to one closed hub."
+        description: "Keep application teams off vendor-specific hub contracts while preserving local omlox-compatible deployments."
       - title: "Hybrid tracking"
         description: "Bring together RTLS, barcode, QR, GPS, and related location systems across sites, zones, and assets."
-      - title: "Support product and integration teams"
-        description: "Reuse the base layer for auth, event exchange, interoperability, and downstream applications."
+      - title: "Federated deployments"
+        description: "Run local hubs on premise, aggregate selected flows in the cloud, and scale horizontally across sites, regions, and tenants."
 
   - type: feature
     id: "mapping"

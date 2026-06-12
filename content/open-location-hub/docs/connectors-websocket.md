@@ -20,7 +20,7 @@ approach:
 - [`connectors/opensky/README.md`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/connectors/opensky/README.md)
 
 Protocol details live in
-[`specifications/omlox/websocket.md`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/specifications/omlox/websocket.md).
+[`specifications/omlox/websocket.md`](/open-location-hub/docs/specifications/omlox/websocket/).
 
 ## When To Choose WebSocket
 
@@ -119,6 +119,15 @@ REST for idempotent metadata setup:
 - create or update the `LocationProvider`
 - upsert `Trackable` resources when the upstream source has stable asset IDs
 - optionally create `Zone` and `Fence` resources before ingest starts
+
+For trackable association, the current hub behavior supports two practical
+patterns:
+
+- when the connector already knows the asset identity for an observation, send
+  `trackables` on each `location_updates` payload
+- when one upstream provider stream is dedicated to one asset, store that
+  provider ID in `Trackable.location_providers`; the hub now auto-associates
+  incoming locations when exactly one trackable matches the `provider_id`
 
 That split is usually the easiest connector design:
 

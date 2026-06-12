@@ -31,11 +31,14 @@ Runtime lifecycle behavior:
 - `EVENT_BUS_SUBSCRIBER_BUFFER` (default `1024`)
 - `NATIVE_LOCATION_BUFFER` (default `2048`)
 - `DERIVED_LOCATION_BUFFER` (default `1024`)
+- `PPROF_ENABLED` (`true`/`false`, default `false`)
+- `PPROF_MUTEX_PROFILE_FRACTION` (default `0`; `0` disables mutex contention sampling)
+- `PPROF_BLOCK_PROFILE_RATE` (default `0`; `0` disables block profiling)
 
 Hub metadata bootstrap behavior:
 - the hub persists one durable metadata row in Postgres containing the stable `hub_id` and operator-facing label
 - on first startup, `HUB_ID` seeds that row when provided; otherwise the hub generates a UUIDv7
-- on first startup, `HUB_LABEL` seeds that row when provided; otherwise the hub defaults to the machine hostname and falls back to `open-rtls-hub` if hostname lookup is unavailable
+- on first startup, `HUB_LABEL` seeds that row when provided; otherwise the hub defaults to the machine hostname and falls back to `open-location-hub` if hostname lookup is unavailable
 - on later startups, the stored row is the source of truth when `HUB_ID` and `HUB_LABEL` are omitted
 - if supplied env values disagree with the stored row, startup fails with a clear mismatch error unless `RESET_HUB_ID=true`
 - when `RESET_HUB_ID=true`, only explicitly supplied values overwrite the stored row; omitted fields are preserved
@@ -52,7 +55,7 @@ HTTP request decoding behavior:
 - `METADATA_RECONCILE_INTERVAL` (duration, default `30s`)
 - `RPC_TIMEOUT` (duration, default `5s`)
 - `RPC_ANNOUNCEMENT_INTERVAL` (duration, default `1m`)
-- `RPC_HANDLER_ID` (default `open-rtls-hub`)
+- `RPC_HANDLER_ID` (default `open-location-hub`)
 - `COLLISIONS_ENABLED` (`true`/`false`, default `false`)
 - `COLLISION_STATE_TTL` (duration, default `2m`)
 - `COLLISION_COLLIDING_DEBOUNCE` (duration, default `5s`)
@@ -71,16 +74,18 @@ Stateful ingest behavior:
 - WebSocket liveness uses server ping frames every `WEBSOCKET_PING_INTERVAL` and considers the connection stale when no inbound message or pong arrives before `WEBSOCKET_READ_TIMEOUT`
 - internal event-bus subscribers such as MQTT and WebSocket consume behind `EVENT_BUS_SUBSCRIBER_BUFFER`
 - native location publication is queued behind `NATIVE_LOCATION_BUFFER` so ingest can decouple from transport fan-out
-- post-native decision work such as future filtering, alternate-CRS publication, geofence evaluation, and collision evaluation is queued behind `DERIVED_LOCATION_BUFFER`
+- post-native decision work such as Kalman normalization, alternate-CRS publication, geofence evaluation, and collision evaluation is queued behind `DERIVED_LOCATION_BUFFER`
 - when the native, decision, event-bus, or outbound socket queues are full, the hub drops newer work on those non-critical paths instead of slowing raw location ingest
 - the `metadata_changes` WebSocket topic emits lightweight `{id,type,operation,timestamp}` notifications for zone, fence, trackable, and location-provider CRUD or reconcile drift
-- when `COLLISIONS_ENABLED=true`, the hub evaluates trackable-versus-trackable collisions from the latest active motion state and keeps short-lived collision pair state in memory for `COLLISION_STATE_TTL`
+- when `PPROF_ENABLED=true`, the auth-protected `/debug/pprof/*` handlers are registered on the main HTTP server for local profiling
+- `PPROF_MUTEX_PROFILE_FRACTION` and `PPROF_BLOCK_PROFILE_RATE` directly control the Go runtime mutex and blocking profilers so replay or soak runs can capture contention evidence without patching the binary
+- when `COLLISIONS_ENABLED=true`, the hub evaluates trackable-versus-trackable collisions from the latest active WGS84 motion state and keeps short-lived collision pair state in memory for `COLLISION_STATE_TTL`
 - when `KALMAN_FILTER_ENABLED=true`, the decision stage keeps short-lived per-trackable filter state plus a bounded retained sample history in memory
 - `KALMAN_LOCATION_MAX_POINTS` caps the retained history per trackable; `KALMAN_LOCATION_MAX_AGE` also drops stale samples and resets the filter when the gap between accepted samples exceeds that age window
 - Kalman normalization only affects the derived decision path for trackable-associated locations; native/raw publication remains unchanged
 - normalized derived locations may populate OMLOX-compatible `course` and `speed` from track movement and may add hub extension properties such as `kalman_normalized` and `kalman_vertical_speed`
 - `KALMAN_EMIT_MAX_FREQUENCY_HZ` throttles only derived location and trackable-motion publication; geofence and collision decisions still use every accepted normalized point even when publication is suppressed
-- when a WGS84 derived variant is available, collision work uses the normalized WGS84 motion state; when the source stream is local-only and no safe WGS84 transform exists, collision work falls back to the normalized local motion state
+- collision work uses only the normalized WGS84 motion state; local-only streams without a safe WGS84 transform do not participate in collision evaluation
 - collision thresholds are expressed in meters
 - `Trackable.radius` is the per-trackable collision-radius override in meters; when it is absent, the hub falls back to `COLLISION_DEFAULT_RADIUS_METERS`
 - WGS84 collision checks use a cheap short-range planar approximation that converts lon/lat deltas to approximate meters before threshold comparison; this favors hot-path throughput over geodesic precision
@@ -140,7 +145,7 @@ See [docs/auth.md](/open-location-hub/docs/auth/) for the full auth model, Dex s
 - `OTEL_METRIC_EXPORT_INTERVAL` (duration, default `30s`)
 - `OTEL_METRIC_EXPORT_TIMEOUT` (duration, default `10s`)
 - `OTEL_TRACE_SAMPLE_RATIO` (number between `0` and `1`, default `1`)
-- `OTEL_SERVICE_NAME` (default `open-rtls-hub`)
+- `OTEL_SERVICE_NAME` (default `open-location-hub`)
 - `OTEL_SERVICE_VERSION` (optional override for release tagging)
 - `OTEL_DEPLOYMENT_ENVIRONMENT` (optional deployment environment label such as `local-demo` or `production`)
 - `OTEL_DEBUG_IDENTIFIERS` (`true`/`false`, default `false`)
@@ -152,7 +157,7 @@ Telemetry behavior:
 - metrics are intentionally low-cardinality and are labeled only with bounded dimensions such as transport, signal type, stage, feature, and outcome
 - entity identifiers such as `trackable_id`, `provider_id`, `zone_id`, `fence_id`, and collision pair identifiers are emitted on spans and structured logs for drill-down, not on normal metric series
 - runtime metrics cover ingest acceptance and deduplication, end-to-end processing latency, queue occupancy and wait time, queue and outbound drop counters, fence evaluation, collision evaluation, MQTT/WebSocket publication, metadata reconcile, auth, and RPC outcomes
-- the local demo stack under [`local-hub/`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/local-hub) enables all three OTLP signals by default and routes them to SigNoz
+- the local demo stack under [`local-hub/`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/local-hub) enables all three OTLP signals by default and routes them to SigNoz
 
 ## RPC Security Defaults
 

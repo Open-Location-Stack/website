@@ -2,7 +2,7 @@ sections:
   - type: hero
     eyebrow: "Integration product"
     title: "Open Location Hub"
-    text: "Open Location Hub is an OpenAPI-first hub for location updates and event exchange. It gives vendors, integrators, and enterprise teams a deployable base for auth, connectors, federated topologies, and interoperable APIs."
+    text: "Open Location Hub is a cloud-capable hub of hubs for filtering and aggregating location data from on-premise omlox hubs. It gives business-facing applications one interoperable API layer for live locations, events, auth, and federation."
     actions:
       - label: "Docs"
         href: "/open-location-hub/docs/"
@@ -16,32 +16,35 @@ sections:
       - label: "GitHub"
         href: "https://github.com/Open-Location-Stack/open-location-hub"
         style: "secondary"
+      - label: "CLI"
+        href: "https://github.com/Open-Location-Stack/open-location-hub-cli"
+        style: "secondary"
     aside:
-      title: "Built for production integration work"
-      text: "The hub sits between location systems, enterprise software, and downstream applications. It can run locally near devices, in regional cloud deployments, or in federated multi-site topologies. The current Docker Hub release is `0.1.0` under `tryformation/openlocationhub`, and `latest` points to the same image."
+      title: "Built for federated location deployments"
+      text: "The hub sits between on-premise omlox hubs, enterprise software, and downstream cloud applications. It can run locally near devices, in regional cloud deployments, or in horizontally scalable federated topologies. The current Docker Hub release is `0.1.8` under `tryformation/openlocationhub`, and `latest` points to the current release image."
       highlights:
         - "OpenAPI-first omlox-aligned contract"
-        - "Connector-driven integration"
-        - "Federated multi-site deployment model"
+        - "Filtering and aggregation across local hubs"
+        - "Cloud, on-premise, and federated deployment models"
 
   - type: card-grid
     id: "why-teams-use-it"
     section_class: "border-y border-line bg-neutral-50/50"
     title: "Common integration problems"
-    intro: "Location deployments often end up with vendor-specific hub logic, custom APIs, and one-off middleware between devices, business systems, and applications. Open Location Hub gives teams one integration point they can deploy and control themselves."
+    intro: "Location deployments often end up with vendor-specific hub logic, custom APIs, and one-off middleware between devices, business systems, and applications. Open Location Hub gives teams one integration point they can deploy locally, in the cloud, or as a federated aggregation layer."
     cards:
       - title: "Vendor-specific hub APIs"
-        description: "Keep applications off proprietary hub contracts by putting a stable API and policy layer in front of them."
+        description: "Keep applications off proprietary hub contracts by putting an omlox-aligned API and policy layer in front of them."
       - title: "Repeated integration plumbing"
         description: "Reuse auth, routing, connector, and event-exchange infrastructure instead of rebuilding it for each customer or site."
       - title: "Mixed deployments"
-        description: "Connect existing hubs and multiple tracking technologies without forcing every site onto one stack."
+        description: "Connect existing on-premise hubs and multiple tracking technologies without forcing every site onto one stack."
 
   - type: feature
     id: "hub-in-the-stack"
     media_position: "right"
-    title: "The integration layer between maps, devices, and applications"
-    intro: "Open Location Hub connects live location feeds, applies auth and policy, exposes interoperable APIs, and gives downstream applications one place to integrate."
+    title: "The aggregation layer between local hubs and applications"
+    intro: "Open Location Hub connects live location feeds, applies auth and policy, filters and aggregates hub data, and gives downstream applications one place to integrate."
     actions:
       - label: "Floor Plan Editor"
         href: "/floor-plan-editor/"
@@ -49,11 +52,11 @@ sections:
         href: "/open-location-hub/docs/"
     items:
       - title: "Map-aware applications"
-        description: "Use one hub boundary for location-aware products, enterprise software, and operational workflows instead of wiring each system directly to vendor infrastructure."
+        description: "Use one hub boundary for location-aware products, enterprise software, and operational workflows instead of wiring each system directly to local vendor infrastructure."
       - title: "Shared policy boundary"
         description: "Keep auth, permissions, RPC control, and event routing in one deployable component."
       - title: "Cross-site aggregation"
-        description: "Move from local installations to regional and global aggregation without replacing the integration model."
+        description: "Move from on-premise installations to regional and global aggregation without replacing the integration model."
     media:
       type: "image"
       src: "https://assets.openlocationstack.com/images/openlocationstack/diagrams/mapping-stack.svg"
@@ -62,14 +65,14 @@ sections:
   - type: feature-aside
     id: "existing-deployments"
     title: "Connectors for existing deployments"
-    intro: "Open Location Hub is not a rip-and-replace story. In real plants, terminals, warehouses, and production sites, teams usually need to connect what already exists and add a cleaner interoperability layer around it."
+    intro: "Open Location Hub is not a rip-and-replace story. In real plants, terminals, warehouses, and production sites, teams usually need to connect on-premise hubs that already exist and add a cleaner interoperability layer around them."
     items:
       - title: "Existing hubs"
-        description: "Connect on-premise or cloud hubs such as Corriva Hub, Deephub, and similar systems that already handle local device or site-level location traffic."
+        description: "Connect on-premise omlox hubs such as Corriva Hub, Deephub, and similar implementations that already handle local device or site-level location traffic."
       - title: "Mixed technologies"
         description: "Bring together RTLS, GNSS, barcode, QR, and related tracking flows so downstream systems do not depend on one narrow vendor contract."
       - title: "Incremental migration"
-        description: "Normalize and route location data across vendors while preserving existing site investments and operational constraints."
+        description: "Filter, normalize, and route location data across vendors while preserving existing site investments and operational constraints."
       - title: "Partner-friendly extensibility"
         description: "Contributed connectors make compatibility visible and cut one-off integration work for solution providers."
     aside:
@@ -85,8 +88,27 @@ sections:
           style: "secondary"
 
   - type: card-grid
-    id: "semantic-layer"
+    id: "cli"
     section_class: "border-y border-line bg-neutral-50/50"
+    grid_class: "mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+    title: "Companion CLI for omlox-compatible hubs"
+    intro: "`olh` is the Open Location Hub CLI. It is designed to work with any omlox 2.0-compatible hub implementation, so teams can script setup, validate APIs, inspect streams, and run operational checks without building custom tooling first."
+    cards:
+      - title: "Install with Homebrew"
+        description: "Install `olh` from `jillesvangurp/tap/open-location-hub-cli` and use Bash or Zsh completions for repeatable local workflows."
+      - title: "Operate hub resources"
+        description: "Create, list, update, summarize, and delete zones, trackables, providers, and fences from the command line."
+      - title: "Ingest and inspect locations"
+        description: "Post locations and proximities, inspect transient state, and stream location, motion, fence, and collision events as NDJSON."
+      - title: "Use hub auth"
+        description: "Resolve credentials from flags, environment variables, or `~/.openlocationhub.env`, and fetch OAuth tokens automatically when settings are present."
+      - title: "Exercise the control plane"
+        description: "Discover and invoke JSON-RPC methods such as hub diagnostics and command-routing calls."
+      - title: "Automate compatibility checks"
+        description: "Use JSON output and scripted commands to test omlox-compatible hub behavior across local, on-premise, and cloud environments."
+
+  - type: card-grid
+    id: "semantic-layer"
     title: "The semantic layer turns map data into addresses"
     intro: "Many workplaces already organize locations as hierarchies such as site, hall, aisle, area, line, or station. Outdoor operations do the same with countries, regions, cities, campuses, yards, and administrative zones. IMDF can capture those relationships in the map itself, so existing location structures become geocodable addresses."
     cards:
@@ -153,12 +175,12 @@ sections:
     id: "federation"
     section_class: "border-y border-line bg-neutral-50/50"
     title: "Federated by design"
-    intro: "The federation work in the repository is aimed at deployment topologies such as plant hubs feeding regional cloud hubs, or regional hubs feeding a global aggregation layer."
+    intro: "Open Location Hub is designed for deployment topologies where on-premise omlox hubs feed regional cloud hubs, and regional hubs feed a business-facing global aggregation layer."
     cards:
       - title: "Fit different site realities"
         description: "Support countries, business units, and sites that use different location technologies, local integrators, and on-premise or cloud infrastructure."
       - title: "Scale without flattening everything"
-        description: "Aggregate across sites, tenants, regions, and jurisdictions while still respecting local operational constraints."
+        description: "Filter and aggregate across sites, tenants, regions, and jurisdictions while still respecting local operational constraints."
       - title: "Stay practical for smaller installs"
         description: "The same model can start at one local deployment and grow into a wider federated architecture over time."
 

@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-description: "If you want to try Open RTLS Hub on your laptop, this repository includes two"
+description: "If you want to try Open Location Hub on your laptop, this repository includes two"
 draft: false
 generated: true
 generated_from: "docs/getting-started.md"
@@ -8,11 +8,11 @@ github_url: "https://github.com/Open-Location-Stack/open-location-hub/blob/main/
 ---
 _This page is generated from the Open Location Hub source documentation and should not be edited in the website repository._
 
-If you want to try Open RTLS Hub on your laptop, this repository includes two
+If you want to try Open Location Hub on your laptop, this repository includes two
 ready-made local runtime paths:
 
-- a basic compose stack from [`docker-compose.yml`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/docker-compose.yml) with the hub, Postgres, Mosquitto, and Dex
-- a local demo stack with observability in [`local-hub/`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/local-hub) with the hub, Postgres, Mosquitto, Dex, SigNoz, ClickHouse, and the OpenTelemetry collector
+- a basic compose stack from [`docker-compose.yml`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/docker-compose.yml) with the hub, Postgres, Mosquitto, and Dex
+- a local demo stack with observability in [`local-hub/`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/local-hub) with the hub, Postgres, Mosquitto, Dex, SigNoz, ClickHouse, and the OpenTelemetry collector
 
 Use the basic stack if you want the shortest path to a working hub runtime.
 Use the local demo stack if you also want observability while you
@@ -45,13 +45,13 @@ local-hub/fetch_demo_token.sh
 If you do not want to build the hub first, use the published Docker Hub image:
 [`tryformation/openlocationhub`](https://hub.docker.com/r/tryformation/openlocationhub).
 
-As of 2026-04-27, the published tags are `0.1.0` and `latest`, and `latest`
-points to the same image as `0.1.0`.
+As of 2026-06-11, the published tags include `0.1.8` and `latest`, and
+`latest` points to the current release image.
 
 Pull the current release explicitly with:
 
 ```bash
-docker pull tryformation/openlocationhub:0.1.0
+docker pull tryformation/openlocationhub:0.1.8
 ```
 
 Or follow the moving release tag with:
@@ -64,6 +64,33 @@ Use the published image when you already have Postgres, Mosquitto, and your
 identity provider handled elsewhere. Use the local compose and demo stacks when
 you want the full reference setup from this repository.
 
+## Command Line Client
+
+The companion CLI lives in
+[`Open-Location-Stack/open-location-hub-cli`](https://github.com/Open-Location-Stack/open-location-hub-cli)
+and installs as `olh`.
+
+Install it with Homebrew:
+
+```bash
+brew tap jillesvangurp/tap
+brew install jillesvangurp/tap/open-location-hub-cli
+```
+
+For the local Dex fixture:
+
+```bash
+olh login \
+  --hub-endpoint http://localhost:8080 \
+  --token-endpoint http://localhost:5556/dex/token \
+  --client-id open-location-cli \
+  --client-secret cli-secret \
+  --oauth-username admin@example.com \
+  --oauth-password testpass123
+```
+
+The CLI covers resource CRUD, ingest helpers, WebSocket streams, and RPC calls.
+
 ## Which Stack To Use
 
 - Basic compose stack:
@@ -71,7 +98,7 @@ you want the full reference setup from this repository.
 - Local demo stack with observability:
   best when you want the hub plus a prewired observability setup for traces, metrics, and logs
 
-The basic stack uses the repository root [`docker-compose.yml`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/docker-compose.yml).
+The basic stack uses the repository root [`docker-compose.yml`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/docs/docker-compose.yml).
 The local demo stack is documented in [`local-hub/README.md`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/local-hub/README.md).
 
 ## What This Setup Is For
@@ -88,7 +115,7 @@ This starter stack is not positioned as a production deployment recipe.
 - Dex is included because it is convenient for local OIDC and repeatable demo users, not because it is the recommended production IdP choice.
 - the local demo stack adds SigNoz, ClickHouse, and the OpenTelemetry collector around that core runtime
 - SigNoz is included because it is easy to bootstrap and script for modern local observability workflows, but the hub does not depend on SigNoz specifically.
-- Alternative OpenTelemetry-compatible collectors and observability stacks should work as well.
+- The hub exports standard OTLP signals, so it can use other OpenTelemetry-compatible collectors and observability stacks.
 
 ## Good Next Steps
 

@@ -16,7 +16,7 @@ This repository ships a concrete MQTT connector example in
 [`connectors/gtfs/README.md`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/connectors/gtfs/README.md).
 The MQTT connector path is documented here against the hub's implemented OMLOX
 MQTT surface. Transport details live in
-[`specifications/omlox/mqtt.md`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/specifications/omlox/mqtt.md).
+[`specifications/omlox/mqtt.md`](/open-location-hub/docs/specifications/omlox/mqtt/).
 
 ## When To Choose MQTT
 
@@ -93,13 +93,13 @@ The correct topic depends on the payload type:
   you need validation or downstream processing
 
 Use
-[`specifications/omlox/mqtt.md`](https://github.com/Open-Location-Stack/open-location-hub/blob/main/specifications/omlox/mqtt.md)
+[`specifications/omlox/mqtt.md`](/open-location-hub/docs/specifications/omlox/mqtt/)
 as the source of truth for topic families and payload expectations.
 
 ## Example Ingest Shape
 
 For MQTT, the message body is the normalized OMLOX object itself. For example,
-a connector publishing a location update would send a `Location` JSON payload to
+a connector publishing a location update sends a `Location` JSON payload to
 `/omlox/json/location_updates/pub/{provider_id}`:
 
 ```json

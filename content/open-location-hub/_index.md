@@ -1,6 +1,6 @@
 ---
 title: "Open Location Hub"
-description: "OpenAPI-first hub for location updates, event exchange, connectors, and federated multi-site deployments."
+description: "Cloud-capable hub of hubs for filtering and aggregating location data from on-premise omlox hubs."
 draft: false
 layout: "product"
 product_key: "open-location-hub"

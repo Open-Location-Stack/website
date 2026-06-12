@@ -63,7 +63,7 @@ Method mapping:
 
 ## Permissions File
 
-The permissions file is YAML. Top-level keys are values from the configured role claim. In production this would usually be a role or group claim. For the included Dex development fixture, the role claim is set to `email` because Dex's local password database produces deterministic user identity claims without extra role mapping. That is a development convenience, not a production recommendation.
+The permissions file is YAML. Top-level keys are values from the configured role claim. Production deployments normally use a role or group claim. The included Dex development fixture uses `email` because Dex's local password database produces deterministic user identity claims without extra role mapping. That is a development convenience, not a production recommendation.
 
 Example:
 
@@ -161,9 +161,22 @@ For `*_OWN` permissions, the request path parameter must be present in the match
 
 ## Error Handling
 
+- REST errors use the standard JSON envelope:
+
+```json
+{
+  "type": "bad_request",
+  "code": 400,
+  "message": "invalid request body",
+  "details": ["JSON syntax error at byte offset 18: invalid character '}' looking for beginning of object key string"]
+}
+```
+
 - `401 Unauthorized`: missing bearer header, malformed token, invalid signature, bad issuer, bad audience, expired token, or other authentication failure
-- `403 Forbidden`: authenticated token lacks a matching permission or ownership claim
-- `403 Forbidden` on RPC also covers missing method-level discovery or invocation permission
+- `400 Bad Request`: invalid JSON, multiple JSON documents, oversized request bodies, invalid path parameters, or service validation failures; the `details` array identifies the field, parameter, byte offset, limit, or validation rule where possible
+- `403 Forbidden`: authenticated token lacks a matching permission or ownership claim; REST responses include the required permission pair, the matched route rule when one exists, and ownership claim details when `_OWN` permissions are involved
+- `403 Forbidden` on RPC and WebSocket policy checks also names the missing discovery, invocation, subscribe, or publish rule
+- `404 Not Found`: unknown REST paths name the requested path; missing resources return the resource-specific not-found message
 - WebSocket auth failures are returned as OMLOX wrapper `error` events with code `10004`
 
 Authentication failures return a `WWW-Authenticate: Bearer` header and the API error body.
@@ -186,7 +199,7 @@ This repository includes a Dex fixture at [tools/dex/config.yaml](https://github
 
 - `AUTH_MODE=oidc`
 - `AUTH_ISSUER=http://dex:5556/dex`
-- `AUTH_AUDIENCE=open-rtls-cli`
+- `AUTH_AUDIENCE=open-location-cli`
 - `AUTH_ROLES_CLAIM=email`
 
 Included test users:
@@ -199,7 +212,7 @@ Fetch a token:
 
 ```bash
 curl -sS -X POST http://localhost:5556/dex/token \
-  -u open-rtls-cli:cli-secret \
+  -u open-location-cli:cli-secret \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   --data 'grant_type=password&scope=openid%20email%20profile&username=admin@example.com&password=testpass123'
 ```
@@ -215,7 +228,7 @@ Keycloak and similar OIDC providers fit the same model if they expose:
 - a stable audience for the hub
 - a claim that can be mapped via `AUTH_ROLES_CLAIM`
 
-For production deployments, prefer a real role or group claim instead of the Dex development fixture's email-based mapping. The hub is intended to verify JWT access tokens from the production IdP, not development-specific token handling.
+For production deployments, use a role or group claim instead of the Dex development fixture's email-based mapping. The hub verifies JWT access tokens from the configured production IdP.
 
 ## RPC Security Guidance
 
