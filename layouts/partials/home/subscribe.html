@@ -7,9 +7,6 @@
       {{ end }}
       <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{{ $section.title }}</h2>
       <p class="mt-4 text-muted">{{ $section.intro }}</p>
-      {{ with $section.note }}
-        <p class="mt-4 text-sm leading-relaxed text-muted">{{ . }}</p>
-      {{ end }}
     </div>
     <form
       class="rounded-3xl border border-line bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.06)]"
@@ -48,13 +45,36 @@
           {{ $section.action.label }}
         </button>
       </div>
-      <p class="mt-4 text-sm text-muted" data-listmonk-status aria-live="polite">{{ $section.status.idle }}</p>
-      <p class="mt-3 text-xs leading-relaxed text-muted">{{ $section.privacy }}</p>
+      <p
+        class="mt-4 min-h-[1.25rem] text-sm text-muted"
+        data-listmonk-status
+        data-submitting="{{ $section.status.submitting }}"
+        data-missing-email="{{ $section.status.missing_email }}"
+        data-error="{{ $section.status.error }}"
+        aria-live="polite"
+      >{{ $section.status.idle }}</p>
     </form>
     <div class="hidden rounded-3xl border border-line bg-white p-6 shadow-[0_20px_50px_rgba(15,23,42,0.06)]" data-listmonk-success role="status" aria-live="polite">
-      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted">Subscription confirmed</p>
-      <h3 class="mt-3 text-2xl font-semibold tracking-tight">Thank you for subscribing</h3>
-      <p class="mt-4 text-muted">You are now on the Open Location Stack mailing list.</p>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-muted" data-listmonk-success-eyebrow>{{ $section.success.eyebrow }}</p>
+      <h3
+        class="mt-3 text-2xl font-semibold tracking-tight"
+        data-listmonk-success-title
+        data-pending-title="{{ $section.success.pending_title }}"
+        data-subscribed-title="{{ $section.success.subscribed_title }}"
+      >{{ $section.success.subscribed_title }}</h3>
+      <p
+        class="mt-4 text-muted"
+        data-listmonk-success-body
+        data-pending-body="{{ $section.success.pending_body }}"
+        data-subscribed-body="{{ $section.success.subscribed_body }}"
+      >{{ $section.success.subscribed_body }}</p>
+      <button
+        type="button"
+        class="mt-5 text-sm font-medium text-ink underline underline-offset-4 transition hover:text-muted"
+        data-listmonk-reset
+      >
+        {{ $section.success.reset_label }}
+      </button>
     </div>
   </div>
 </section>

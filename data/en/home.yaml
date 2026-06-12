@@ -233,8 +233,7 @@ sections:
     id: "subscribe"
     eyebrow: "Mailing list"
     title: "Subscribe for release and project updates"
-    intro: "Get release notes, new connectors, integration updates, and major project news for Open Location Stack."
-    note: "This list is for Open Location Stack updates only."
+    intro: "Subscribe to receive updates about new releases and news for the Open Location Stack."
     list_uuid: "ab52eaf8-56ba-4428-8db4-c91bd711be63"
     fields:
       name:
@@ -246,8 +245,17 @@ sections:
     action:
       label: "Subscribe"
     status:
-      idle: "Use your work email if you want project and release updates."
-    privacy: "Submitting this form adds you to the Open Location Stack mailing list."
+      idle: ""
+      submitting: "Submitting subscription..."
+      missing_email: "Enter an email address before subscribing."
+      error: "Subscription failed. Please try again."
+    success:
+      eyebrow: "Subscription"
+      pending_title: "Confirm your subscription"
+      pending_body: "Check your inbox to confirm your subscription."
+      subscribed_title: "You are already subscribed, thank you."
+      subscribed_body: ""
+      reset_label: "Subscribe with another email address"
 
   - type: standards
     id: "standards"

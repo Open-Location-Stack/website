@@ -18,10 +18,14 @@ const ANALYTICS_SITE_ID = "openlocationstack";
 const CONSENT_STORAGE_KEY = "open_location_stack_analytics_consent";
 const ANALYTICS_ANON_KEY = "formation_analytics_anonymous_id";
 const ANALYTICS_SESSION_KEY = "formation_analytics_session_id";
+const SUBSCRIBE_STORAGE_KEY = "open_location_stack_subscribe_state";
 const CONSENT_ACCEPTED = "accepted";
 const CONSENT_DECLINED = "declined";
+const SUBSCRIBE_STATE_PENDING = "pending";
+const SUBSCRIBE_STATE_SUBSCRIBED = "subscribed";
 
 type ConsentState = typeof CONSENT_ACCEPTED | typeof CONSENT_DECLINED | null;
+type SubscribeState = typeof SUBSCRIBE_STATE_PENDING | typeof SUBSCRIBE_STATE_SUBSCRIBED | null;
 
 const analyticsBanner = document.getElementById("analytics-consent-banner");
 const analyticsAcceptButton = document.getElementById("analytics-consent-accept");
@@ -229,6 +233,63 @@ function setupListmonkSubscribeForms() {
     const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]');
     const successPanel = form.parentElement?.querySelector<HTMLElement>("[data-listmonk-success]") ?? null;
+    const successTitle = successPanel?.querySelector<HTMLElement>("[data-listmonk-success-title]") ?? null;
+    const successBody = successPanel?.querySelector<HTMLElement>("[data-listmonk-success-body]") ?? null;
+    const resetButton = successPanel?.querySelector<HTMLButtonElement>("[data-listmonk-reset]") ?? null;
+    const initialStatus = status?.textContent ?? "";
+    const submittingMessage = status?.dataset.submitting || "Submitting subscription...";
+    const missingEmailMessage = status?.dataset.missingEmail || "Enter an email address before subscribing.";
+    const defaultErrorMessage = status?.dataset.error || "Subscription failed. Please try again.";
+    const pendingTitle = successTitle?.dataset.pendingTitle || "Confirm your subscription";
+    const pendingBody = successBody?.dataset.pendingBody || "Check your inbox to confirm your subscription.";
+    const subscribedTitle = successTitle?.dataset.subscribedTitle || "You are already subscribed, thank you.";
+    const subscribedBody = successBody?.dataset.subscribedBody || "";
+
+    const applySubscribeState = (subscribeState: SubscribeState) => {
+      if (!successPanel || !successTitle || !successBody) {
+        return;
+      }
+
+      if (subscribeState === SUBSCRIBE_STATE_PENDING) {
+        form.classList.add("hidden");
+        successPanel.classList.remove("hidden");
+        successTitle.textContent = pendingTitle;
+        successBody.textContent = pendingBody;
+        successBody.hidden = false;
+        if (status) {
+          status.textContent = pendingBody;
+        }
+        return;
+      }
+
+      if (subscribeState === SUBSCRIBE_STATE_SUBSCRIBED) {
+        form.classList.add("hidden");
+        successPanel.classList.remove("hidden");
+        successTitle.textContent = subscribedTitle;
+        successBody.textContent = subscribedBody;
+        successBody.hidden = subscribedBody.length === 0;
+        if (status) {
+          status.textContent = subscribedTitle;
+        }
+        return;
+      }
+
+      form.classList.remove("hidden");
+      successPanel.classList.add("hidden");
+      successBody.hidden = subscribedBody.length === 0;
+      if (status) {
+        status.textContent = initialStatus;
+      }
+    };
+
+    applySubscribeState(readSubscribeState());
+
+    resetButton?.addEventListener("click", () => {
+      clearSubscribeState();
+      form.reset();
+      applySubscribeState(null);
+      emailInput?.focus();
+    });
 
     form.addEventListener("submit", async (event) => {
       const email = emailInput?.value.trim() ?? "";
@@ -236,7 +297,7 @@ function setupListmonkSubscribeForms() {
       if (!email) {
         event.preventDefault();
         if (status) {
-          status.textContent = "Enter an email address before subscribing.";
+          status.textContent = missingEmailMessage;
         }
         return;
       }
@@ -247,7 +308,7 @@ function setupListmonkSubscribeForms() {
         submitButton.disabled = true;
       }
       if (status) {
-        status.textContent = "Submitting subscription...";
+        status.textContent = submittingMessage;
       }
 
       try {
@@ -259,19 +320,16 @@ function setupListmonkSubscribeForms() {
         const payload = (await response.json().catch(() => null)) as { message?: string; data?: { has_optin?: boolean } } | null;
 
         if (!response.ok) {
-          throw new Error(payload?.message || "Subscription failed. Please try again.");
+          throw new Error(payload?.message || defaultErrorMessage);
         }
 
         form.reset();
-        form.classList.add("hidden");
-        successPanel?.classList.remove("hidden");
-
-        if (status) {
-          status.textContent = payload?.data?.has_optin ? "Check your inbox to confirm the subscription." : "Thank you for subscribing.";
-        }
+        const nextState = payload?.data?.has_optin ? SUBSCRIBE_STATE_PENDING : SUBSCRIBE_STATE_SUBSCRIBED;
+        storeSubscribeState(nextState);
+        applySubscribeState(nextState);
       } catch (error) {
         if (status) {
-          status.textContent = error instanceof Error ? error.message : "Subscription failed. Please try again.";
+          status.textContent = error instanceof Error ? error.message : defaultErrorMessage;
         }
       } finally {
         if (submitButton) {
@@ -280,6 +338,34 @@ function setupListmonkSubscribeForms() {
       }
     });
   });
+}
+
+function readSubscribeState(): SubscribeState {
+  try {
+    const value = window.localStorage.getItem(SUBSCRIBE_STORAGE_KEY);
+    if (value === SUBSCRIBE_STATE_PENDING || value === SUBSCRIBE_STATE_SUBSCRIBED) {
+      return value;
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+function storeSubscribeState(value: Exclude<SubscribeState, null>) {
+  try {
+    window.localStorage.setItem(SUBSCRIBE_STORAGE_KEY, value);
+  } catch {
+    // Ignore storage failures and fall back to a non-persisted UI state.
+  }
+}
+
+function clearSubscribeState() {
+  try {
+    window.localStorage.removeItem(SUBSCRIBE_STORAGE_KEY);
+  } catch {
+    // Ignore storage failures and leave the UI usable.
+  }
 }
 
 function updateBannerVisibility() {
