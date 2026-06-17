@@ -5,6 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ENV_FILE="${1:-$ROOT_DIR/cloudflare.env}"
 PROJECT_NAME="open-rtls-website"
 PRODUCTION_BRANCH="main"
+DEPLOY_ATTEMPTS=3
 
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "Missing env file: $ENV_FILE"
@@ -31,7 +32,20 @@ if ! npx wrangler pages project list --json | jq -e --arg name "$PROJECT_NAME" '
 fi
 
 echo "Deploying to Cloudflare Pages..."
-npx wrangler pages deploy public --project-name "$PROJECT_NAME" --branch "$PRODUCTION_BRANCH"
+for attempt in $(seq 1 "$DEPLOY_ATTEMPTS"); do
+  if npx wrangler pages deploy public --project-name "$PROJECT_NAME" --branch "$PRODUCTION_BRANCH"; then
+    break
+  fi
+
+  if [[ "$attempt" -eq "$DEPLOY_ATTEMPTS" ]]; then
+    echo "Cloudflare Pages deploy failed after $DEPLOY_ATTEMPTS attempts."
+    exit 1
+  fi
+
+  sleep_seconds=$((attempt * 20))
+  echo "Cloudflare Pages deploy failed on attempt $attempt; retrying in ${sleep_seconds}s..."
+  sleep "$sleep_seconds"
+done
 
 echo
 echo "Deploy finished."

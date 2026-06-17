@@ -1,7 +1,7 @@
 ---
 title: "Open Location Hub at the omlox Plugfest 2026"
 description: "Open Location Hub was tested as a hub of hubs at the omlox Plugfest 2026 in Lemgo, aggregating live updates from multiple omlox-compatible systems into FORMATION."
-date: 2026-06-12T10:30:00Z
+date: 2026-06-17T12:00:00+02:00
 draft: false
 ---
 
